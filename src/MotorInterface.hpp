@@ -11,10 +11,8 @@ class MotorInterface {
     const INTERFACE selectedInterface = INTERFACE::DC;
 
   public:
-    MotorInterface(){};
-    INTERFACE getSelectedInterface() const {
-        return selectedInterface;
-    };
+    MotorInterface();
+    INTERFACE getSelectedInterface() const;
 };
 
 #endif
