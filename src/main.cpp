@@ -1,4 +1,4 @@
-#include "MotorInterface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 int main() {
@@ -7,6 +7,7 @@ int main() {
 
     MotorInterface motorInterface;
 
+    motorInterface.setSelectedInterface();
     hwlib::cout << "Selected interface:" << hwlib::endl;
 
     if (motorInterface.getSelectedInterface() == MotorInterface::INTERFACE::DC) {

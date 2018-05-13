@@ -13,7 +13,8 @@
 /**
  * @brief Interface class for motor controller
  *
- * This sets the selected interface to DC motor and tells the user which interface is selected
+ * This class is used to select and return a motor interface.
+ * The default selected interface is DC.
  *
  */
 class MotorInterface {
@@ -23,7 +24,7 @@ class MotorInterface {
 
   private:
     ///< The interface that is currently selected
-    const INTERFACE selectedInterface = INTERFACE::DC;
+    INTERFACE selectedInterface = INTERFACE::DC;
 
   public:
     /**
@@ -34,6 +35,13 @@ class MotorInterface {
      * @brief getter for selectedInterface
      */
     INTERFACE getSelectedInterface() const;
+
+    /**
+     * @brief setter for selectedInterface
+     *
+     * Sets selectedInterface to DC motor interface
+     */
+    void setSelectedInterface();
 };
 
 #endif
