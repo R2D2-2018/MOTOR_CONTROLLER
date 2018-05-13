@@ -20,7 +20,7 @@
 class MotorInterface {
   public:
     ///< Enum class with all available motor interfaces
-    enum class INTERFACE { DC };
+    enum class INTERFACE { DC, STEPPER };
 
   private:
     ///< The interface that is currently selected
@@ -41,7 +41,7 @@ class MotorInterface {
      *
      * Sets selectedInterface to DC motor interface
      */
-    void setSelectedInterface();
+    void setSelectedInterface(const INTERFACE interface);
 };
 
 #endif
