@@ -38,8 +38,6 @@ class MotorInterface {
 
     /**
      * @brief setter for selectedInterface
-     *
-     * Sets selectedInterface to DC motor interface
      */
     void setSelectedInterface(const INTERFACE interface);
 };
