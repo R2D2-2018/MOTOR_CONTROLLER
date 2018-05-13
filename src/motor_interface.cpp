@@ -7,6 +7,6 @@ MotorInterface::INTERFACE MotorInterface::getSelectedInterface() const {
     return selectedInterface;
 }
 
-void MotorInterface::setSelectedInterface() {
-    selectedInterface = MotorInterface::INTERFACE::DC;
+void MotorInterface::setSelectedInterface(const INTERFACE interface) {
+    selectedInterface = interface;
 }
