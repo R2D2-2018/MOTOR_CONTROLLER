@@ -25,7 +25,7 @@ include_directories (${catch}/single_include)
 # Source Files:
 
 set (sources
-    src/MoterInterface.cpp
+    src/motor_interface.cpp
     src/wrap-hwlib.cpp
     src/libc-stub.cpp
     src/main.cpp
