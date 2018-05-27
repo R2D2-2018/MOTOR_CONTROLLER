@@ -10,6 +10,7 @@
 
 #include "wrap-hwlib.hpp"
 
+namespace MotorController {
 /**
  * @brief Interface class for motor controller
  *
@@ -41,5 +42,6 @@ class MotorInterface {
      */
     void setSelectedInterface(const INTERFACE interface);
 };
+}
 
 #endif

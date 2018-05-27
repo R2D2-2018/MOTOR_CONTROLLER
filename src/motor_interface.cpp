@@ -1,12 +1,12 @@
 #include "motor_interface.hpp"
 
-MotorInterface::MotorInterface() {
+MotorController::MotorInterface::MotorInterface() {
 }
 
-MotorInterface::INTERFACE MotorInterface::getSelectedInterface() const {
+MotorController::MotorInterface::INTERFACE MotorController::MotorInterface::getSelectedInterface() const {
     return selectedInterface;
 }
 
-void MotorInterface::setSelectedInterface(const INTERFACE interface) {
+void MotorController::MotorInterface::setSelectedInterface(const MotorController::MotorInterface::INTERFACE interface) {
     selectedInterface = interface;
 }
