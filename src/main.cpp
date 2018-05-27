@@ -22,8 +22,8 @@ int main() {
             break;
         }
     }
+    // Print selected interface
     hwlib::cout << "Selected interface:" << hwlib::endl;
-
     switch (motorInterface.getSelectedInterface()) {
     case MotorController::MotorInterface::INTERFACE::DC:
         hwlib::cout << "DC motor" << hwlib::endl;
@@ -34,6 +34,26 @@ int main() {
     }
 
     while (true) {
+        char answer;
+        // Output current state
+        hwlib::cout << "Motor direction: "
+                    << (motorInterface.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD ? "Forward"
+                                                                                                             : "Backward")
+                    << ", speed: " << static_cast<int>(motorInterface.getSpeed()) << "%" << hwlib::endl;
+
+        // Ask new direction
+        hwlib::cout << "Give a new direction (0: forward, 1: backward): " << hwlib::endl;
+        hwlib::cin >> answer;
+        if (answer == '0' || answer == '1') { // Set direction if valid answer
+            motorInterface.setDirection(static_cast<MotorController::MotorInterface::DIRECTION>(answer - '0'));
+        }
+
+        // Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
+        hwlib::cout << "Give a new motor speed (0 - 9): " << hwlib::endl;
+        hwlib::cin >> answer;
+        if (answer >= '0' && answer <= '9') { // Set direction if valid answer
+            motorInterface.setSpeed((answer - '0') * 10);
+        }
     }
 
     return 0;
