@@ -13,4 +13,5 @@ include_directories (${catch}/single_include)
 set (sources
     src/controller.cpp
     src/dc_interface.cpp
+    src/stepper_interface.cpp
 )

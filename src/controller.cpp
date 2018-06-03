@@ -1,6 +1,6 @@
 #include "controller.hpp"
 
-MotorController::Controller::Controller() : dcInterface() {
+MotorController::Controller::Controller() : dcInterface(), stepperInterface() {
 }
 
 MotorController::Controller::INTERFACE MotorController::Controller::getSelectedInterface() const {
@@ -30,8 +30,9 @@ void MotorController::Controller::setSelectedInterface(const MotorController::Co
     case MotorController::Controller::INTERFACE::DC:
         selectedInterface = &dcInterface;
         break;
-    // case MotorController::Controller::INTERFACE::STEPPER:
-    //     break;
+    case MotorController::Controller::INTERFACE::STEPPER:
+        selectedInterface = &stepperInterface;
+        break;
     default:
         // Interface not supported
         hwlib::cout << "Error: Trying to set and not supported interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;

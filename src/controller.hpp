@@ -10,6 +10,7 @@
 
 #include "dc_interface.hpp"
 #include "motor_interface.hpp"
+#include "stepper_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -29,8 +30,12 @@ class Controller {
     ///< The interface that is currently selected
     MotorInterface *selectedInterface = nullptr;
 
-    ///< The interface for dc motor, we instanciate this because
+    ///< The interface for dc motor, we initialize this in the contructor because we have no heap and can't do polymorphism that way
+    ///< for selected interface
     DcInterface dcInterface;
+    ///< The interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
+    ///< that way for selected interface
+    StepperInterface stepperInterface;
 
   public:
     /**
