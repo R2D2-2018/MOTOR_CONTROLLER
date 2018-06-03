@@ -3,16 +3,15 @@
 #include "motor_interface.hpp"
 
 // cppcheck-suppress unusedFunction
-TEST_CASE("MotorInterface: Default interface") {
-    MotorController::MotorInterface motorInterface;
-    REQUIRE(motorInterface.getSelectedInterface() == MotorController::MotorInterface::INTERFACE::DC);
-    REQUIRE(motorInterface.getSelectedInterface() != MotorController::MotorInterface::INTERFACE::STEPPER);
-}
-
 TEST_CASE("MotorInterface: setInterface") {
     MotorController::MotorInterface motorInterface;
 
     motorInterface.setSelectedInterface(MotorController::MotorInterface::INTERFACE::STEPPER);
+
+    REQUIRE(motorInterface.getSelectedInterface() == MotorController::MotorInterface::INTERFACE::STEPPER);
+    REQUIRE(motorInterface.getSelectedInterface() != MotorController::MotorInterface::INTERFACE::DC);
+
+    motorInterface.setSelectedInterface(MotorController::MotorInterface::INTERFACE::DC);
 
     REQUIRE(motorInterface.getSelectedInterface() == MotorController::MotorInterface::INTERFACE::STEPPER);
     REQUIRE(motorInterface.getSelectedInterface() != MotorController::MotorInterface::INTERFACE::DC);
