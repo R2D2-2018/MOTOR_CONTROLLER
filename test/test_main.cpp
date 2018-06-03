@@ -70,9 +70,6 @@ TEST_CASE("MotorInterface: setAngle") {
     motorInterface.setAngle(360);
     REQUIRE(motorInterface.getAngle() == 360);
 
-    motorInterface.setAngle(-360);
-    REQUIRE(motorInterface.getAngle() == -360);
-
     motorInterface.setAngle(0);
     REQUIRE(motorInterface.getAngle() == 0);
 
