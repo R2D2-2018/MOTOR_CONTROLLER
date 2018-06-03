@@ -33,6 +33,8 @@ class MotorInterface {
     DIRECTION direction = DIRECTION::FORWARD;
     ///< Motor rotation speed, 0 - 100%
     uint8_t speed = 0;
+    ///< Motor angle, 0 - 360
+    uint16_t angle = 0;
 
   public:
     /**
@@ -64,6 +66,14 @@ class MotorInterface {
      * @brief setter for speed
      */
     void setSpeed(const uint8_t speed);
+    /**
+     * @brief getter for speed
+     */
+    uint16_t getAngle() const;
+    /**
+     * @brief setter for speed
+     */
+    void setAngle(const uint16_t newAngle);
 };
 } // namespace MotorController
 

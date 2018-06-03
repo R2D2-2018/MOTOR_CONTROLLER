@@ -29,3 +29,14 @@ void MotorController::MotorInterface::setSpeed(const uint8_t newSpeed) {
         speed = newSpeed;
     }
 }
+
+uint16_t MotorController::MotorInterface::getAngle() const {
+    return angle;
+}
+
+void MotorController::MotorInterface::setAngle(const uint16_t newAngle) {
+    // Speed can only be 0 - 360
+    if (newAngle <= 360) {
+        angle = newAngle;
+    }
+}
