@@ -51,4 +51,4 @@ class DcInterface : public MotorInterface {
 };
 } // namespace MotorController
 
-#endif
+#endif // DC_INTERFACE_HPP

@@ -62,4 +62,4 @@ class MotorInterface {
 };
 } // namespace MotorController
 
-#endif
+#endif // MOTOR_INTERFACE_HPP

@@ -15,10 +15,10 @@
 
 namespace MotorController {
 /**
- * @brief Interface class for motor controller
+ * @brief Controller for motor logic
  *
- * This class is used to select and return a motor interface.
- * The default selected interface is DC.
+ * This class is used to control a motor using the motor_interface superclass.
+ * The interface can be set to DC or STEPPER and uses the selected interface to set speed, direction or angle of a motor
  *
  */
 class Controller {

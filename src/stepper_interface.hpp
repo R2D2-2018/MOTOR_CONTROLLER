@@ -51,4 +51,4 @@ class StepperInterface : public MotorInterface {
 };
 } // namespace MotorController
 
-#endif
+#endif // STEPPER_INTERFACE_HPP
