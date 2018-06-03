@@ -11,5 +11,6 @@ include_directories (${catch}/single_include)
 # Source Files:
 
 set (sources
-    src/motor_interface.cpp
+    src/controller.cpp
+    src/dc_interface.cpp
 )

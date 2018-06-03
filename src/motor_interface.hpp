@@ -12,23 +12,17 @@
 
 namespace MotorController {
 /**
- * @brief Interface class for motor controller
+ * @brief Abstract interface class used by other interfaces
  *
- * This class is used to select and return a motor interface.
- * The default selected interface is DC.
+ * This class is a super class for interfaces for all supported motor types
  *
  */
 class MotorInterface {
   public:
-    ///< Enum class with all available motor interfaces
-    enum class INTERFACE { DC, STEPPER };
     ///< Enum class with all possible motor directions
     enum class DIRECTION { FORWARD, BACKWARD };
 
-  private:
-    ///< The interface that is currently selected
-    INTERFACE selectedInterface = INTERFACE::DC;
-
+  protected:
     ///< The direction of the motor rotation, forward by default
     DIRECTION direction = DIRECTION::FORWARD;
     ///< Motor rotation speed, 0 - 100%
@@ -40,40 +34,31 @@ class MotorInterface {
     /**
      * @brief Default constructor
      */
-    MotorInterface();
-
-    /**
-     * @brief getter for selectedInterface
-     */
-    INTERFACE getSelectedInterface() const;
-    /**
-     * @brief setter for selectedInterface
-     */
-    void setSelectedInterface(const INTERFACE interface);
+    MotorInterface(){};
     /**
      * @brief getter for direction
      */
-    DIRECTION getDirection() const;
+    virtual DIRECTION getDirection() const = 0;
     /**
      * @brief setter for direction
      */
-    void setDirection(const DIRECTION direction);
+    virtual void setDirection(const DIRECTION direction) = 0;
     /**
      * @brief getter for speed
      */
-    uint8_t getSpeed() const;
+    virtual uint8_t getSpeed() const = 0;
     /**
      * @brief setter for speed
      */
-    void setSpeed(const uint8_t speed);
+    virtual void setSpeed(const uint8_t speed) = 0;
     /**
      * @brief getter for speed
      */
-    uint16_t getAngle() const;
+    virtual uint16_t getAngle() const = 0;
     /**
      * @brief setter for speed
      */
-    void setAngle(const uint16_t newAngle);
+    virtual void setAngle(const uint16_t newAngle) = 0;
 };
 } // namespace MotorController
 
