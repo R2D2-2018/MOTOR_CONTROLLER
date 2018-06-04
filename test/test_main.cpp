@@ -63,3 +63,38 @@ TEST_CASE("MotorInterface: setSpeed, no underflow") {
 
     REQUIRE(motorInterface.getSpeed() == 0);
 }
+
+TEST_CASE("MotorInterface: setAngle") {
+    MotorController::MotorInterface motorInterface;
+
+    motorInterface.setAngle(360);
+    REQUIRE(motorInterface.getAngle() == 360);
+
+    motorInterface.setAngle(0);
+    REQUIRE(motorInterface.getAngle() == 0);
+
+    motorInterface.setAngle(244);
+    REQUIRE(motorInterface.getAngle() == 244);
+}
+
+TEST_CASE("MotorInterface: no overflow") {
+    MotorController::MotorInterface motorInterface;
+
+    motorInterface.setAngle(0);
+
+    motorInterface.setAngle(361);
+    REQUIRE(motorInterface.getAngle() == 0);
+    motorInterface.setAngle(3601);
+    REQUIRE(motorInterface.getAngle() == 0);
+}
+
+TEST_CASE("MotorInterface: no underflow") {
+    MotorController::MotorInterface motorInterface;
+
+    motorInterface.setAngle(0);
+
+    motorInterface.setAngle(-361);
+    REQUIRE(motorInterface.getAngle() == 0);
+    motorInterface.setAngle(-3601);
+    REQUIRE(motorInterface.getAngle() == 0);
+}

@@ -54,8 +54,8 @@ void printInterface(MotorController::MotorInterface &motorInterface) {
  * @brief Main logic for motor controller module
  *
  * NOTE: This function will be replace in the future with a task, if rtos works
- * Prints current state (direction and speed) of the motor interface object,
- * then asks for a new direction and speed.
+ * Prints current state (direction, angle and speed) of the motor interface object,
+ * then asks for a new direction, angle and speed.
  *
  * @param[in]     MotorController::MotorInterface     The motor interface object
  *
@@ -68,7 +68,8 @@ void mainLogic(MotorController::MotorInterface &motorInterface) {
         hwlib::cout << "Motor direction: "
                     << (motorInterface.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD ? "Forward"
                                                                                                              : "Backward")
-                    << ", speed: " << static_cast<int>(motorInterface.getSpeed()) << "%" << hwlib::endl;
+                    << ", speed: " << static_cast<int>(motorInterface.getSpeed())
+                    << "%, angle: " << static_cast<int>(motorInterface.getAngle()) << hwlib::endl;
 
         // Ask new direction
         hwlib::cout << "Give a new direction (0: forward, 1: backward): " << hwlib::endl;
@@ -83,6 +84,15 @@ void mainLogic(MotorController::MotorInterface &motorInterface) {
         if (answer >= '0' && answer <= '9') { // Set direction if valid answer
             motorInterface.setSpeed((answer - '0') * 10);
         }
+
+        // Ask new motor angle (hwlib cin does not support int so we use char and multiply by 36 for now)
+        hwlib::cout << "Give a new motor angle (0 - 9): " << hwlib::endl;
+        hwlib::cin >> answer;
+        if (answer >= '0' && answer <= '9') { // Set direction if valid answer
+            motorInterface.setAngle((answer - '0') * 36);
+        }
+
+        hwlib::cout << hwlib::endl;
     }
 }
 
