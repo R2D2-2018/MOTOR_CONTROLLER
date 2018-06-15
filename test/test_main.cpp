@@ -19,25 +19,6 @@ TEST_CASE("Controller: setInterface") {
     REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::INTERFACE::DC);
 }
 
-TEST_CASE("Controller dcInterface selected: Default direction") {
-    MotorController::Controller motorController;
-
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
-
-    REQUIRE(motorController.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD);
-    REQUIRE(motorController.getDirection() != MotorController::MotorInterface::DIRECTION::BACKWARD);
-}
-
-TEST_CASE("Controller dcInterface selected: setDirection") {
-    MotorController::Controller motorController;
-
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
-    motorController.setDirection(MotorController::MotorInterface::DIRECTION::BACKWARD);
-
-    REQUIRE(motorController.getDirection() == MotorController::MotorInterface::DIRECTION::BACKWARD);
-    REQUIRE(motorController.getDirection() != MotorController::MotorInterface::DIRECTION::FORWARD);
-}
-
 TEST_CASE("DCIntController dcInterface selectedrface: Default speed") {
     MotorController::Controller motorController;
 
@@ -50,16 +31,18 @@ TEST_CASE("Controller dcInterface selected: setSpeed") {
     MotorController::Controller motorController;
 
     motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
-    motorController.setSpeed(60);
 
+    motorController.setSpeed(60);
     REQUIRE(motorController.getSpeed() == 60);
+    motorController.setSpeed(255);
+    REQUIRE(motorController.getSpeed() == 255);
 }
 
 TEST_CASE("Controller dcInterface selected: setSpeed, no overflow") {
     MotorController::Controller motorController;
 
     motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
-    motorController.setSpeed(101);
+    motorController.setSpeed(400);
 
     REQUIRE(motorController.getSpeed() == 0);
 }
@@ -68,7 +51,7 @@ TEST_CASE("Controller dcInterface selected: setSpeed, no underflow") {
     MotorController::Controller motorController;
 
     motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
-    motorController.setSpeed(-1);
+    motorController.setSpeed(-300);
 
     REQUIRE(motorController.getSpeed() == 0);
 }
@@ -113,22 +96,6 @@ TEST_CASE("Controller dcInterface selected: no underflow") {
     REQUIRE(motorController.getAngle() == 0);
 }
 
-TEST_CASE("DCInterface: Default direction") {
-    MotorController::DcInterface motorInterface;
-
-    REQUIRE(motorInterface.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD);
-    REQUIRE(motorInterface.getDirection() != MotorController::MotorInterface::DIRECTION::BACKWARD);
-}
-
-TEST_CASE("DCInterface: setDirection") {
-    MotorController::DcInterface motorInterface;
-
-    motorInterface.setDirection(MotorController::MotorInterface::DIRECTION::BACKWARD);
-
-    REQUIRE(motorInterface.getDirection() == MotorController::MotorInterface::DIRECTION::BACKWARD);
-    REQUIRE(motorInterface.getDirection() != MotorController::MotorInterface::DIRECTION::FORWARD);
-}
-
 TEST_CASE("DCInterface: Default speed") {
     MotorController::DcInterface motorInterface;
 
@@ -146,15 +113,14 @@ TEST_CASE("DCInterface: setSpeed") {
 TEST_CASE("DCInterface: setSpeed, no overflow") {
     MotorController::DcInterface motorInterface;
 
-    motorInterface.setSpeed(101);
-
+    motorInterface.setSpeed(300);
     REQUIRE(motorInterface.getSpeed() == 0);
 }
 
 TEST_CASE("DCInterface: setSpeed, no underflow") {
     MotorController::DcInterface motorInterface;
 
-    motorInterface.setSpeed(-1);
+    motorInterface.setSpeed(-265);
 
     REQUIRE(motorInterface.getSpeed() == 0);
 }
@@ -170,6 +136,18 @@ TEST_CASE("DCInterface: setAngle") {
 
     motorInterface.setAngle(244);
     REQUIRE(motorInterface.getAngle() == 244);
+}
+
+TEST_CASE("DCInterface: setEnable") {
+    MotorController::DcInterface motorInterface;
+
+    REQUIRE(motorInterface.getEnable() == true);
+
+    motorInterface.setEnable(false);
+    REQUIRE(motorInterface.getEnable() == false);
+
+    motorInterface.setEnable(true);
+    REQUIRE(motorInterface.getEnable() == true);
 }
 
 TEST_CASE("DCInterface: no overflow") {

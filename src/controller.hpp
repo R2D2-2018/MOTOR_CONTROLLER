@@ -52,21 +52,21 @@ class Controller {
      */
     void setSelectedInterface(const INTERFACE interface);
     /**
-     * @brief getter for direction
+     * @brief getter for Enable
      */
-    MotorInterface::DIRECTION getDirection() const;
+    bool getEnable() const;
     /**
-     * @brief setter for direction
+     * @brief setter for Enable
      */
-    void setDirection(const MotorInterface::DIRECTION direction);
+    void setEnable(const bool state);
     /**
      * @brief getter for speed
      */
-    uint8_t getSpeed() const;
+    int16_t getSpeed() const;
     /**
      * @brief setter for speed
      */
-    void setSpeed(const uint8_t speed);
+    void setSpeed(const int16_t speed);
     /**
      * @brief getter for speed
      */

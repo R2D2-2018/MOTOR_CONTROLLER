@@ -66,24 +66,14 @@ void mainLogic(MotorController::Controller &motorController) {
     while (true) {
         char answer;
         // Output current state
-        hwlib::cout << "Motor direction: "
-                    << (motorController.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD ? "Forward"
-                                                                                                              : "Backward")
-                    << ", speed: " << static_cast<int>(motorController.getSpeed())
+        hwlib::cout << ", speed: " << static_cast<int>(motorController.getSpeed())
                     << "%, angle: " << static_cast<int>(motorController.getAngle()) << hwlib::endl;
-
-        // Ask new direction
-        hwlib::cout << "Give a new direction (0: forward, 1: backward): " << hwlib::endl;
-        hwlib::cin >> answer;
-        if (answer == '0' || answer == '1') { // Set direction if valid answer
-            motorController.setDirection(static_cast<MotorController::MotorInterface::DIRECTION>(answer - '0'));
-        }
 
         // Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
         hwlib::cout << "Give a new motor speed (0 - 9): " << hwlib::endl;
         hwlib::cin >> answer;
         if (answer >= '0' && answer <= '9') { // Set direction if valid answer
-            motorController.setSpeed((answer - '0') * 10);
+            motorController.setSpeed((answer - '0') * 10 - 250);
         }
 
         // Ask new motor angle (hwlib cin does not support int so we use char and multiply by 36 for now)

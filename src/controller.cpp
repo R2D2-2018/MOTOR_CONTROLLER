@@ -43,19 +43,19 @@ void MotorController::Controller::setSelectedInterface(const MotorController::Co
     }
 }
 
-MotorController::MotorInterface::DIRECTION MotorController::Controller::getDirection() const {
-    return selectedInterface->getDirection();
+bool MotorController::Controller::getEnable() const {
+    return selectedInterface->getEnable();
 }
 
-void MotorController::Controller::setDirection(const MotorController::MotorInterface::DIRECTION newDirection) {
-    selectedInterface->setDirection(newDirection);
+void MotorController::Controller::setEnable(const bool state) {
+    selectedInterface->setEnable(state);
 }
 
-uint8_t MotorController::Controller::getSpeed() const {
+int16_t MotorController::Controller::getSpeed() const {
     return selectedInterface->getSpeed();
 }
 
-void MotorController::Controller::setSpeed(const uint8_t newSpeed) {
+void MotorController::Controller::setSpeed(const int16_t newSpeed) {
     selectedInterface->setSpeed(newSpeed);
 }
 

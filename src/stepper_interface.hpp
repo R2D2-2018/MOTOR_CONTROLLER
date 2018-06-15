@@ -25,29 +25,29 @@ class StepperInterface : public MotorInterface {
      */
     StepperInterface();
     /**
-     * @brief getter for direction
+     * @brief getter for Enable
      */
-    DIRECTION getDirection() const override;
+    bool getEnable() const override;
     /**
-     * @brief setter for direction
+     * @brief setter for Enable
      */
-    void setDirection(const DIRECTION direction) override;
-    /**
-     * @brief getter for speed
-     */
-    uint8_t getSpeed() const override;
-    /**
-     * @brief setter for speed
-     */
-    void setSpeed(const uint8_t speed) override;
+    void setEnable(const bool state) override;
     /**
      * @brief getter for speed
      */
-    uint16_t getAngle() const override;
+    int16_t getSpeed() const override;
     /**
      * @brief setter for speed
      */
-    void setAngle(const uint16_t newAngle);
+    void setSpeed(const int16_t speed) override;
+    /**
+     * @brief getter for speed
+     */
+    int16_t getAngle() const override;
+    /**
+     * @brief setter for speed
+     */
+    void setAngle(const int16_t newAngle);
 };
 } // namespace MotorController
 

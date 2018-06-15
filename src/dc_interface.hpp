@@ -25,29 +25,29 @@ class DcInterface : public MotorInterface {
      */
     DcInterface();
     /**
+     * @brief getter for Enable
+     */
+    bool getEnable() const override;
+    /**
+     * @brief setter for Enable
+     */
+    void setEnable(const bool state) override;
+    /**
      * @brief getter for direction
      */
-    DIRECTION getDirection() const override;
-    /**
-     * @brief setter for direction
-     */
-    void setDirection(const DIRECTION direction) override;
-    /**
-     * @brief getter for speed
-     */
-    uint8_t getSpeed() const override;
+    int16_t getSpeed() const override;
     /**
      * @brief setter for speed
      */
-    void setSpeed(const uint8_t speed) override;
+    void setSpeed(const int16_t speed) override;
     /**
      * @brief getter for speed
      */
-    uint16_t getAngle() const override;
+    int16_t getAngle() const override;
     /**
      * @brief setter for speed
      */
-    void setAngle(const uint16_t newAngle);
+    void setAngle(const int16_t newAngle);
 };
 } // namespace MotorController
 
