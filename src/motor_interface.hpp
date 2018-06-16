@@ -20,11 +20,11 @@ namespace MotorController {
 class MotorInterface {
   public:
     ///< Enum class with all possible motor directions
-    enum class DIRECTION { FORWARD, BACKWARD };
+    enum class Direction { Forward, Backward };
 
   protected:
     ///< The direction of the motor rotation, forward by default
-    DIRECTION direction = DIRECTION::FORWARD;
+    Direction direction = Direction::Forward;
     ///< Motor rotation speed, 0 - 100%
     uint8_t speed = 0;
     ///< Motor angle, 0 - 360
@@ -38,11 +38,11 @@ class MotorInterface {
     /**
      * @brief getter for direction
      */
-    virtual DIRECTION getDirection() const = 0;
+    virtual Direction getDirection() const = 0;
     /**
      * @brief setter for direction
      */
-    virtual void setDirection(const DIRECTION direction) = 0;
+    virtual void setDirection(const Direction direction) = 0;
     /**
      * @brief getter for speed
      */

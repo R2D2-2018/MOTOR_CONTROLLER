@@ -3,51 +3,44 @@
 MotorController::Controller::Controller() : dcInterface(), stepperInterface() {
 }
 
-MotorController::Controller::INTERFACE MotorController::Controller::getSelectedInterface() const {
+MotorController::Controller::Interface MotorController::Controller::getSelectedInterface() const {
     // Getting while interface is nullptr
     if (selectedInterface == nullptr) {
         hwlib::cout << "Error:: Trying to get an nullptr interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
-        // Better not continue
-        while (1) {
-        }
+        return MotorController::Controller::Interface::None;
     }
 
     // Convert the interface to enum
     if (selectedInterface == &dcInterface) {
-        return MotorController::Controller::INTERFACE::DC;
+        return MotorController::Controller::Interface::DC;
     }
 
-    return MotorController::Controller::INTERFACE::STEPPER;
+    return MotorController::Controller::Interface::Stepper;
 }
 
-void MotorController::Controller::setSelectedInterface(const MotorController::Controller::INTERFACE newInterface) {
+bool MotorController::Controller::setSelectedInterface(const MotorController::Controller::Interface newInterface) {
     // Prevent setting the interface a second time
     if (selectedInterface != nullptr) {
-        return;
+        return true;
     }
 
-    switch (newInterface) {
-    case MotorController::Controller::INTERFACE::DC:
+    if (newInterface == MotorController::Controller::Interface::DC) {
         selectedInterface = &dcInterface;
-        break;
-    case MotorController::Controller::INTERFACE::STEPPER:
+        return true;
+    } else if (newInterface == MotorController::Controller::Interface::Stepper) {
         selectedInterface = &stepperInterface;
-        break;
-    default:
-        // Interface not supported
+        return true;
+    } else {
         hwlib::cout << "Error: Trying to set and not supported interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
-        // Better not continue
-        while (1) {
-        }
-        break;
+        return false;
     }
 }
 
-MotorController::MotorInterface::DIRECTION MotorController::Controller::getDirection() const {
+MotorController::MotorInterface::Direction MotorController::Controller::getDirection() const {
     return selectedInterface->getDirection();
 }
 
-void MotorController::Controller::setDirection(const MotorController::MotorInterface::DIRECTION newDirection) {
+void MotorController::Controller::setDirection(const MotorController::MotorInterface::Direction newDirection) {
     selectedInterface->setDirection(newDirection);
 }
 

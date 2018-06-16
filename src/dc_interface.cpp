@@ -3,11 +3,11 @@
 MotorController::DcInterface::DcInterface() {
 }
 
-MotorController::MotorInterface::DIRECTION MotorController::DcInterface::getDirection() const {
+MotorController::MotorInterface::Direction MotorController::DcInterface::getDirection() const {
     return direction;
 }
 
-void MotorController::DcInterface::setDirection(const MotorController::MotorInterface::DIRECTION newDirection) {
+void MotorController::DcInterface::setDirection(const MotorController::MotorInterface::Direction newDirection) {
     direction = newDirection;
 }
 
@@ -28,7 +28,7 @@ uint16_t MotorController::DcInterface::getAngle() const {
 
 void MotorController::DcInterface::setAngle(const uint16_t newAngle) {
     // Speed can only be 0 - 360
-    if (newAngle <= 360) {
+    if (newAngle < 360) {
         angle = newAngle;
     }
 }
