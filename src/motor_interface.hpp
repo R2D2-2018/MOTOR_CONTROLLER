@@ -25,12 +25,18 @@ class MotorInterface {
     int16_t speed = 0;
     ///< Motor angle, 0 - 360
     int16_t angle = 0;
+    ///< Pinout Enable
+    hwlib::pin_out &enablePin = hwlib::pin_out_dummy;
 
   public:
     /**
      * @brief Default constructor
      */
     MotorInterface(){};
+    /**
+     * @brief Default constructor
+     */
+    // MotorInterface(hwlib::pin_out &enablePin) : enablePin(enablePin){};
     /**
      * @brief getter for speed
      */

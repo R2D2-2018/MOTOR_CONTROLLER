@@ -73,7 +73,7 @@ void mainLogic(MotorController::Controller &motorController) {
         hwlib::cout << "Give a new motor speed (0 - 9): " << hwlib::endl;
         hwlib::cin >> answer;
         if (answer >= '0' && answer <= '9') { // Set direction if valid answer
-            motorController.setSpeed((answer - '0') * 10 - 250);
+            motorController.setSpeed((answer - '0') * 50 - 250);
         }
 
         // Ask new motor angle (hwlib cin does not support int so we use char and multiply by 36 for now)
@@ -91,8 +91,8 @@ int main() {
     WDT->WDT_MR = WDT_MR_WDDIS;
     hwlib::wait_ms(1000);
 
+    /**
     MotorController::Controller motorController;
-
     // Ask user which interface should be used
     constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::INTERFACE>(askNumber(question)));
@@ -102,6 +102,20 @@ int main() {
 
     // TODO: We should see if we can make rtos work, then we can make this function a task
     mainLogic(motorController);
-
+    */
+    MotorController::Controller motorController;
+    constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
+    motorController.setSelectedInterface(static_cast<MotorController::Controller::INTERFACE>(askNumber(question)));
+    while (1) {
+        // hwlib::cout << "heko";
+        motorController.setEnable(true);
+        hwlib::wait_ms(100);
+        hwlib::cout << int(motorController.getEnable());
+        hwlib::wait_ms(1000);
+        motorController.setEnable(false);
+        hwlib::wait_ms(100);
+        hwlib::cout << motorController.getEnable();
+        hwlib::wait_ms(1000);
+    }
     return 0;
 }

@@ -9,6 +9,7 @@ bool MotorController::DcInterface::getEnable() const {
 
 void MotorController::DcInterface::setEnable(const bool state) {
     enable = state;
+    enablePin.set(state);
 }
 
 int16_t MotorController::DcInterface::getSpeed() const {
@@ -17,10 +18,8 @@ int16_t MotorController::DcInterface::getSpeed() const {
 
 void MotorController::DcInterface::setSpeed(const int16_t newSpeed) {
     // Speed can only be -255 / 255
-    if (newSpeed > 255) {
-        speed = int16_t(0);
-    } else if (newSpeed < -255) {
-        speed = int16_t(0);
+    if (newSpeed > 255 || newSpeed < -255) {
+        return;
     } else {
         speed = newSpeed;
     }
