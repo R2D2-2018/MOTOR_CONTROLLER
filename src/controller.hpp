@@ -8,33 +8,33 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "dc_interface.hpp"
-#include "motor_interface.hpp"
-#include "stepper_interface.hpp"
+#include "dc_Interface.hpp"
+#include "motor_Interface.hpp"
+#include "stepper_Interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
 /**
  * @brief Controller for motor logic
  *
- * This class is used to control a motor using the motor_interface superclass.
- * The interface can be set to DC or STEPPER and uses the selected interface to set speed, direction or angle of a motor
+ * This class is used to control a motor using the motor_Interface superclass.
+ * The Interface can be set to DC or Stepper and uses the selected Interface to set speed, direction or angle of a motor
  *
  */
 class Controller {
   public:
-    ///< Enum class with all available motor interfaces
-    enum class INTERFACE { DC, STEPPER };
+    ///< Enum class with all available motor Interfaces
+    enum class Interface { DC, Stepper, None };
 
   private:
-    ///< The interface that is currently selected
+    ///< The Interface that is currently selected
     MotorInterface *selectedInterface = nullptr;
 
-    ///< The interface for dc motor, we initialize this in the contructor because we have no heap and can't do polymorphism that way
-    ///< for selected interface
+    ///< The Interface for dc motor, we initialize this in the contructor because we have no heap and can't do polymorphism that way
+    ///< for selected Interface
     DcInterface dcInterface;
-    ///< The interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
-    ///< that way for selected interface
+    ///< The Interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
+    ///< that way for selected Interface
     StepperInterface stepperInterface;
 
   public:
@@ -46,11 +46,11 @@ class Controller {
     /**
      *  @brief getter for selectedInterface
      */
-    INTERFACE getSelectedInterface() const;
+    Interface getSelectedInterface() const;
     /**
      * @brief setter for selectedInterface
      */
-    void setSelectedInterface(const INTERFACE interface);
+    bool setSelectedInterface(const Interface Interface);
     /**
      * @brief getter for Enable
      */

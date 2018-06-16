@@ -1,20 +1,20 @@
 /**
  * @file
- * @brief     This file contains a class for the motor interface
+ * @brief     This file contains a class for the motor Interface
  * @author    Nick Bout
  * @license   MIT License
  */
 
-#ifndef MOTOR_INTERFACE_HPP
-#define MOTOR_INTERFACE_HPP
+#ifndef MOTOR_Interface_HPP
+#define MOTOR_Interface_HPP
 
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
 /**
- * @brief Abstract interface class used by other interfaces
+ * @brief Abstract Interface class used by other Interfaces
  *
- * This class is a super class for interfaces for all supported motor types
+ * This class is a super class for Interfaces for all supported motor types
  *
  */
 class MotorInterface {
@@ -64,4 +64,4 @@ class MotorInterface {
 };
 } // namespace MotorController
 
-#endif // MOTOR_INTERFACE_HPP
+#endif // MOTOR_Interface_HPP

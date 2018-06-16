@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include "controller.hpp"
-#include "motor_interface.hpp"
+#include "motor_Interface.hpp"
 #include "wrap-hwlib.hpp"
 
 /**
@@ -18,34 +18,34 @@
 char askNumber(const char *question, char min = '0', char max = '1');
 char askNumber(const char *question, char min, char max) {
     while (true) {
-        hwlib::cout << "Select your interface (0: DC, 1: Stepper)" << hwlib::endl;
+        hwlib::cout << "Select your Interface (0: DC, 1: Stepper)" << hwlib::endl;
         char number;
         hwlib::cin >> number;
 
         if (number >= min && number <= max) {
-            // char to int and then cast that to a MotorInterface::INTERFACE
+            // char to int and then cast that to a MotorInterface::Interface
             return number - '0';
         }
     }
 }
 
 /**
- * @brief Prints selected interface
+ * @brief Prints selected Interface
  *
  * NOTE: This function will be replace in the future with a task, if rtos works
- * Prints the selected interface of the given motorInterface
+ * Prints the selected Interface of the given motorInterface
  *
- * @param[in]     MotorController::Controller     The motor interface object
+ * @param[in]     MotorController::Controller     The motor Interface object
  *
  */
 void printInterface(MotorController::Controller &motorController);
 void printInterface(MotorController::Controller &motorController) {
-    hwlib::cout << "Selected interface:" << hwlib::endl;
+    hwlib::cout << "Selected Interface:" << hwlib::endl;
     switch (motorController.getSelectedInterface()) {
-    case MotorController::Controller::INTERFACE::DC:
+    case MotorController::Controller::Interface::DC:
         hwlib::cout << "DC motor" << hwlib::endl;
         break;
-    case MotorController::Controller::INTERFACE::STEPPER:
+    case MotorController::Controller::Interface::Stepper:
         hwlib::cout << "Stepper motor" << hwlib::endl;
         break;
     }
@@ -55,10 +55,10 @@ void printInterface(MotorController::Controller &motorController) {
  * @brief Main logic for motor controller module
  *
  * NOTE: This function will be replace in the future with a task, if rtos works
- * Prints current state (direction, angle and speed) of the motor interface object,
+ * Prints current state (direction, angle and speed) of the motor Interface object,
  * then asks for a new direction, angle and speed.
  *
- * @param[in]     MotorController::Controller     The motor interface object
+ * @param[in]     MotorController::Controller     The motor Interface object
  *
  */
 void mainLogic(MotorController::Controller &motorController);
@@ -93,19 +93,19 @@ int main() {
 
     /**
     MotorController::Controller motorController;
-    // Ask user which interface should be used
-    constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
-    motorController.setSelectedInterface(static_cast<MotorController::Controller::INTERFACE>(askNumber(question)));
+    // Ask user which Interface should be used
+    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
+    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
 
-    // Print selected interface
+    // Print selected Interface
     printInterface(motorController);
 
     // TODO: We should see if we can make rtos work, then we can make this function a task
     mainLogic(motorController);
     */
     MotorController::Controller motorController;
-    constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
-    motorController.setSelectedInterface(static_cast<MotorController::Controller::INTERFACE>(askNumber(question)));
+    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
+    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
     while (1) {
         // hwlib::cout << "heko";
         motorController.setEnable(true);

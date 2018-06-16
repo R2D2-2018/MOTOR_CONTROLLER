@@ -31,7 +31,7 @@ int16_t MotorController::DcInterface::getAngle() const {
 
 void MotorController::DcInterface::setAngle(const int16_t newAngle) {
     // Speed can only be 0 - 360
-    if (newAngle <= 360 && newAngle >= 0) {
+    if (newAngle < 360 && newAngle >= 0) {
         angle = newAngle;
     }
 }

@@ -1,14 +1,14 @@
 /**
  * @file
- * @brief     This file contains a class for the dc motor interface
+ * @brief     This file contains a class for the dc motor Interface
  * @author    Nick Bout
  * @license   MIT License
  */
 
-#ifndef DC_INTERFACE_HPP
-#define DC_INTERFACE_HPP
+#ifndef DC_Interface_HPP
+#define DC_Interface_HPP
 
-#include "motor_interface.hpp"
+#include "motor_Interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -51,4 +51,4 @@ class DcInterface : public MotorInterface {
 };
 } // namespace MotorController
 
-#endif // DC_INTERFACE_HPP
+#endif // DC_Interface_HPP

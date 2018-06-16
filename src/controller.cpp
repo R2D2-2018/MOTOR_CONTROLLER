@@ -3,43 +3,37 @@
 MotorController::Controller::Controller() : dcInterface(), stepperInterface() {
 }
 
-MotorController::Controller::INTERFACE MotorController::Controller::getSelectedInterface() const {
-    // Getting while interface is nullptr
+MotorController::Controller::Interface MotorController::Controller::getSelectedInterface() const {
+    // Getting while Interface is nullptr
     if (selectedInterface == nullptr) {
-        hwlib::cout << "Error:: Trying to get an nullptr interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
-        // Better not continue
-        while (1) {
-        }
+        hwlib::cout << "Error:: Trying to get an nullptr Interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
     }
 
-    // Convert the interface to enum
+    // Convert the Interface to enum
     if (selectedInterface == &dcInterface) {
-        return MotorController::Controller::INTERFACE::DC;
+        return MotorController::Controller::Interface::DC;
     }
 
-    return MotorController::Controller::INTERFACE::STEPPER;
+    return MotorController::Controller::Interface::Stepper;
 }
 
-void MotorController::Controller::setSelectedInterface(const MotorController::Controller::INTERFACE newInterface) {
-    // Prevent setting the interface a second time
+bool MotorController::Controller::setSelectedInterface(const MotorController::Controller::Interface newInterface) {
+    // Prevent setting the Interface a second time
     if (selectedInterface != nullptr) {
-        return;
+        return false;
     }
 
     switch (newInterface) {
-    case MotorController::Controller::INTERFACE::DC:
+    case MotorController::Controller::Interface::DC:
         selectedInterface = &dcInterface;
-        break;
-    case MotorController::Controller::INTERFACE::STEPPER:
+        return true;
+    case MotorController::Controller::Interface::Stepper:
         selectedInterface = &stepperInterface;
-        break;
+        return true;
     default:
         // Interface not supported
-        hwlib::cout << "Error: Trying to set and not supported interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
-        // Better not continue
-        while (1) {
-        }
-        break;
+        hwlib::cout << "Error: Trying to set and not supported Interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
+        return false;
     }
 }
 

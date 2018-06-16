@@ -1,14 +1,14 @@
 /**
  * @file
- * @brief     This file contains a class for the stepper motor interface
+ * @brief     This file contains a class for the stepper motor Interface
  * @author    Nick Bout
  * @license   MIT License
  */
 
-#ifndef STEPPER_INTERFACE_HPP
-#define STEPPER_INTERFACE_HPP
+#ifndef Stepper_Interface_HPP
+#define Stepper_Interface_HPP
 
-#include "motor_interface.hpp"
+#include "motor_Interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -51,4 +51,4 @@ class StepperInterface : public MotorInterface {
 };
 } // namespace MotorController
 
-#endif // STEPPER_INTERFACE_HPP
+#endif // Stepper_Interface_HPP
