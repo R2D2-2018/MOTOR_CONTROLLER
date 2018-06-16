@@ -18,23 +18,11 @@ namespace MotorController {
  *
  */
 class MotorInterface {
-<<<<<<< HEAD
   protected:
     ///< Motor rotation speed, 0 - 255
     bool enable = true;
     ///< Motor rotation speed, 0 - 255
     int16_t speed = 0;
-=======
-  public:
-    ///< Enum class with all possible motor directions
-    enum class Direction { Forward, Backward };
-
-  protected:
-    ///< The direction of the motor rotation, forward by default
-    Direction direction = Direction::Forward;
-    ///< Motor rotation speed, 0 - 100%
-    uint8_t speed = 0;
->>>>>>> development
     ///< Motor angle, 0 - 360
     int16_t angle = 0;
     ///< Pinout Enable
@@ -52,19 +40,11 @@ class MotorInterface {
     /**
      * @brief getter for speed
      */
-<<<<<<< HEAD
     virtual bool getEnable() const = 0;
-=======
-    virtual Direction getDirection() const = 0;
->>>>>>> development
     /**
      * @brief setter for Enable
      */
-<<<<<<< HEAD
     virtual void setEnable(const bool state) = 0;
-=======
-    virtual void setDirection(const Direction direction) = 0;
->>>>>>> development
     /**
      * @brief getter for speed
      */

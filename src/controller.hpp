@@ -16,23 +16,13 @@
 namespace MotorController {
 /**
  * @brief Controller for motor logic
- *
-<<<<<<< HEAD
  * This class is used to control a motor using the motor_Interface superclass.
  * The Interface can be set to DC or Stepper and uses the selected Interface to set speed, direction or angle of a motor
-=======
- * This class is used to control a motor using the motor_interface superclass.
- * The interface can be set to DC or Stepper and uses the selected interface to set speed, direction or angle of a motor
->>>>>>> development
  *
  */
 class Controller {
   public:
-<<<<<<< HEAD
     ///< Enum class with all available motor Interfaces
-=======
-    ///< Enum class with all available motor interfaces
->>>>>>> development
     enum class Interface { DC, Stepper, None };
 
   private:
@@ -59,27 +49,15 @@ class Controller {
     /**
      * @brief setter for selectedInterface
      */
-<<<<<<< HEAD
-    bool setSelectedInterface(const Interface Interface);
-=======
     bool setSelectedInterface(const Interface interface);
->>>>>>> development
     /**
      * @brief getter for Enable
      */
-<<<<<<< HEAD
     bool getEnable() const;
-=======
-    MotorInterface::Direction getDirection() const;
->>>>>>> development
     /**
      * @brief setter for Enable
      */
-<<<<<<< HEAD
     void setEnable(const bool state);
-=======
-    void setDirection(const MotorInterface::Direction direction);
->>>>>>> development
     /**
      * @brief getter for speed
      */
