@@ -24,18 +24,13 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
         return true;
     }
 
-    if (newInterface == MotorController::Controller::Interface::DC)
-    {
+    if (newInterface == MotorController::Controller::Interface::DC) {
         selectedInterface = &dcInterface;
         return true;
-    }
-    else if(newInterface == MotorController::Controller::Interface::Stepper)
-    {
+    } else if (newInterface == MotorController::Controller::Interface::Stepper) {
         selectedInterface = &stepperInterface;
         return true;
-    }
-    else
-    {
+    } else {
         hwlib::cout << "Error: Trying to set and not supported interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
         return false;
     }
