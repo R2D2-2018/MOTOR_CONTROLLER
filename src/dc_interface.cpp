@@ -3,6 +3,7 @@
 MotorController::DcInterface::DcInterface() {
 }
 
+<<<<<<< HEAD
 bool MotorController::DcInterface::getEnable() const {
     return enable;
 }
@@ -10,6 +11,14 @@ bool MotorController::DcInterface::getEnable() const {
 void MotorController::DcInterface::setEnable(const bool state) {
     enable = state;
     enablePin.set(state);
+=======
+MotorController::MotorInterface::Direction MotorController::DcInterface::getDirection() const {
+    return direction;
+}
+
+void MotorController::DcInterface::setDirection(const MotorController::MotorInterface::Direction newDirection) {
+    direction = newDirection;
+>>>>>>> development
 }
 
 int16_t MotorController::DcInterface::getSpeed() const {
@@ -31,7 +40,11 @@ int16_t MotorController::DcInterface::getAngle() const {
 
 void MotorController::DcInterface::setAngle(const int16_t newAngle) {
     // Speed can only be 0 - 360
+<<<<<<< HEAD
     if (newAngle < 360 && newAngle >= 0) {
+=======
+    if (newAngle < 360) {
+>>>>>>> development
         angle = newAngle;
     }
 }

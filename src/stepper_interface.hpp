@@ -27,11 +27,19 @@ class StepperInterface : public MotorInterface {
     /**
      * @brief getter for Enable
      */
+<<<<<<< HEAD
     bool getEnable() const override;
+=======
+    Direction getDirection() const override;
+>>>>>>> development
     /**
      * @brief setter for Enable
      */
+<<<<<<< HEAD
     void setEnable(const bool state) override;
+=======
+    void setDirection(const Direction direction) override;
+>>>>>>> development
     /**
      * @brief getter for speed
      */
