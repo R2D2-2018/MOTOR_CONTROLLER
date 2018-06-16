@@ -19,6 +19,13 @@ namespace MotorController {
  *
  */
 class DcInterface : public MotorInterface {
+    ///< Motor rotation speed, 0 - 255
+    bool enable = true;
+    ///< Motor rotation speed, 0 - 255
+    int16_t speed = 0;
+    ///< Pinout Enable
+    hwlib::pin_out &enablePin = hwlib::pin_out_dummy;
+
   public:
     /**
      * @brief Default constructor
@@ -41,13 +48,17 @@ class DcInterface : public MotorInterface {
      */
     void setSpeed(const int16_t speed) override;
     /**
-     * @brief getter for speed
+     * @brief setter for forward pin in PWM
      */
-    int16_t getAngle() const override;
+    void setForwardPin(hwlib::pin_out &newForwardPwmPin);
     /**
-     * @brief setter for speed
+     * @brief setter for backwards pin in PWM
      */
-    void setAngle(const int16_t newAngle);
+    void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
+    /**
+     * @brief setter for enable pin
+     */
+    void setEnablePin(hwlib::pin_out &newEnablePin);
 };
 } // namespace MotorController
 

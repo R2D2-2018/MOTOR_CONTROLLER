@@ -18,16 +18,6 @@ namespace MotorController {
  *
  */
 class MotorInterface {
-  protected:
-    ///< Motor rotation speed, 0 - 255
-    bool enable = true;
-    ///< Motor rotation speed, 0 - 255
-    int16_t speed = 0;
-    ///< Motor angle, 0 - 360
-    int16_t angle = 0;
-    ///< Pinout Enable
-    hwlib::pin_out &enablePin = hwlib::pin_out_dummy;
-
   public:
     /**
      * @brief Default constructor
@@ -40,27 +30,45 @@ class MotorInterface {
     /**
      * @brief getter for speed
      */
-    virtual bool getEnable() const = 0;
+    virtual bool getEnable() const {
+        return 0;
+    };
     /**
      * @brief setter for Enable
      */
-    virtual void setEnable(const bool state) = 0;
+    virtual void setEnable(const bool state){};
     /**
      * @brief getter for speed
      */
-    virtual int16_t getSpeed() const = 0;
+    virtual int16_t getSpeed() const {
+        return 0;
+    };
     /**
      * @brief setter for speed
      */
-    virtual void setSpeed(const int16_t speed) = 0;
+    virtual void setSpeed(const int16_t speed){};
     /**
      * @brief getter for speed
      */
-    virtual int16_t getAngle() const = 0;
+    virtual int16_t getAngle() const {
+        return 0;
+    };
     /**
      * @brief setter for speed
      */
-    virtual void setAngle(const int16_t newAngle) = 0;
+    virtual void setAngle(const int16_t newAngle){};
+    /**
+     * @brief setter for forward pin in PWM
+     */
+    virtual void setForwardPin(hwlib::pin_out &newForwardPwmPin){};
+    /**
+     * @brief setter for backwards pin in PWM
+     */
+    virtual void setBackwardPin(hwlib::pin_out &newBackwardPwmPin){};
+    /**
+     * @brief setter for enable pin
+     */
+    virtual void setEnablePin(hwlib::pin_out &newEnablePin){};
 };
 } // namespace MotorController
 

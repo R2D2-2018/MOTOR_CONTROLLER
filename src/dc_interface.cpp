@@ -18,20 +18,26 @@ int16_t MotorController::DcInterface::getSpeed() const {
 
 void MotorController::DcInterface::setSpeed(const int16_t newSpeed) {
     // Speed can only be -255 / 255
-    if (newSpeed > 255 || newSpeed < -255) {
-        return;
-    } else {
-        speed = newSpeed;
+    /**
+    if (newSpeed == 0) {
+        forwardPin.set(0);
+        backwardPin.set(0);
+    } else if (newSpeed > 0 || newSpeed <= 255) {
+        forwardPin.set(1);
+        backwardPin.set(0);
+    } else if (newSpeed < 0 || newSpeed >= 255) {
+        forwardPin.set(0);
+        backwardPin.set(1);
     }
+    */
 }
 
-int16_t MotorController::DcInterface::getAngle() const {
-    return angle;
+void setForwardPin(hwlib::pin_out &newForwardPwmPin) {
+    forwardPin = newForwardPwmPin;
 }
-
-void MotorController::DcInterface::setAngle(const int16_t newAngle) {
-    // Speed can only be 0 - 360
-    if (newAngle < 360 && newAngle >= 0) {
-        angle = newAngle;
-    }
+void setBackwardPin(hwlib::pin_out &newBackwardPwmPin) {
+    backwardPin = newBackwardPwmPin;
+}
+void setEnablePin(hwlib::pin_out &newEnablePin) {
+    enablePin = newEnablePin;
 }

@@ -60,3 +60,15 @@ uint16_t MotorController::Controller::getAngle() const {
 void MotorController::Controller::setAngle(const uint16_t newAngle) {
     return selectedInterface->setAngle(newAngle);
 }
+
+void MotorController::Controller::setForwardPin(hwlib::pin_out &newForwardPwmPin) {
+    selectedInterface->setBackwardPin(newForwardPwmPin);
+}
+
+void MotorController::Controller::setBackwardPin(hwlib::pin_out &newBackwardPwmPin) {
+    selectedInterface->setBackwardPin(newBackwardPwmPin);
+}
+
+void MotorController::Controller::setBackwardPin(hwlib::pin_out &newBackwardPwmPin) {
+    selectedInterface->setBackwardPin(newBackwardPwmPin);
+}
