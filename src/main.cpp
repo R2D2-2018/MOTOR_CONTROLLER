@@ -23,7 +23,7 @@ char askNumber(const char *question, char min, char max) {
         hwlib::cin >> number;
 
         if (number >= min && number <= max) {
-            // char to int and then cast that to a MotorInterface::INTERFACE
+            // char to int and then cast that to a MotorInterface::Interface
             return number - '0';
         }
     }
@@ -42,11 +42,13 @@ void printInterface(MotorController::Controller &motorController);
 void printInterface(MotorController::Controller &motorController) {
     hwlib::cout << "Selected interface:" << hwlib::endl;
     switch (motorController.getSelectedInterface()) {
-    case MotorController::Controller::INTERFACE::DC:
+    case MotorController::Controller::Interface::DC:
         hwlib::cout << "DC motor" << hwlib::endl;
         break;
-    case MotorController::Controller::INTERFACE::STEPPER:
+    case MotorController::Controller::Interface::Stepper:
         hwlib::cout << "Stepper motor" << hwlib::endl;
+        break;
+    default:
         break;
     }
 }
@@ -67,7 +69,7 @@ void mainLogic(MotorController::Controller &motorController) {
         char answer;
         // Output current state
         hwlib::cout << "Motor direction: "
-                    << (motorController.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD ? "Forward"
+                    << (motorController.getDirection() == MotorController::MotorInterface::Direction::Forward ? "Forward"
                                                                                                               : "Backward")
                     << ", speed: " << static_cast<int>(motorController.getSpeed())
                     << "%, angle: " << static_cast<int>(motorController.getAngle()) << hwlib::endl;
@@ -76,7 +78,7 @@ void mainLogic(MotorController::Controller &motorController) {
         hwlib::cout << "Give a new direction (0: forward, 1: backward): " << hwlib::endl;
         hwlib::cin >> answer;
         if (answer == '0' || answer == '1') { // Set direction if valid answer
-            motorController.setDirection(static_cast<MotorController::MotorInterface::DIRECTION>(answer - '0'));
+            motorController.setDirection(static_cast<MotorController::MotorInterface::Direction>(answer - '0'));
         }
 
         // Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
@@ -105,7 +107,7 @@ int main() {
 
     // Ask user which interface should be used
     constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
-    motorController.setSelectedInterface(static_cast<MotorController::Controller::INTERFACE>(askNumber(question)));
+    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
 
     // Print selected interface
     printInterface(motorController);

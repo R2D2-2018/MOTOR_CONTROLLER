@@ -8,40 +8,40 @@
 TEST_CASE("Controller: setInterface") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::STEPPER);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::Stepper);
 
-    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::INTERFACE::STEPPER);
-    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::INTERFACE::DC);
+    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::Interface::Stepper);
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::DC);
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
 
-    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::INTERFACE::STEPPER);
-    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::INTERFACE::DC);
+    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::Interface::Stepper);
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::DC);
 }
 
 TEST_CASE("Controller dcInterface selected: Default direction") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
 
-    REQUIRE(motorController.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD);
-    REQUIRE(motorController.getDirection() != MotorController::MotorInterface::DIRECTION::BACKWARD);
+    REQUIRE(motorController.getDirection() == MotorController::MotorInterface::Direction::Forward);
+    REQUIRE(motorController.getDirection() != MotorController::MotorInterface::Direction::Backward);
 }
 
 TEST_CASE("Controller dcInterface selected: setDirection") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
-    motorController.setDirection(MotorController::MotorInterface::DIRECTION::BACKWARD);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
+    motorController.setDirection(MotorController::MotorInterface::Direction::Backward);
 
-    REQUIRE(motorController.getDirection() == MotorController::MotorInterface::DIRECTION::BACKWARD);
-    REQUIRE(motorController.getDirection() != MotorController::MotorInterface::DIRECTION::FORWARD);
+    REQUIRE(motorController.getDirection() == MotorController::MotorInterface::Direction::Backward);
+    REQUIRE(motorController.getDirection() != MotorController::MotorInterface::Direction::Forward);
 }
 
 TEST_CASE("DCIntController dcInterface selectedrface: Default speed") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
 
     REQUIRE(motorController.getSpeed() == 0);
 }
@@ -49,7 +49,7 @@ TEST_CASE("DCIntController dcInterface selectedrface: Default speed") {
 TEST_CASE("Controller dcInterface selected: setSpeed") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
     motorController.setSpeed(60);
 
     REQUIRE(motorController.getSpeed() == 60);
@@ -58,7 +58,7 @@ TEST_CASE("Controller dcInterface selected: setSpeed") {
 TEST_CASE("Controller dcInterface selected: setSpeed, no overflow") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
     motorController.setSpeed(101);
 
     REQUIRE(motorController.getSpeed() == 0);
@@ -67,7 +67,7 @@ TEST_CASE("Controller dcInterface selected: setSpeed, no overflow") {
 TEST_CASE("Controller dcInterface selected: setSpeed, no underflow") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
     motorController.setSpeed(-1);
 
     REQUIRE(motorController.getSpeed() == 0);
@@ -76,7 +76,7 @@ TEST_CASE("Controller dcInterface selected: setSpeed, no underflow") {
 TEST_CASE("Controller dcInterface selected: setAngle") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
 
     motorController.setAngle(360);
     REQUIRE(motorController.getAngle() == 360);
@@ -91,7 +91,7 @@ TEST_CASE("Controller dcInterface selected: setAngle") {
 TEST_CASE("Controller dcInterface selected: no overflow") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
     motorController.setAngle(0);
 
     motorController.setAngle(361);
@@ -103,7 +103,7 @@ TEST_CASE("Controller dcInterface selected: no overflow") {
 TEST_CASE("Controller dcInterface selected: no underflow") {
     MotorController::Controller motorController;
 
-    motorController.setSelectedInterface(MotorController::Controller::INTERFACE::DC);
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
 
     motorController.setAngle(0);
 
@@ -116,17 +116,17 @@ TEST_CASE("Controller dcInterface selected: no underflow") {
 TEST_CASE("DCInterface: Default direction") {
     MotorController::DcInterface motorInterface;
 
-    REQUIRE(motorInterface.getDirection() == MotorController::MotorInterface::DIRECTION::FORWARD);
-    REQUIRE(motorInterface.getDirection() != MotorController::MotorInterface::DIRECTION::BACKWARD);
+    REQUIRE(motorInterface.getDirection() == MotorController::MotorInterface::Direction::Forward);
+    REQUIRE(motorInterface.getDirection() != MotorController::MotorInterface::Direction::Backward);
 }
 
 TEST_CASE("DCInterface: setDirection") {
     MotorController::DcInterface motorInterface;
 
-    motorInterface.setDirection(MotorController::MotorInterface::DIRECTION::BACKWARD);
+    motorInterface.setDirection(MotorController::MotorInterface::Direction::Backward);
 
-    REQUIRE(motorInterface.getDirection() == MotorController::MotorInterface::DIRECTION::BACKWARD);
-    REQUIRE(motorInterface.getDirection() != MotorController::MotorInterface::DIRECTION::FORWARD);
+    REQUIRE(motorInterface.getDirection() == MotorController::MotorInterface::Direction::Backward);
+    REQUIRE(motorInterface.getDirection() != MotorController::MotorInterface::Direction::Forward);
 }
 
 TEST_CASE("DCInterface: Default speed") {

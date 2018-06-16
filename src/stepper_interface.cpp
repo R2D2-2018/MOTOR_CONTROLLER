@@ -3,12 +3,12 @@
 MotorController::StepperInterface::StepperInterface() {
 }
 
-MotorController::MotorInterface::DIRECTION MotorController::StepperInterface::getDirection() const {
+MotorController::MotorInterface::Direction MotorController::StepperInterface::getDirection() const {
     hwlib::cout << "Function not supported yet" << hwlib::endl;
-    return MotorController::MotorInterface::DIRECTION::FORWARD;
+    return MotorController::MotorInterface::Direction::Forward;
 }
 
-void MotorController::StepperInterface::setDirection(const MotorController::MotorInterface::DIRECTION newDirection) {
+void MotorController::StepperInterface::setDirection(const MotorController::MotorInterface::Direction newDirection) {
     hwlib::cout << "Function not supported yet" << hwlib::endl;
 }
 

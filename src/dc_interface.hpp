@@ -27,11 +27,11 @@ class DcInterface : public MotorInterface {
     /**
      * @brief getter for direction
      */
-    DIRECTION getDirection() const override;
+    Direction getDirection() const override;
     /**
      * @brief setter for direction
      */
-    void setDirection(const DIRECTION direction) override;
+    void setDirection(const Direction direction) override;
     /**
      * @brief getter for speed
      */
