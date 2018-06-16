@@ -11,13 +11,6 @@ void MotorController::DcInterface::setEnable(const bool state) {
     enable = state;
     enablePin.set(state);
 }
-MotorController::MotorInterface::Direction MotorController::DcInterface::getDirection() const {
-    return direction;
-}
-
-void MotorController::DcInterface::setDirection(const MotorController::MotorInterface::Direction newDirection) {
-    direction = newDirection;
-}
 
 int16_t MotorController::DcInterface::getSpeed() const {
     return speed;
