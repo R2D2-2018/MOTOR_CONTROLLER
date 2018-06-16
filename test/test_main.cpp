@@ -79,7 +79,7 @@ TEST_CASE("Controller dcInterface selected: setAngle") {
     motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
 
     motorController.setAngle(360);
-    REQUIRE(motorController.getAngle() == 360);
+    REQUIRE(motorController.getAngle() == 0);
 
     motorController.setAngle(0);
     REQUIRE(motorController.getAngle() == 0);
@@ -163,7 +163,7 @@ TEST_CASE("DCInterface: setAngle") {
     MotorController::DcInterface motorInterface;
 
     motorInterface.setAngle(360);
-    REQUIRE(motorInterface.getAngle() == 360);
+    REQUIRE(motorInterface.getAngle() == 0);
 
     motorInterface.setAngle(0);
     REQUIRE(motorInterface.getAngle() == 0);
