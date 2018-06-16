@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include "controller.hpp"
-#include "motor_interface.hpp"
+#include "motor_Interface.hpp"
 #include "wrap-hwlib.hpp"
 
 /**
@@ -18,7 +18,7 @@
 char askNumber(const char *question, char min = '0', char max = '1');
 char askNumber(const char *question, char min, char max) {
     while (true) {
-        hwlib::cout << "Select your interface (0: DC, 1: Stepper)" << hwlib::endl;
+        hwlib::cout << "Select your Interface (0: DC, 1: Stepper)" << hwlib::endl;
         char number;
         hwlib::cin >> number;
 
@@ -30,17 +30,17 @@ char askNumber(const char *question, char min, char max) {
 }
 
 /**
- * @brief Prints selected interface
+ * @brief Prints selected Interface
  *
  * NOTE: This function will be replace in the future with a task, if rtos works
- * Prints the selected interface of the given motorInterface
+ * Prints the selected Interface of the given motorInterface
  *
- * @param[in]     MotorController::Controller     The motor interface object
+ * @param[in]     MotorController::Controller     The motor Interface object
  *
  */
 void printInterface(MotorController::Controller &motorController);
 void printInterface(MotorController::Controller &motorController) {
-    hwlib::cout << "Selected interface:" << hwlib::endl;
+    hwlib::cout << "Selected Interface:" << hwlib::endl;
     switch (motorController.getSelectedInterface()) {
     case MotorController::Controller::Interface::DC:
         hwlib::cout << "DC motor" << hwlib::endl;
@@ -57,10 +57,10 @@ void printInterface(MotorController::Controller &motorController) {
  * @brief Main logic for motor controller module
  *
  * NOTE: This function will be replace in the future with a task, if rtos works
- * Prints current state (direction, angle and speed) of the motor interface object,
+ * Prints current state (direction, angle and speed) of the motor Interface object,
  * then asks for a new direction, angle and speed.
  *
- * @param[in]     MotorController::Controller     The motor interface object
+ * @param[in]     MotorController::Controller     The motor Interface object
  *
  */
 void mainLogic(MotorController::Controller &motorController);
@@ -68,6 +68,11 @@ void mainLogic(MotorController::Controller &motorController) {
     while (true) {
         char answer;
         // Output current state
+<<<<<<< HEAD
+        hwlib::cout << ", speed: " << static_cast<int>(motorController.getSpeed())
+                    << "%, angle: " << static_cast<int>(motorController.getAngle()) << hwlib::endl;
+
+=======
         hwlib::cout << "Motor direction: "
                     << (motorController.getDirection() == MotorController::MotorInterface::Direction::Forward ? "Forward"
                                                                                                               : "Backward")
@@ -81,11 +86,12 @@ void mainLogic(MotorController::Controller &motorController) {
             motorController.setDirection(static_cast<MotorController::MotorInterface::Direction>(answer - '0'));
         }
 
+>>>>>>> development
         // Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
         hwlib::cout << "Give a new motor speed (0 - 9): " << hwlib::endl;
         hwlib::cin >> answer;
         if (answer >= '0' && answer <= '9') { // Set direction if valid answer
-            motorController.setSpeed((answer - '0') * 10);
+            motorController.setSpeed((answer - '0') * 50 - 250);
         }
 
         // Ask new motor angle (hwlib cin does not support int so we use char and multiply by 36 for now)
@@ -103,17 +109,39 @@ int main() {
     WDT->WDT_MR = WDT_MR_WDDIS;
     hwlib::wait_ms(1000);
 
+    /**
     MotorController::Controller motorController;
+    // Ask user which Interface should be used
+    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
+    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
 
+<<<<<<< HEAD
+    // Print selected Interface
+=======
     // Ask user which interface should be used
     constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
 
     // Print selected interface
+>>>>>>> development
     printInterface(motorController);
 
     // TODO: We should see if we can make rtos work, then we can make this function a task
     mainLogic(motorController);
-
+    */
+    MotorController::Controller motorController;
+    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
+    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
+    while (1) {
+        // hwlib::cout << "heko";
+        motorController.setEnable(true);
+        hwlib::wait_ms(100);
+        hwlib::cout << int(motorController.getEnable());
+        hwlib::wait_ms(1000);
+        motorController.setEnable(false);
+        hwlib::wait_ms(100);
+        hwlib::cout << motorController.getEnable();
+        hwlib::wait_ms(1000);
+    }
     return 0;
 }

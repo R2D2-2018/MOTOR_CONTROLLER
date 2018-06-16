@@ -1,34 +1,32 @@
 /**
  * @file
- * @brief     This file contains a class for the motor interface
+ * @brief     This file contains a class for the motor Interface
  * @author    Nick Bout
  * @license   MIT License
  */
 
-#ifndef MOTOR_INTERFACE_HPP
-#define MOTOR_INTERFACE_HPP
+#ifndef MOTOR_Interface_HPP
+#define MOTOR_Interface_HPP
 
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
 /**
- * @brief Abstract interface class used by other interfaces
+ * @brief Abstract Interface class used by other Interfaces
  *
- * This class is a super class for interfaces for all supported motor types
+ * This class is a super class for Interfaces for all supported motor types
  *
  */
 class MotorInterface {
-  public:
-    ///< Enum class with all possible motor directions
-    enum class Direction { Forward, Backward };
-
   protected:
-    ///< The direction of the motor rotation, forward by default
-    Direction direction = Direction::Forward;
-    ///< Motor rotation speed, 0 - 100%
-    uint8_t speed = 0;
+    ///< Motor rotation speed, 0 - 255
+    bool enable = true;
+    ///< Motor rotation speed, 0 - 255
+    int16_t speed = 0;
     ///< Motor angle, 0 - 360
-    uint16_t angle = 0;
+    int16_t angle = 0;
+    ///< Pinout Enable
+    hwlib::pin_out &enablePin = hwlib::pin_out_dummy;
 
   public:
     /**
@@ -36,30 +34,34 @@ class MotorInterface {
      */
     MotorInterface(){};
     /**
-     * @brief getter for direction
+     * @brief Default constructor
      */
-    virtual Direction getDirection() const = 0;
-    /**
-     * @brief setter for direction
-     */
-    virtual void setDirection(const Direction direction) = 0;
+    // MotorInterface(hwlib::pin_out &enablePin) : enablePin(enablePin){};
     /**
      * @brief getter for speed
      */
-    virtual uint8_t getSpeed() const = 0;
+    virtual bool getEnable() const = 0;
     /**
-     * @brief setter for speed
+     * @brief setter for Enable
      */
-    virtual void setSpeed(const uint8_t speed) = 0;
+    virtual void setEnable(const bool state) = 0;
     /**
      * @brief getter for speed
      */
-    virtual uint16_t getAngle() const = 0;
+    virtual int16_t getSpeed() const = 0;
     /**
      * @brief setter for speed
      */
-    virtual void setAngle(const uint16_t newAngle) = 0;
+    virtual void setSpeed(const int16_t speed) = 0;
+    /**
+     * @brief getter for speed
+     */
+    virtual int16_t getAngle() const = 0;
+    /**
+     * @brief setter for speed
+     */
+    virtual void setAngle(const int16_t newAngle) = 0;
 };
 } // namespace MotorController
 
-#endif // MOTOR_INTERFACE_HPP
+#endif // MOTOR_Interface_HPP

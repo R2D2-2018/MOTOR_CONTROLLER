@@ -10,7 +10,7 @@ MotorController::Controller::Interface MotorController::Controller::getSelectedI
         return MotorController::Controller::Interface::None;
     }
 
-    // Convert the interface to enum
+    // Convert the Interface to enum
     if (selectedInterface == &dcInterface) {
         return MotorController::Controller::Interface::DC;
     }
@@ -19,36 +19,37 @@ MotorController::Controller::Interface MotorController::Controller::getSelectedI
 }
 
 bool MotorController::Controller::setSelectedInterface(const MotorController::Controller::Interface newInterface) {
-    // Prevent setting the interface a second time
+    // Prevent setting the Interface a second time
     if (selectedInterface != nullptr) {
-        return true;
+        return false;
     }
 
-    if (newInterface == MotorController::Controller::Interface::DC) {
+    switch (newInterface) {
+    case MotorController::Controller::Interface::DC:
         selectedInterface = &dcInterface;
         return true;
-    } else if (newInterface == MotorController::Controller::Interface::Stepper) {
+    case MotorController::Controller::Interface::Stepper:
         selectedInterface = &stepperInterface;
         return true;
-    } else {
-        hwlib::cout << "Error: Trying to set and not supported interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
+    default:
+        // Interface not supported
+        hwlib::cout << "Error: Trying to set and not supported Interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
         return false;
     }
 }
-
-MotorController::MotorInterface::Direction MotorController::Controller::getDirection() const {
-    return selectedInterface->getDirection();
+bool MotorController::Controller::getEnable() const {
+    return selectedInterface->getEnable();
 }
 
-void MotorController::Controller::setDirection(const MotorController::MotorInterface::Direction newDirection) {
-    selectedInterface->setDirection(newDirection);
+void MotorController::Controller::setEnable(const bool state) {
+    selectedInterface->setEnable(state);
 }
 
-uint8_t MotorController::Controller::getSpeed() const {
+int16_t MotorController::Controller::getSpeed() const {
     return selectedInterface->getSpeed();
 }
 
-void MotorController::Controller::setSpeed(const uint8_t newSpeed) {
+void MotorController::Controller::setSpeed(const int16_t newSpeed) {
     selectedInterface->setSpeed(newSpeed);
 }
 

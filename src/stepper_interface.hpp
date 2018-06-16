@@ -1,14 +1,14 @@
 /**
  * @file
- * @brief     This file contains a class for the stepper motor interface
+ * @brief     This file contains a class for the stepper motor Interface
  * @author    Nick Bout
  * @license   MIT License
  */
 
-#ifndef STEPPER_INTERFACE_HPP
-#define STEPPER_INTERFACE_HPP
+#ifndef Stepper_Interface_HPP
+#define Stepper_Interface_HPP
 
-#include "motor_interface.hpp"
+#include "motor_Interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -25,30 +25,30 @@ class StepperInterface : public MotorInterface {
      */
     StepperInterface();
     /**
-     * @brief getter for direction
+     * @brief getter for Enable
      */
-    Direction getDirection() const override;
+    bool getEnable() const override;
     /**
-     * @brief setter for direction
+     * @brief setter for Enable
      */
-    void setDirection(const Direction direction) override;
-    /**
-     * @brief getter for speed
-     */
-    uint8_t getSpeed() const override;
-    /**
-     * @brief setter for speed
-     */
-    void setSpeed(const uint8_t speed) override;
+    void setEnable(const bool state) override;
     /**
      * @brief getter for speed
      */
-    uint16_t getAngle() const override;
+    int16_t getSpeed() const override;
     /**
      * @brief setter for speed
      */
-    void setAngle(const uint16_t newAngle);
+    void setSpeed(const int16_t speed) override;
+    /**
+     * @brief getter for speed
+     */
+    int16_t getAngle() const override;
+    /**
+     * @brief setter for speed
+     */
+    void setAngle(const int16_t newAngle);
 };
 } // namespace MotorController
 
-#endif // STEPPER_INTERFACE_HPP
+#endif // Stepper_Interface_HPP
