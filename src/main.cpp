@@ -1,5 +1,5 @@
 #include "controller.hpp"
-#include "motor_Interface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 /**
