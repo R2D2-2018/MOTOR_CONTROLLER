@@ -77,15 +77,15 @@ class Controller {
     /**
      * @brief setter for forward pin in PWM
      */
-    void setForwardPin(hwlib::pin_out &newForwardPwmPin);
+    // void setForwardPin(hwlib::pin_out &newForwardPwmPin);
     /**
      * @brief setter for backwards pin in PWM
      */
-    void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
+    // void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
     /**
      * @brief setter for enable pin
      */
-    void setEnablePin(hwlib::pin_out &newEnablePin);
+    // void setEnablePin(hwlib::pin_out &newEnablePin);
 };
 } // namespace MotorController
 

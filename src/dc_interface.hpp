@@ -23,8 +23,10 @@ class DcInterface : public MotorInterface {
     bool enable = true;
     ///< Motor rotation speed, 0 - 255
     int16_t speed = 0;
-    ///< Pinout Enable
-    hwlib::pin_out &enablePin = hwlib::pin_out_dummy;
+    hwlib::target::pin_out enablePin = hwlib::target::pin_out(hwlib::target::pins::d13);
+    hwlib::target::pin_out forwardPin = hwlib::target::pin_out(hwlib::target::pins::d3);
+    hwlib::target::pin_out backwardPin = hwlib::target::pin_out(hwlib::target::pins::d4);
+    // auto led = hwlib::target::pin_out(hwlib::target::pins::d13);
 
   public:
     /**
@@ -50,15 +52,15 @@ class DcInterface : public MotorInterface {
     /**
      * @brief setter for forward pin in PWM
      */
-    void setForwardPin(hwlib::pin_out &newForwardPwmPin);
+    // void setForwardPin(hwlib::pin_out &newForwardPwmPin);
     /**
      * @brief setter for backwards pin in PWM
      */
-    void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
+    // void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
     /**
      * @brief setter for enable pin
      */
-    void setEnablePin(hwlib::pin_out &newEnablePin);
+    // void setEnablePin(hwlib::pin_out &newEnablePin) override;
 };
 } // namespace MotorController
 
