@@ -8,9 +8,9 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "dc_Interface.hpp"
-#include "motor_Interface.hpp"
-#include "stepper_Interface.hpp"
+#include "dc_interface.hpp"
+#include "motor_interface.hpp"
+#include "stepper_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -74,6 +74,18 @@ class Controller {
      * @brief setter for speed
      */
     void setAngle(const uint16_t newAngle);
+    /**
+     * @brief setter for forward pin in PWM
+     */
+    // void setForwardPin(hwlib::pin_out &newForwardPwmPin);
+    /**
+     * @brief setter for backwards pin in PWM
+     */
+    // void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
+    /**
+     * @brief setter for enable pin
+     */
+    // void setEnablePin(hwlib::pin_out &newEnablePin);
 };
 } // namespace MotorController
 

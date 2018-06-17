@@ -5,10 +5,10 @@
  * @license   MIT License
  */
 
-#ifndef Stepper_Interface_HPP
-#define Stepper_Interface_HPP
+#ifndef STEPPER_INTERFACE_HPP
+#define STEPPER_INTERFACE_HPP
 
-#include "motor_Interface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -19,33 +19,20 @@ namespace MotorController {
  *
  */
 class StepperInterface : public MotorInterface {
+    ///< Motor angle, 0 - 360
+    int16_t angle = 0;
+
   public:
     /**
      * @brief Default constructor
      */
     StepperInterface();
     /**
-     * @brief getter for Enable
-     */
-    bool getEnable() const override;
-    /**
-     * @brief setter for Enable
-     */
-    void setEnable(const bool state) override;
-    /**
-     * @brief getter for speed
-     */
-    int16_t getSpeed() const override;
-    /**
-     * @brief setter for speed
-     */
-    void setSpeed(const int16_t speed) override;
-    /**
-     * @brief getter for speed
+     * @brief getter for angle
      */
     int16_t getAngle() const override;
     /**
-     * @brief setter for speed
+     * @brief setter for angle
      */
     void setAngle(const int16_t newAngle);
 };
