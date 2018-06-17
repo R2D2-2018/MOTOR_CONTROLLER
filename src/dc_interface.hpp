@@ -5,10 +5,10 @@
  * @license   MIT License
  */
 
-#ifndef DC_Interface_HPP
-#define DC_Interface_HPP
+#ifndef DC_INTERFACE_HPP
+#define DC_INTERFACE_HPP
 
-#include "motor_Interface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {

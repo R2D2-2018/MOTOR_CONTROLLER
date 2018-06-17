@@ -5,8 +5,8 @@
  * @license   MIT License
  */
 
-#ifndef MOTOR_Interface_HPP
-#define MOTOR_Interface_HPP
+#ifndef MOTOR_INTERFACE_HPP
+#define MOTOR_INTERFACE_HPP
 
 #include "wrap-hwlib.hpp"
 

@@ -5,10 +5,10 @@
  * @license   MIT License
  */
 
-#ifndef Stepper_Interface_HPP
-#define Stepper_Interface_HPP
+#ifndef STEPPER_INTERFACE_HPP
+#define STEPPER_INTERFACE_HPP
 
-#include "motor_Interface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {

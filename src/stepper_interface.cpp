@@ -1,4 +1,4 @@
-#include "stepper_Interface.hpp"
+#include "stepper_interface.hpp"
 
 MotorController::StepperInterface::StepperInterface() {
 }

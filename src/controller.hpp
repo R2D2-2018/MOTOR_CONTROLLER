@@ -8,9 +8,9 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "dc_Interface.hpp"
-#include "motor_Interface.hpp"
-#include "stepper_Interface.hpp"
+#include "dc_interface.hpp"
+#include "motor_interface.hpp"
+#include "stepper_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
