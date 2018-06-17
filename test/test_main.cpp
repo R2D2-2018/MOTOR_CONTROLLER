@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "controller.hpp"
-#include "dc_Interface.hpp"
-#include "motor_Interface.hpp"
+#include "dc_interface.hpp"
+#include "motor_interface.hpp"
 
 // cppcheck-suppress unusedFunction
 TEST_CASE("Controller: setInterface") {
