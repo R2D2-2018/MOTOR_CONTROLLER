@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief     This file contains a class for the motor interface
+ * @brief     This file contains a class for the motor Interface
  * @author    Nick Bout
  * @license   MIT License
  */
@@ -12,59 +12,64 @@
 
 namespace MotorController {
 /**
- * @brief Interface class for motor controller
+ * @brief Abstract Interface class used by other Interfaces
  *
- * This class is used to select and return a motor interface.
- * The default selected interface is DC.
+ * This class is a super class for Interfaces for all supported motor types
  *
  */
 class MotorInterface {
   public:
-    ///< Enum class with all available motor interfaces
-    enum class INTERFACE { DC, STEPPER };
-    ///< Enum class with all possible motor directions
-    enum class DIRECTION { FORWARD, BACKWARD };
-
-  private:
-    ///< The interface that is currently selected
-    INTERFACE selectedInterface = INTERFACE::DC;
-
-    ///< The direction of the motor rotation, forward by default
-    DIRECTION direction = DIRECTION::FORWARD;
-    ///< Motor rotation speed, 0 - 100%
-    uint8_t speed = 0;
-
-  public:
     /**
      * @brief Default constructor
      */
-    MotorInterface();
-
+    MotorInterface(){};
     /**
-     * @brief getter for selectedInterface
+     * @brief Default constructor
      */
-    INTERFACE getSelectedInterface() const;
-    /**
-     * @brief setter for selectedInterface
-     */
-    void setSelectedInterface(const INTERFACE interface);
-    /**
-     * @brief getter for direction
-     */
-    DIRECTION getDirection() const;
-    /**
-     * @brief setter for direction
-     */
-    void setDirection(const DIRECTION direction);
+    // MotorInterface(hwlib::pin_out &enablePin) : enablePin(enablePin){};
     /**
      * @brief getter for speed
      */
-    uint8_t getSpeed() const;
+    virtual bool getEnable() const {
+        return 0;
+    };
+    /**
+     * @brief setter for Enable
+     */
+    virtual void setEnable(const bool state){};
+    /**
+     * @brief getter for speed
+     */
+    virtual int16_t getSpeed() const {
+        return 0;
+    };
     /**
      * @brief setter for speed
      */
-    void setSpeed(const uint8_t speed);
+    virtual void setSpeed(const int16_t speed){};
+    /**
+     * @brief getter for speed
+     */
+    virtual int16_t getAngle() const {
+        return 0;
+    };
+    /**
+     * @brief setter for speed
+     */
+    virtual void setAngle(const int16_t newAngle){};
+    /**
+     * @brief setter for forward pin in PWM
+     */
+    virtual void setForwardPin(hwlib::pin_out &newForwardPwmPin){};
+    /**
+     * @brief setter for backwards pin in PWM
+     */
+    virtual void setBackwardPin(hwlib::pin_out &newBackwardPwmPin){};
+    /**
+     * @brief setter for enable pin
+     */
+    virtual void setEnablePin(hwlib::pin_out &newEnablePin){};
 };
 } // namespace MotorController
 
-#endif
+#endif // MOTOR_Interface_HPP
