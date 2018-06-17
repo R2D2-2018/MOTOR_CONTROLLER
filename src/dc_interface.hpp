@@ -5,10 +5,10 @@
  * @license   MIT License
  */
 
-#ifndef DC_Interface_HPP
-#define DC_Interface_HPP
+#ifndef DC_INTERFACE_HPP
+#define DC_INTERFACE_HPP
 
-#include "motor_Interface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -19,6 +19,15 @@ namespace MotorController {
  *
  */
 class DcInterface : public MotorInterface {
+    ///< Motor rotation speed, 0 - 255
+    bool enable = true;
+    ///< Motor rotation speed, 0 - 255
+    int16_t speed = 0;
+    hwlib::target::pin_out enablePin = hwlib::target::pin_out(hwlib::target::pins::d13);
+    hwlib::target::pin_out forwardPin = hwlib::target::pin_out(hwlib::target::pins::d3);
+    hwlib::target::pin_out backwardPin = hwlib::target::pin_out(hwlib::target::pins::d4);
+    // auto led = hwlib::target::pin_out(hwlib::target::pins::d13);
+
   public:
     /**
      * @brief Default constructor
@@ -41,13 +50,17 @@ class DcInterface : public MotorInterface {
      */
     void setSpeed(const int16_t speed) override;
     /**
-     * @brief getter for speed
+     * @brief setter for forward pin in PWM
      */
-    int16_t getAngle() const override;
+    // void setForwardPin(hwlib::pin_out &newForwardPwmPin);
     /**
-     * @brief setter for speed
+     * @brief setter for backwards pin in PWM
      */
-    void setAngle(const int16_t newAngle);
+    // void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
+    /**
+     * @brief setter for enable pin
+     */
+    // void setEnablePin(hwlib::pin_out &newEnablePin) override;
 };
 } // namespace MotorController
 
