@@ -1,7 +1,7 @@
 #ifndef PWM_controller_HPP
 #define PWM_controller_HPP
 
-#include "warp-hwlib.hpp"
+#include "wrap-hwlib.hpp"
 
 // Enum class for all the avaible pwm pins on the arduino due.
 enum class PWMpin {
@@ -17,7 +17,7 @@ enum class PWMpin {
     PWMpin11,
     PWMpin12,
     PWMpin13
-}
+};
 
 class PWMcontroller {
   private:
