@@ -18,25 +18,21 @@ namespace MotorController {
  *
  */
 class MotorInterface {
+  protected:
+    ///< Motor rotation speed, 0 - 255
+    int16_t speed = 0;
+    ///< Motor angle, 0 - 360
+    int16_t angle = 0;
+    // hwlib::target::pin_out enablePin = hwlib::target::pin_out(hwlib::target::pins::d13);
+    // hwlib::target::pin_out forwardPin = hwlib::target::pin_out(hwlib::target::pins::d3);
+    // hwlib::target::pin_out backwardPin = hwlib::target::pin_out(hwlib::target::pins::d4);
+    // auto led = hwlib::target::pin_out(hwlib::target::pins::d13);
   public:
     /**
      * @brief Default constructor
      */
     MotorInterface(){};
-    /**
-     * @brief Default constructor
-     */
-    // MotorInterface(hwlib::pin_out &enablePin) : enablePin(enablePin){};
-    /**
-     * @brief getter for speed
-     */
-    virtual bool getEnable() const {
-        return 0;
-    };
-    /**
-     * @brief setter for Enable
-     */
-    virtual void setEnable(const bool state){};
+
     /**
      * @brief getter for speed
      */

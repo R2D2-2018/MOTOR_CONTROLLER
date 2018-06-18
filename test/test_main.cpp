@@ -111,15 +111,3 @@ TEST_CASE("DCInterface: setAngle") {
     motorInterface.setAngle(244);
     REQUIRE(motorInterface.getAngle() == 0);
 }
-
-TEST_CASE("DCInterface: setEnable") {
-    MotorController::DcInterface motorInterface;
-
-    REQUIRE(motorInterface.getEnable() == true);
-
-    motorInterface.setEnable(false);
-    REQUIRE(motorInterface.getEnable() == false);
-
-    motorInterface.setEnable(true);
-    REQUIRE(motorInterface.getEnable() == true);
-}

@@ -37,13 +37,6 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
         return false;
     }
 }
-bool MotorController::Controller::getEnable() const {
-    return selectedInterface->getEnable();
-}
-
-void MotorController::Controller::setEnable(const bool state) {
-    selectedInterface->setEnable(state);
-}
 
 int16_t MotorController::Controller::getSpeed() const {
     return selectedInterface->getSpeed();
@@ -60,16 +53,3 @@ uint16_t MotorController::Controller::getAngle() const {
 void MotorController::Controller::setAngle(const uint16_t newAngle) {
     return selectedInterface->setAngle(newAngle);
 }
-/*
-void MotorController::Controller::setForwardPin(hwlib::pin_out &newForwardPwmPin) {
-    // return selectedInterface->setForwardPin(newForwardPwmPin);
-}
-
-void MotorController::Controller::setBackwardPin(hwlib::pin_out &newBackwardPwmPin) {
-    // return selectedInterface->setBackwardPin(newBackwardPwmPin);
-}
-
-void MotorController::Controller::setEnablePin(hwlib::pin_out &newEnablePin) {
-    return selectedInterface->setEnablePin(newEnablePin);
-}
-*/

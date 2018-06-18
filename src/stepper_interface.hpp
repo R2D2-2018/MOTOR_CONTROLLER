@@ -19,9 +19,6 @@ namespace MotorController {
  *
  */
 class StepperInterface : public MotorInterface {
-    ///< Motor angle, 0 - 360
-    int16_t angle = 0;
-
   public:
     /**
      * @brief Default constructor

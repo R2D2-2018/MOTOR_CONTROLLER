@@ -19,48 +19,19 @@ namespace MotorController {
  *
  */
 class DcInterface : public MotorInterface {
-    ///< Motor rotation speed, 0 - 255
-    bool enable = true;
-    ///< Motor rotation speed, 0 - 255
-    int16_t speed = 0;
-    hwlib::target::pin_out enablePin = hwlib::target::pin_out(hwlib::target::pins::d13);
-    hwlib::target::pin_out forwardPin = hwlib::target::pin_out(hwlib::target::pins::d3);
-    hwlib::target::pin_out backwardPin = hwlib::target::pin_out(hwlib::target::pins::d4);
-    // auto led = hwlib::target::pin_out(hwlib::target::pins::d13);
-
   public:
     /**
      * @brief Default constructor
      */
     DcInterface();
     /**
-     * @brief getter for Enable
-     */
-    bool getEnable() const override;
-    /**
-     * @brief setter for Enable
-     */
-    void setEnable(const bool state) override;
-    /**
-     * @brief getter for direction
+     * @brief getter for speed
      */
     int16_t getSpeed() const override;
     /**
      * @brief setter for speed
      */
     void setSpeed(const int16_t speed) override;
-    /**
-     * @brief setter for forward pin in PWM
-     */
-    // void setForwardPin(hwlib::pin_out &newForwardPwmPin);
-    /**
-     * @brief setter for backwards pin in PWM
-     */
-    // void setBackwardPin(hwlib::pin_out &newBackwardPwmPin);
-    /**
-     * @brief setter for enable pin
-     */
-    // void setEnablePin(hwlib::pin_out &newEnablePin) override;
 };
 } // namespace MotorController
 
