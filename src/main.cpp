@@ -109,13 +109,11 @@ int main() {
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
     while (1) {
-        motorController.setEnable(true);
         motorController.setSpeed(10);
         hwlib::wait_ms(5000);
         motorController.setSpeed(0);
         hwlib::wait_ms(2000);
         motorController.setSpeed(-10);
-        motorController.setEnable(false);
         hwlib::wait_ms(5000);
     }
     return 0;
