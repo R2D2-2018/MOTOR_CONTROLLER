@@ -27,11 +27,11 @@ class StepperInterface : public MotorInterface {
     /**
      * @brief getter for angle
      */
-    int16_t getAngle() const override;
+    uint16_t getAngle() const override;
     /**
      * @brief setter for angle
      */
-    void setAngle(const int16_t newAngle);
+    void setAngle(const uint16_t newAngle);
 };
 } // namespace MotorController
 

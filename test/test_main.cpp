@@ -38,6 +38,17 @@ TEST_CASE("Controller dcInterface selected: setSpeed") {
     REQUIRE(motorController.getSpeed() == 255);
 }
 
+TEST_CASE("Controller dcInterface selected: setSpeed negative") {
+    MotorController::Controller motorController;
+
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
+
+    motorController.setSpeed(-60);
+    REQUIRE(motorController.getSpeed() == -60);
+    motorController.setSpeed(-255);
+    REQUIRE(motorController.getSpeed() == -255);
+}
+
 TEST_CASE("Controller dcInterface selected: setSpeed, no overflow") {
     MotorController::Controller motorController;
 
