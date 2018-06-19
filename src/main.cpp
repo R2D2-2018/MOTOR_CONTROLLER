@@ -98,7 +98,6 @@ int main() {
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
 
     // Print selected Interface
-
     printInterface(motorController);
 
     // TODO: We should see if we can make rtos work, then we can make this function a task
