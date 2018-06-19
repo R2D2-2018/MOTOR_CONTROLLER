@@ -68,25 +68,9 @@ void mainLogic(MotorController::Controller &motorController) {
     while (true) {
         char answer;
         // Output current state
-<<<<<<< HEAD
         hwlib::cout << ", speed: " << static_cast<int>(motorController.getSpeed())
                     << "%, angle: " << static_cast<int>(motorController.getAngle()) << hwlib::endl;
 
-=======
-        hwlib::cout << "Motor direction: "
-                    << (motorController.getDirection() == MotorController::MotorInterface::Direction::Forward ? "Forward"
-                                                                                                              : "Backward")
-                    << ", speed: " << static_cast<int>(motorController.getSpeed())
-                    << "%, angle: " << static_cast<int>(motorController.getAngle()) << hwlib::endl;
-
-        // Ask new direction
-        hwlib::cout << "Give a new direction (0: forward, 1: backward): " << hwlib::endl;
-        hwlib::cin >> answer;
-        if (answer == '0' || answer == '1') { // Set direction if valid answer
-            motorController.setDirection(static_cast<MotorController::MotorInterface::Direction>(answer - '0'));
-        }
-
->>>>>>> development
         // Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
         hwlib::cout << "Give a new motor speed (0 - 9): " << hwlib::endl;
         hwlib::cin >> answer;
@@ -115,15 +99,7 @@ int main() {
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
 
-<<<<<<< HEAD
     // Print selected Interface
-=======
-    // Ask user which interface should be used
-    constexpr const char question[] = "Select your interface (0: DC, 1: Stepper)";
-    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
-
-    // Print selected interface
->>>>>>> development
     printInterface(motorController);
 
     // TODO: We should see if we can make rtos work, then we can make this function a task
