@@ -111,6 +111,8 @@ int main() {
         motorController.setSpeed(10);
         hwlib::wait_ms(5000);
         motorController.setSpeed(0);
+
+        motorController.setAngle(0);
         hwlib::wait_ms(2000);
         motorController.setSpeed(-10);
         hwlib::wait_ms(5000);

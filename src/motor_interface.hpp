@@ -37,34 +37,28 @@ class MotorInterface {
      * @brief getter for speed
      */
     virtual int16_t getSpeed() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
         return 0;
     };
     /**
      * @brief setter for speed
      */
-    virtual void setSpeed(const int16_t speed){};
+    virtual void setSpeed(const int16_t speed) {
+        hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
+    };
     /**
      * @brief getter for speed
      */
     virtual int16_t getAngle() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
         return 0;
     };
     /**
      * @brief setter for speed
      */
-    virtual void setAngle(const int16_t newAngle){};
-    /**
-     * @brief setter for forward pin in PWM
-     */
-    virtual void setForwardPin(hwlib::pin_out &newForwardPwmPin){};
-    /**
-     * @brief setter for backwards pin in PWM
-     */
-    virtual void setBackwardPin(hwlib::pin_out &newBackwardPwmPin){};
-    /**
-     * @brief setter for enable pin
-     */
-    virtual void setEnablePin(hwlib::pin_out &newEnablePin){};
+    virtual void setAngle(const int16_t newAngle) {
+        hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
+    };
 };
 } // namespace MotorController
 
