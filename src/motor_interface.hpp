@@ -47,14 +47,14 @@ class MotorInterface {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
     };
     /**
-     * @brief getter for speed
+     * @brief getter for angle
      */
     virtual uint16_t getAngle() const {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for speed
+     * @brief setter for angle
      */
     virtual void setAngle(const uint16_t newAngle) {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;

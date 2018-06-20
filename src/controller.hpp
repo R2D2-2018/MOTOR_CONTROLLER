@@ -59,11 +59,11 @@ class Controller {
      */
     void setSpeed(const int16_t speed);
     /**
-     * @brief getter for speed
+     * @brief getter for angle
      */
     uint16_t getAngle() const;
     /**
-     * @brief setter for speed
+     * @brief setter for angle
      */
     void setAngle(const uint16_t newAngle);
 };
