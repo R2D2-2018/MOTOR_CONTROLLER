@@ -3,21 +3,39 @@
 #include "controller.hpp"
 #include "dc_interface.hpp"
 #include "motor_interface.hpp"
+#include "servo_interface.hpp"
+#include "stepper_interface.hpp"
 
 // cppcheck-suppress unusedFunction
-TEST_CASE("Controller: setInterface") {
-    MotorController::Controller motorController;
 
+//----------------CONTROLLER----------------
+
+TEST_CASE("Controller: setInterface Servo") {
+    MotorController::Controller motorController;
+    motorController.setSelectedInterface(MotorController::Controller::Interface::Servo);
+
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::Stepper);
+    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::Interface::Servo);
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::DC);
+}
+TEST_CASE("Controller: setInterface DC") {
+    MotorController::Controller motorController;
+    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
+
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::Stepper);
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::Servo);
+    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::Interface::DC);
+}
+TEST_CASE("Controller: setInterface Stepper") {
+    MotorController::Controller motorController;
     motorController.setSelectedInterface(MotorController::Controller::Interface::Stepper);
 
     REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::Interface::Stepper);
-    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::DC);
-
-    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
-
-    REQUIRE(motorController.getSelectedInterface() == MotorController::Controller::Interface::Stepper);
+    REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::Servo);
     REQUIRE(motorController.getSelectedInterface() != MotorController::Controller::Interface::DC);
 }
+
+//----------------DC----------------
 
 TEST_CASE("DCIntController dcInterface selectedrface: Default speed") {
     MotorController::Controller motorController;
@@ -121,4 +139,23 @@ TEST_CASE("DCInterface: setAngle") {
 
     motorInterface.setAngle(244);
     REQUIRE(motorInterface.getAngle() == 0);
+}
+//----------------STEPPER----------------
+
+//----------------SERVO----------------
+
+TEST_CASE("Servo Interface: setAngle") {
+    MotorController::ServoInterface motorInterface;
+
+    motorInterface.setAngle(360);
+    REQUIRE(motorInterface.getAngle() == 0);
+
+    motorInterface.setAngle(0);
+    REQUIRE(motorInterface.getAngle() == 0);
+
+    motorInterface.setAngle(-5);
+    REQUIRE(motorInterface.getAngle() == 0);
+
+    motorInterface.setAngle(244);
+    REQUIRE(motorInterface.getAngle() == 244);
 }

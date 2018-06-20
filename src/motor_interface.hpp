@@ -23,10 +23,13 @@ class MotorInterface {
     int16_t speed = 0;
     ///< Motor angle, 0 - 360
     int16_t angle = 0;
-    // hwlib::target::pin_out enablePin = hwlib::target::pin_out(hwlib::target::pins::d13);
-    // hwlib::target::pin_out forwardPin = hwlib::target::pin_out(hwlib::target::pins::d3);
-    // hwlib::target::pin_out backwardPin = hwlib::target::pin_out(hwlib::target::pins::d4);
-    // auto led = hwlib::target::pin_out(hwlib::target::pins::d13);
+    ///< Almount of stepper wires to define what sequence should be used
+    uint8_t stepperWires = 4;
+    ///< Stride angle is the angle
+    double stride = 0;
+    ///< ratio to devide degrees of turnment. Used in stepper with stride angle;
+    uint8_t gearRatio = 0;
+
   public:
     /**
      * @brief Default constructor
@@ -58,6 +61,45 @@ class MotorInterface {
      */
     virtual void setAngle(const uint16_t newAngle) {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
+    };
+    /**
+     * @brief getter for stepperwires
+     */
+    virtual uint8_t getStepperWires() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
+        return 0;
+    };
+    /**
+     * @brief setter for stepperwires
+     */
+    virtual void setStepperWires(const uint8_t newAlmount) {
+        hwlib::cout << "ERROR: This motor interface does NOT support stepeprwires" << hwlib::endl;
+    };
+    /**
+     * @brief getter for stride
+     */
+    virtual double getStride() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support stride" << hwlib::endl;
+        return 0;
+    };
+    /**
+     * @brief setter for stride
+     */
+    virtual void setStride(const double newStride) {
+        hwlib::cout << "ERROR: This motor interface does NOT support stride" << hwlib::endl;
+    };
+    /**
+     * @brief getter for gear ratio
+     */
+    virtual uint8_t getGearRatio() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support ratio" << hwlib::endl;
+        return 0;
+    };
+    /**
+     * @brief setter for gear ratio
+     */
+    virtual void setGearRatio(const uint8_t newRatio) {
+        hwlib::cout << "ERROR: This motor interface does NOT support ratio" << hwlib::endl;
     };
 };
 } // namespace MotorController
