@@ -8,9 +8,9 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "dc_Interface.hpp"
-#include "motor_Interface.hpp"
-#include "stepper_Interface.hpp"
+#include "dc_interface.hpp"
+#include "motor_interface.hpp"
+#include "stepper_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -51,14 +51,6 @@ class Controller {
      */
     bool setSelectedInterface(const Interface interface);
     /**
-     * @brief getter for Enable
-     */
-    bool getEnable() const;
-    /**
-     * @brief setter for Enable
-     */
-    void setEnable(const bool state);
-    /**
      * @brief getter for speed
      */
     int16_t getSpeed() const;
@@ -67,11 +59,11 @@ class Controller {
      */
     void setSpeed(const int16_t speed);
     /**
-     * @brief getter for speed
+     * @brief getter for angle
      */
     uint16_t getAngle() const;
     /**
-     * @brief setter for speed
+     * @brief setter for angle
      */
     void setAngle(const uint16_t newAngle);
 };

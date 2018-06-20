@@ -1,7 +1,5 @@
-#include <cstdint>
-
 #include "controller.hpp"
-#include "motor_Interface.hpp"
+#include "motor_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 /**
@@ -105,19 +103,19 @@ int main() {
     // TODO: We should see if we can make rtos work, then we can make this function a task
     mainLogic(motorController);
     */
+
     MotorController::Controller motorController;
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
     while (1) {
-        // hwlib::cout << "heko";
-        motorController.setEnable(true);
-        hwlib::wait_ms(100);
-        hwlib::cout << int(motorController.getEnable());
-        hwlib::wait_ms(1000);
-        motorController.setEnable(false);
-        hwlib::wait_ms(100);
-        hwlib::cout << motorController.getEnable();
-        hwlib::wait_ms(1000);
+        motorController.setSpeed(10);
+        hwlib::wait_ms(5000);
+        motorController.setSpeed(0);
+
+        motorController.setAngle(0);
+        hwlib::wait_ms(2000);
+        motorController.setSpeed(-10);
+        hwlib::wait_ms(5000);
     }
     return 0;
 }

@@ -37,13 +37,6 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
         return false;
     }
 }
-bool MotorController::Controller::getEnable() const {
-    return selectedInterface->getEnable();
-}
-
-void MotorController::Controller::setEnable(const bool state) {
-    selectedInterface->setEnable(state);
-}
 
 int16_t MotorController::Controller::getSpeed() const {
     return selectedInterface->getSpeed();

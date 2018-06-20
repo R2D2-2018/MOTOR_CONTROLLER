@@ -1,31 +1,16 @@
-#include "stepper_Interface.hpp"
+#include "stepper_interface.hpp"
 
 MotorController::StepperInterface::StepperInterface() {
 }
 
-bool MotorController::StepperInterface::getEnable() const {
+uint16_t MotorController::StepperInterface::getAngle() const {
     hwlib::cout << "Function not supported yet" << hwlib::endl;
     return 0;
 }
 
-void MotorController::StepperInterface::setEnable(const bool state) {
+void MotorController::StepperInterface::setAngle(const uint16_t newAngle) {
     hwlib::cout << "Function not supported yet" << hwlib::endl;
-}
-
-int16_t MotorController::StepperInterface::getSpeed() const {
-    hwlib::cout << "Function not supported yet" << hwlib::endl;
-    return 0;
-}
-
-void MotorController::StepperInterface::setSpeed(const int16_t newSpeed) {
-    hwlib::cout << "Function not supported yet" << hwlib::endl;
-}
-
-int16_t MotorController::StepperInterface::getAngle() const {
-    hwlib::cout << "Function not supported yet" << hwlib::endl;
-    return 0;
-}
-
-void MotorController::StepperInterface::setAngle(const int16_t newAngle) {
-    hwlib::cout << "Function not supported yet" << hwlib::endl;
+    if (newAngle < 360 && newAngle >= 0) {
+        angle = newAngle;
+    }
 }
