@@ -1,7 +1,7 @@
 /**
  * @file
- * @brief     This file contains a class for the motor interface
- * @author    Nick Bout
+ * @brief     This file contains a class for the motor Interface
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 
@@ -12,59 +12,88 @@
 
 namespace MotorController {
 /**
- * @brief Interface class for motor controller
+ * @brief Abstract Interface class used by other Interfaces
  *
- * This class is used to select and return a motor interface.
- * The default selected interface is DC.
+ * This class is a super class for Interfaces for all supported motor types
  *
  */
 class MotorInterface {
-  public:
-    ///< Enum class with all available motor interfaces
-    enum class INTERFACE { DC, STEPPER };
-    ///< Enum class with all possible motor directions
-    enum class DIRECTION { FORWARD, BACKWARD };
-
-  private:
-    ///< The interface that is currently selected
-    INTERFACE selectedInterface = INTERFACE::DC;
-
-    ///< The direction of the motor rotation, forward by default
-    DIRECTION direction = DIRECTION::FORWARD;
-    ///< Motor rotation speed, 0 - 100%
-    uint8_t speed = 0;
+  protected:
+    ///< Motor rotation speed, 0 - 255
+    int16_t speed = 0;
+    ///< Motor angle, 0 - 360
+    int16_t angle = 0;
+    ///< almount of steps for the stepper motor
+    uint16_t steps = 4;
+    ///< Almount of stepper wires to define what sequence should be used
+    uint8_t stepperWires = 4;
+    ///< Stride angle is the angle
 
   public:
     /**
      * @brief Default constructor
      */
-    MotorInterface();
+    MotorInterface(){};
 
-    /**
-     * @brief getter for selectedInterface
-     */
-    INTERFACE getSelectedInterface() const;
-    /**
-     * @brief setter for selectedInterface
-     */
-    void setSelectedInterface(const INTERFACE interface);
-    /**
-     * @brief getter for direction
-     */
-    DIRECTION getDirection() const;
-    /**
-     * @brief setter for direction
-     */
-    void setDirection(const DIRECTION direction);
     /**
      * @brief getter for speed
      */
-    uint8_t getSpeed() const;
+    virtual int16_t getSpeed() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
+        return 0;
+    };
     /**
      * @brief setter for speed
      */
-    void setSpeed(const uint8_t speed);
+    virtual void setSpeed(const int16_t speed) {
+        hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
+    };
+    /**
+     * @brief getter for angle
+     */
+    virtual uint16_t getAngle() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
+        return 0;
+    };
+    /**
+     * @brief setter for angle
+     */
+    virtual void setAngle(const uint16_t newAngle) {
+        hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
+    };
+    /**
+     * @brief getter for stepperwires
+     */
+    virtual uint8_t getStepperWires() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
+        return 0;
+    };
+    /**
+     * @brief setter for stepperwires
+     */
+    virtual void setStepperWires(const uint8_t newAmount) {
+        hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
+    };
+    /**
+     * @brief getter for stride
+     */
+    virtual uint16_t getSteps() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
+        return 0;
+    };
+    /**
+     * @brief setter for steps direct
+     */
+    virtual void setSteps(const double newStride) {
+        hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
+    };
+    /**
+     * @brief setter for steps indirect
+     */
+    virtual void setSteps(const double stride, const double gearRatio) {
+        hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
+    };
 };
 } // namespace MotorController
 
-#endif
+#endif // MOTOR_Interface_HPP
