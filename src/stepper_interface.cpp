@@ -3,6 +3,23 @@
 MotorController::StepperInterface::StepperInterface() {
 }
 
+int16_t MotorController::StepperInterface::getSpeed() const {
+    return speed;
+}
+
+void MotorController::StepperInterface::setSpeed(const int16_t newSpeed) {
+    // Speed can only be -255 / 255
+    if (newSpeed == 0) {
+        speed = newSpeed;
+    } else if (newSpeed > 0 && newSpeed <= 255) {
+        speed = newSpeed;
+        hwlib::cout << "F";
+    } else if (newSpeed < 0 && newSpeed >= -255) {
+        speed = newSpeed;
+        hwlib::cout << "B";
+    }
+}
+
 uint16_t MotorController::StepperInterface::getAngle() const {
     return angle;
 }
@@ -17,29 +34,29 @@ uint8_t MotorController::StepperInterface::getStepperWires() const {
     return stepperWires;
 }
 
-void MotorController::StepperInterface::setStepperWires(const uint8_t newAlmount) {
-    if (newAlmount >= 3 && newAlmount <= 5) {
-        stepperWires = newAlmount;
+void MotorController::StepperInterface::setStepperWires(const uint8_t newAmount) {
+    if (newAmount == 2) {
+        stepperWires = newAmount;
+    } else if (newAmount == 4) {
+        stepperWires = newAmount;
+    } else if (newAmount == 5) {
+        stepperWires = newAmount;
     }
 }
 
-double MotorController::StepperInterface::getStride() const {
-    return stride;
+uint16_t MotorController::StepperInterface::getSteps() const {
+    return steps;
 }
 
-void MotorController::StepperInterface::setStride(const double newStride) {
-    if (newStride > 0 && newStride < 360) {
-        stride = newStride;
+void MotorController::StepperInterface::setSteps(const uint16_t newSteps) {
+    if (newSteps > 4) {
+        steps = newSteps;
     }
 }
 
-uint8_t MotorController::StepperInterface::getGearRatio() const {
-    return gearRatio;
-}
-
-void MotorController::StepperInterface::setGearRatio(const uint8_t newRatio) {
-    hwlib::cout << "Function not supported yet" << hwlib::endl;
-    if (newRatio > 0) {
-        gearRatio = newRatio;
+void MotorController::StepperInterface::setSteps(const double stride, const double gearRatio) {
+    if (stride > 0) {
+        steps = (360 / stride) * gearRatio;
     }
+    hwlib::cout << "NOT Inplementedd yet";
 }

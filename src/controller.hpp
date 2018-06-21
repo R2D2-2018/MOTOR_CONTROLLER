@@ -1,7 +1,7 @@
 /**
  * @file
  * @brief     This file contains a class for the motor controller
- * @author    Nick Bout
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 
@@ -77,23 +77,19 @@ class Controller {
     /**
      * @brief setter for stepperwires
      */
-    void setStepperWires(const uint8_t newAlmount);
+    void setStepperWires(const uint8_t newAmount);
     /**
-     * @brief getter for stride
+     * @brief getter for steps
      */
-    double getStride() const;
+    uint16_t getSteps() const;
     /**
-     * @brief setter for stride
+     * @brief setter for Steps direct
      */
-    void setStride(const double newStride);
+    void setSteps(const uint16_t newSteps);
     /**
-     * @brief getter for gear ratio
+     * @brief setter for Steps indirect
      */
-    uint8_t getGearRatio() const;
-    /**
-     * @brief setter for gear ratio
-     */
-    void setGearRatio(const uint8_t newRatio);
+    void setSteps(const double stride, const double gearRatio);
 };
 } // namespace MotorController
 

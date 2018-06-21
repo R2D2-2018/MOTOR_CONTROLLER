@@ -62,21 +62,18 @@ uint8_t MotorController::Controller::getStepperWires() const {
     return selectedInterface->getStepperWires();
 }
 
-void MotorController::Controller::setStepperWires(const uint8_t newAlmount) {
-    return selectedInterface->setStepperWires(newAlmount);
+void MotorController::Controller::setStepperWires(const uint8_t newAmount) {
+    return selectedInterface->setStepperWires(newAmount);
 }
 
-double MotorController::Controller::getStride() const {
-    return selectedInterface->getStride();
-}
-void MotorController::Controller::setStride(const double newStride) {
-    return selectedInterface->setStride(newStride);
+uint16_t MotorController::Controller::getSteps() const {
+    return selectedInterface->getSteps();
 }
 
-uint8_t MotorController::Controller::getGearRatio() const {
-    return selectedInterface->getGearRatio();
+void MotorController::Controller::setSteps(const uint16_t newSteps) {
+    return selectedInterface->setSteps(newSteps);
 }
 
-void MotorController::Controller::setGearRatio(const uint8_t newRatio) {
-    return selectedInterface->setGearRatio(newRatio);
+void MotorController::Controller::setSteps(const double stride, const double gearRatio) {
+    return selectedInterface->setSteps(stride, gearRatio);
 }

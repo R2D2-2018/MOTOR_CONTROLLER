@@ -1,7 +1,7 @@
 /**
  * @file
  * @brief     This file contains a class for the stepper motor Interface
- * @author    Nick Bout
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 
@@ -25,6 +25,14 @@ class StepperInterface : public MotorInterface {
      */
     StepperInterface();
     /**
+     * @brief getter for speed
+     */
+    int16_t getSpeed() const override;
+    /**
+     * @brief setter for speed
+     */
+    void setSpeed(const int16_t speed) override;
+    /**
      * @brief getter for angle
      */
     uint16_t getAngle() const override;
@@ -37,26 +45,23 @@ class StepperInterface : public MotorInterface {
      */
     uint8_t getStepperWires() const;
     /**
-     * @brief setter for stepperwires. Needed for correct stepper sequence.
+     * @brief setter for stepperwires. Needed for correct stepper sequence. Only 2, 4, and 5 are options
      */
-    void setStepperWires(const uint8_t newAlmount);
+    void setStepperWires(const uint8_t newAmount);
     /**
-     * @brief getter for stride
+     * @brief getter for steps
      */
-    double getStride() const;
+    uint16_t getSteps() const;
     /**
-     * @brief setter for stride
+     * @brief setter for steps direct
      */
-    void setStride(const double newStride);
+    void setSteps(const uint16_t newSteps);
     /**
-     * @brief getter for gear ratio
+     * @brief setter for indirect
      */
-    uint8_t getGearRatio() const;
-    /**
-     * @brief setter for gear ratio
-     */
-    void setGearRatio(const uint8_t newRatio);
-};
+    void setSteps(const double stride, const double gearRatio);
+
+}; // namespace MotorController
 } // namespace MotorController
 
 #endif // Stepper_Interface_HPP
