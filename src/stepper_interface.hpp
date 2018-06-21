@@ -33,11 +33,11 @@ class StepperInterface : public MotorInterface {
      */
     void setAngle(const uint16_t newAngle);
     /**
-     * @brief getter for stepperwires
+     * @brief getter for stepperwires. Needed for correct stepper sequence.
      */
     uint8_t getStepperWires() const;
     /**
-     * @brief setter for stepperwires
+     * @brief setter for stepperwires. Needed for correct stepper sequence.
      */
     void setStepperWires(const uint8_t newAlmount);
     /**

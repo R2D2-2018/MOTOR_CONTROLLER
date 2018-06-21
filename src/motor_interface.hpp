@@ -26,9 +26,9 @@ class MotorInterface {
     ///< Almount of stepper wires to define what sequence should be used
     uint8_t stepperWires = 4;
     ///< Stride angle is the angle
-    double stride = 0;
+    double stride = 0.1;
     ///< ratio to devide degrees of turnment. Used in stepper with stride angle;
-    uint8_t gearRatio = 0;
+    uint8_t gearRatio = 1;
 
   public:
     /**

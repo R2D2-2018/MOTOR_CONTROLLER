@@ -8,7 +8,7 @@ uint16_t MotorController::StepperInterface::getAngle() const {
 }
 
 void MotorController::StepperInterface::setAngle(const uint16_t newAngle) {
-    if (newAngle >= 0 && newAngle < 360) {
+    if (newAngle < 360) {
         angle = newAngle;
     }
 }
@@ -39,7 +39,7 @@ uint8_t MotorController::StepperInterface::getGearRatio() const {
 
 void MotorController::StepperInterface::setGearRatio(const uint8_t newRatio) {
     hwlib::cout << "Function not supported yet" << hwlib::endl;
-    if (newRatio > 0 && newRatio <= 255) {
+    if (newRatio > 0) {
         gearRatio = newRatio;
     }
 }

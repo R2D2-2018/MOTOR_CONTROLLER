@@ -8,7 +8,7 @@ uint16_t MotorController::ServoInterface::getAngle() const {
 }
 
 void MotorController::ServoInterface::setAngle(const uint16_t newAngle) {
-    if (newAngle < 360 && newAngle >= 0) {
+    if (newAngle < 360) {
         angle = newAngle;
     }
 }
