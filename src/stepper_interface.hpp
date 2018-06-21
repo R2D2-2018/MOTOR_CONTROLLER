@@ -25,6 +25,14 @@ class StepperInterface : public MotorInterface {
      */
     StepperInterface();
     /**
+     * @brief getter for speed
+     */
+    int16_t getSpeed() const override;
+    /**
+     * @brief setter for speed
+     */
+    void setSpeed(const int16_t speed) override;
+    /**
      * @brief getter for angle
      */
     uint16_t getAngle() const override;
@@ -41,21 +49,18 @@ class StepperInterface : public MotorInterface {
      */
     void setStepperWires(const uint8_t newAlmount);
     /**
-     * @brief getter for stride
+     * @brief getter for steps
      */
-    double getStride() const;
+    int16_t getSteps() const;
     /**
-     * @brief setter for stride
+     * @brief setter for steps direct
      */
-    void setStride(const double newStride);
+    void setSteps(const int16_t newSteps);
     /**
-     * @brief getter for gear ratio
+     * @brief setter for indirect
      */
-    uint8_t getGearRatio() const;
-    /**
-     * @brief setter for gear ratio
-     */
-    void setGearRatio(const uint8_t newRatio);
+    void setSteps(const double stride, const double gearRatio);
+
 }; // namespace MotorController
 } // namespace MotorController
 

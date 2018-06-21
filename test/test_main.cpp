@@ -141,6 +141,14 @@ TEST_CASE("DCInterface: setAngle") {
     REQUIRE(motorInterface.getAngle() == 0);
 }
 //----------------STEPPER----------------
+TEST_CASE("Stepper Interface: setSpeed") {
+    MotorController::StepperInterface motorInterface;
+    motorInterface.setSpeed(60);
+    REQUIRE(motorInterface.getSpeed() == 60);
+    motorInterface.setSpeed(255);
+    REQUIRE(motorInterface.getSpeed() == 255);
+}
+
 TEST_CASE("Stepper Interface: set wires") {
     MotorController::StepperInterface motorInterface;
     REQUIRE(motorInterface.getStepperWires() == 4);
@@ -154,25 +162,15 @@ TEST_CASE("Stepper Interface: set wires") {
     REQUIRE(motorInterface.getStepperWires() == 5);
 }
 
-TEST_CASE("Stepper Interface: set gearratio") {
+TEST_CASE("Stepper Interface: set steps") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getGearRatio() == 1);
-    motorInterface.setGearRatio(0);
-    REQUIRE(motorInterface.getGearRatio() == 1);
-    motorInterface.setGearRatio(3);
-    REQUIRE(motorInterface.getGearRatio() == 3);
+    REQUIRE(motorInterface.getSteps() == 4);
+    motorInterface.setSteps(0);
+    REQUIRE(motorInterface.getSteps() == 4);
+    motorInterface.setSteps(8);
+    REQUIRE(motorInterface.getSteps() == 8);
 }
 
-TEST_CASE("Stepper Interface: set stride") {
-    MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getStride() == 0.1);
-    motorInterface.setStride(0);
-    REQUIRE(motorInterface.getStride() == 0.1);
-    motorInterface.setStride(3);
-    REQUIRE(motorInterface.getStride() == 3);
-    motorInterface.setStride(3.14);
-    REQUIRE(motorInterface.getStride() == 3.14);
-}
 //----------------SERVO----------------
 
 TEST_CASE("Servo Interface: setAngle") {

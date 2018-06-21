@@ -79,21 +79,17 @@ class Controller {
      */
     void setStepperWires(const uint8_t newAlmount);
     /**
-     * @brief getter for stride
+     * @brief getter for steps
      */
-    double getStride() const;
+    int16_t getSteps() const;
     /**
-     * @brief setter for stride
+     * @brief setter for Steps direct
      */
-    void setStride(const double newStride);
+    void setSteps(const int16_t newSteps);
     /**
-     * @brief getter for gear ratio
+     * @brief setter for Steps indirect
      */
-    uint8_t getGearRatio() const;
-    /**
-     * @brief setter for gear ratio
-     */
-    void setGearRatio(const uint8_t newRatio);
+    void setSteps(const double stride, const double gearRatio);
 };
 } // namespace MotorController
 
