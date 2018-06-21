@@ -51,11 +51,11 @@ class StepperInterface : public MotorInterface {
     /**
      * @brief getter for steps
      */
-    int16_t getSteps() const;
+    uint16_t getSteps() const;
     /**
      * @brief setter for steps direct
      */
-    void setSteps(const int16_t newSteps);
+    void setSteps(const uint16_t newSteps);
     /**
      * @brief setter for indirect
      */

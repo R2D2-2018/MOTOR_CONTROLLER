@@ -81,11 +81,11 @@ class Controller {
     /**
      * @brief getter for steps
      */
-    int16_t getSteps() const;
+    uint16_t getSteps() const;
     /**
      * @brief setter for Steps direct
      */
-    void setSteps(const int16_t newSteps);
+    void setSteps(const uint16_t newSteps);
     /**
      * @brief setter for Steps indirect
      */

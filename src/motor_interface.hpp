@@ -24,7 +24,7 @@ class MotorInterface {
     ///< Motor angle, 0 - 360
     int16_t angle = 0;
     ///< almount of steps for the stepper motor
-    int16_t steps = 4;
+    uint16_t steps = 4;
     ///< Almount of stepper wires to define what sequence should be used
     uint8_t stepperWires = 4;
     ///< Stride angle is the angle
@@ -72,13 +72,13 @@ class MotorInterface {
      * @brief setter for stepperwires
      */
     virtual void setStepperWires(const uint8_t newAlmount) {
-        hwlib::cout << "ERROR: This motor interface does NOT support stepeprwires" << hwlib::endl;
+        hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
     };
     /**
      * @brief getter for stride
      */
-    virtual int16_t getSteps() const {
-        hwlib::cout << "ERROR: This motor interface does NOT support stride" << hwlib::endl;
+    virtual uint16_t getSteps() const {
+        hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
         return 0;
     };
     /**

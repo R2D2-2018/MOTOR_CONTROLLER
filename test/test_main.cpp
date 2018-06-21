@@ -169,6 +169,8 @@ TEST_CASE("Stepper Interface: set steps") {
     REQUIRE(motorInterface.getSteps() == 4);
     motorInterface.setSteps(8);
     REQUIRE(motorInterface.getSteps() == 8);
+    motorInterface.setSteps(5.625, 64);
+    REQUIRE(motorInterface.getSteps() == 4096);
 }
 
 //----------------SERVO----------------

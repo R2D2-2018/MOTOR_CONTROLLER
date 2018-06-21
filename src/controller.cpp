@@ -66,11 +66,11 @@ void MotorController::Controller::setStepperWires(const uint8_t newAlmount) {
     return selectedInterface->setStepperWires(newAlmount);
 }
 
-int16_t MotorController::Controller::getSteps() const {
+uint16_t MotorController::Controller::getSteps() const {
     return selectedInterface->getSteps();
 }
 
-void MotorController::Controller::setSteps(const int16_t newSteps) {
+void MotorController::Controller::setSteps(const uint16_t newSteps) {
     return selectedInterface->setSteps(newSteps);
 }
 

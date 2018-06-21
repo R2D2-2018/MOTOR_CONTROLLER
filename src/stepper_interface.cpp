@@ -44,16 +44,19 @@ void MotorController::StepperInterface::setStepperWires(const uint8_t newAlmount
     }
 }
 
-int16_t MotorController::StepperInterface::getSteps() const {
+uint16_t MotorController::StepperInterface::getSteps() const {
     return steps;
 }
 
-void MotorController::StepperInterface::setSteps(const int16_t newSteps) {
+void MotorController::StepperInterface::setSteps(const uint16_t newSteps) {
     if (newSteps > 4) {
         steps = newSteps;
     }
 }
 
 void MotorController::StepperInterface::setSteps(const double stride, const double gearRatio) {
+    if (stride > 0) {
+        steps = (360 / stride) * gearRatio;
+    }
     hwlib::cout << "NOT Inplementedd yet";
 }
