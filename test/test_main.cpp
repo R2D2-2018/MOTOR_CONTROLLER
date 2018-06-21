@@ -146,10 +146,10 @@ TEST_CASE("Stepper Interface: set wires") {
     REQUIRE(motorInterface.getStepperWires() == 4);
     motorInterface.setStepperWires(0);
     REQUIRE(motorInterface.getStepperWires() == 4);
-    motorInterface.setStepperWires(3);
-    REQUIRE(motorInterface.getStepperWires() == 3);
+    motorInterface.setStepperWires(2);
+    REQUIRE(motorInterface.getStepperWires() == 2);
     motorInterface.setStepperWires(6);
-    REQUIRE(motorInterface.getStepperWires() == 3);
+    REQUIRE(motorInterface.getStepperWires() == 2);
     motorInterface.setStepperWires(5);
     REQUIRE(motorInterface.getStepperWires() == 5);
 }

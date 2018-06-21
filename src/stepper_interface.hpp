@@ -1,7 +1,7 @@
 /**
  * @file
  * @brief     This file contains a class for the stepper motor Interface
- * @author    Nick Bout
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 
@@ -37,7 +37,7 @@ class StepperInterface : public MotorInterface {
      */
     uint8_t getStepperWires() const;
     /**
-     * @brief setter for stepperwires. Needed for correct stepper sequence.
+     * @brief setter for stepperwires. Needed for correct stepper sequence. Only 2, 4, and 5 are options
      */
     void setStepperWires(const uint8_t newAlmount);
     /**
@@ -56,7 +56,7 @@ class StepperInterface : public MotorInterface {
      * @brief setter for gear ratio
      */
     void setGearRatio(const uint8_t newRatio);
-};
+}; // namespace MotorController
 } // namespace MotorController
 
 #endif // Stepper_Interface_HPP

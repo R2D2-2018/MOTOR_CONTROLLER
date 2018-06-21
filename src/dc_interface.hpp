@@ -1,7 +1,7 @@
 /**
  * @file
  * @brief     This file contains a class for the dc motor Interface
- * @author    Nick Bout
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 

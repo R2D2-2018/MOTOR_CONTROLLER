@@ -1,7 +1,7 @@
 /**
  * @file
  * @brief     This file contains a class for the motor controller
- * @author    Nick Bout
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 
