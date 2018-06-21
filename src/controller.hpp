@@ -77,7 +77,7 @@ class Controller {
     /**
      * @brief setter for stepperwires
      */
-    void setStepperWires(const uint8_t newAlmount);
+    void setStepperWires(const uint8_t newAmount);
     /**
      * @brief getter for steps
      */
