@@ -62,8 +62,8 @@ uint8_t MotorController::Controller::getStepperWires() const {
     return selectedInterface->getStepperWires();
 }
 
-void MotorController::Controller::setStepperWires(const uint8_t newAlmount) {
-    return selectedInterface->setStepperWires(newAlmount);
+void MotorController::Controller::setStepperWires(const uint8_t newAmount) {
+    return selectedInterface->setStepperWires(newAmount);
 }
 
 uint16_t MotorController::Controller::getSteps() const {

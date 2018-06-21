@@ -71,7 +71,7 @@ class MotorInterface {
     /**
      * @brief setter for stepperwires
      */
-    virtual void setStepperWires(const uint8_t newAlmount) {
+    virtual void setStepperWires(const uint8_t newAmount) {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
     };
     /**

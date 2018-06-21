@@ -47,7 +47,7 @@ class StepperInterface : public MotorInterface {
     /**
      * @brief setter for stepperwires. Needed for correct stepper sequence. Only 2, 4, and 5 are options
      */
-    void setStepperWires(const uint8_t newAlmount);
+    void setStepperWires(const uint8_t newAmount);
     /**
      * @brief getter for steps
      */
