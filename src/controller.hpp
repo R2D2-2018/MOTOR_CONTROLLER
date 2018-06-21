@@ -10,6 +10,7 @@
 
 #include "dc_interface.hpp"
 #include "motor_interface.hpp"
+#include "servo_interface.hpp"
 #include "stepper_interface.hpp"
 #include "wrap-hwlib.hpp"
 
@@ -23,7 +24,7 @@ namespace MotorController {
 class Controller {
   public:
     ///< Enum class with all available motor Interfaces
-    enum class Interface { DC, Stepper, None };
+    enum class Interface { DC, Stepper, Servo, None };
 
   private:
     ///< The Interface that is currently selected
@@ -35,6 +36,9 @@ class Controller {
     ///< The Interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
     ///< that way for selected Interface
     StepperInterface stepperInterface;
+    ///< The Interface for servo motor, we initialize this in the contructor because we have no heap and can't do polymorphism
+    ///< that way for selected Interface
+    ServoInterface servoInterface;
 
   public:
     /**
@@ -66,6 +70,30 @@ class Controller {
      * @brief setter for angle
      */
     void setAngle(const uint16_t newAngle);
+    /**
+     * @brief getter for stepperwires
+     */
+    uint8_t getStepperWires() const;
+    /**
+     * @brief setter for stepperwires
+     */
+    void setStepperWires(const uint8_t newAlmount);
+    /**
+     * @brief getter for stride
+     */
+    double getStride() const;
+    /**
+     * @brief setter for stride
+     */
+    void setStride(const double newStride);
+    /**
+     * @brief getter for gear ratio
+     */
+    uint8_t getGearRatio() const;
+    /**
+     * @brief setter for gear ratio
+     */
+    void setGearRatio(const uint8_t newRatio);
 };
 } // namespace MotorController
 

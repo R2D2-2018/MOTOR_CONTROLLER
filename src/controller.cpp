@@ -1,6 +1,6 @@
 #include "controller.hpp"
 
-MotorController::Controller::Controller() : dcInterface(), stepperInterface() {
+MotorController::Controller::Controller() : dcInterface(), stepperInterface(), servoInterface() {
 }
 
 MotorController::Controller::Interface MotorController::Controller::getSelectedInterface() const {
@@ -11,11 +11,12 @@ MotorController::Controller::Interface MotorController::Controller::getSelectedI
     }
 
     // Convert the Interface to enum
-    if (selectedInterface == &dcInterface) {
-        return MotorController::Controller::Interface::DC;
+    if (selectedInterface == &servoInterface) {
+        return MotorController::Controller::Interface::Servo;
+    } else if (selectedInterface == &stepperInterface) {
+        return MotorController::Controller::Interface::Stepper;
     }
-
-    return MotorController::Controller::Interface::Stepper;
+    return MotorController::Controller::Interface::DC;
 }
 
 bool MotorController::Controller::setSelectedInterface(const MotorController::Controller::Interface newInterface) {
@@ -30,6 +31,9 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
         return true;
     case MotorController::Controller::Interface::Stepper:
         selectedInterface = &stepperInterface;
+        return true;
+    case MotorController::Controller::Interface::Servo:
+        selectedInterface = &servoInterface;
         return true;
     default:
         // Interface not supported
@@ -52,4 +56,27 @@ uint16_t MotorController::Controller::getAngle() const {
 
 void MotorController::Controller::setAngle(const uint16_t newAngle) {
     return selectedInterface->setAngle(newAngle);
+}
+
+uint8_t MotorController::Controller::getStepperWires() const {
+    return selectedInterface->getStepperWires();
+}
+
+void MotorController::Controller::setStepperWires(const uint8_t newAlmount) {
+    return selectedInterface->setStepperWires(newAlmount);
+}
+
+double MotorController::Controller::getStride() const {
+    return selectedInterface->getStride();
+}
+void MotorController::Controller::setStride(const double newStride) {
+    return selectedInterface->setStride(newStride);
+}
+
+uint8_t MotorController::Controller::getGearRatio() const {
+    return selectedInterface->getGearRatio();
+}
+
+void MotorController::Controller::setGearRatio(const uint8_t newRatio) {
+    return selectedInterface->setGearRatio(newRatio);
 }

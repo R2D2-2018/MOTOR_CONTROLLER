@@ -32,6 +32,30 @@ class StepperInterface : public MotorInterface {
      * @brief setter for angle
      */
     void setAngle(const uint16_t newAngle);
+    /**
+     * @brief getter for stepperwires. Needed for correct stepper sequence.
+     */
+    uint8_t getStepperWires() const;
+    /**
+     * @brief setter for stepperwires. Needed for correct stepper sequence.
+     */
+    void setStepperWires(const uint8_t newAlmount);
+    /**
+     * @brief getter for stride
+     */
+    double getStride() const;
+    /**
+     * @brief setter for stride
+     */
+    void setStride(const double newStride);
+    /**
+     * @brief getter for gear ratio
+     */
+    uint8_t getGearRatio() const;
+    /**
+     * @brief setter for gear ratio
+     */
+    void setGearRatio(const uint8_t newRatio);
 };
 } // namespace MotorController
 
