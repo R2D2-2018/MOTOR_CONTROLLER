@@ -15,4 +15,5 @@ set (sources
     src/dc_interface.cpp
     src/stepper_interface.cpp
     src/servo_interface.cpp
+    src/pwm_controller.cpp
 )
