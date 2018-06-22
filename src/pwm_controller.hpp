@@ -2,13 +2,13 @@
 #define PWM_controller_HPP
 
 #include "wrap-hwlib.hpp"
-
+#include <assert.h>
 // Enum class for all the avaible pwm pins on the arduino due.
-enum class PWMpin {
+enum PWMpin : uint32_t {
     // PWM_CH0
-    H0_PA8,
-    H0_PB12,
-    H0_PC3,
+    H0_PA8 = PIO_PA8,
+    H0_PB12 = PIO_PB12,
+    H0_PC3 = PIO_PC3,
     L0_PA21,
     L0_PB16,
     L0_PC2,
@@ -56,6 +56,7 @@ enum class PWMpin {
 
 class PWMcontroller {
   private:
+    uint8_t channel_id;
     uint8_t dutyCycle;
     uint8_t freq;
     PWMpin pin;
