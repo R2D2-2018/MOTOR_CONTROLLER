@@ -1,9 +1,10 @@
 #include "pwm_controller.hpp"
 
 PWMcontroller::PWMcontroller(const PWMpin &pin) : pin(pin) {
-
+    Pio *pointerPIO;
     switch (pin) {
-    case H0_PA8 || H0_PB12 || H0_PC3:
+    case H0_PA8:
+        pointerPIO = PIOA;
         channel_id = 0;
         break;
     }
@@ -12,14 +13,15 @@ PWMcontroller::PWMcontroller(const PWMpin &pin) : pin(pin) {
                                     // PWM_ENA register.
 
     assert(!(PWM->PWM_SR & mask)); // assert if channel is already in use.
-    PIOB->PIO_PDR = pin;
-    PIOB->PIO_ABSR |= pin;
-    PIOB->PIO_OER = pin;
+    pointerPIO->PIO_PDR = pin;
+    pointerPIO->PIO_ABSR |= pin;
+    pointerPIO->PIO_OER = pin;
     PWM->PWM_ENA = PWM->PWM_SR | mask; // enable channel with mask based off channel id
 };
 
 void PWMcontroller::setPwmFreq(const uint8_t &setFreq) {
     freq = setFreq;
+    PWM->PWM_CLK;
 }
 
 void PWMcontroller::setDutyCycle(const uint16_t &setDutyCycle) {

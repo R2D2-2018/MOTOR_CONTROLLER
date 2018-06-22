@@ -3,7 +3,8 @@
 
 #include "wrap-hwlib.hpp"
 #include <assert.h>
-// Enum class for all the avaible pwm pins on the arduino due.
+// struct for all the avaible pwm pins on the arduino due.
+
 enum PWMpin : uint32_t {
     // PWM_CH0
     H0_PA8 = PIO_PA8,
