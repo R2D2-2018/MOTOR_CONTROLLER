@@ -57,7 +57,7 @@ enum PWMpin : uint32_t {
 class PWMcontroller {
   private:
     uint8_t channel_id;
-    uint8_t dutyCycle;
+    uint16_t dutyCycle;
     uint8_t freq;
     PWMpin pin;
 
@@ -65,9 +65,9 @@ class PWMcontroller {
     PWMcontroller(const PWMpin &pin);
 
     void setPwmFreq(const uint8_t &setFreq);
-    void setDutyCycle(const uint8_t &setDutyCycle);
+    void setDutyCycle(const uint16_t &setDutyCycle);
     uint8_t getPwmFreq();
-    uint8_t getDutyCycle();
+    uint16_t getDutyCycle();
 };
 
 #endif // PWM_controller_HPP

@@ -22,18 +22,15 @@ void PWMcontroller::setPwmFreq(const uint8_t &setFreq) {
     freq = setFreq;
 }
 
-void PWMcontroller::setDutyCycle(const uint8_t &setDutyCycle) {
+void PWMcontroller::setDutyCycle(const uint16_t &setDutyCycle) {
     dutyCycle = setDutyCycle;
-    // Do stuff here with registers
-    /*
-    PWM->PWM_CH_NUM[channel_id].PWM_CDTY;
-    */
+    PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle;
 }
 
 inline uint8_t PWMcontroller::getPwmFreq() {
     return freq;
 }
 
-inline uint8_t PWMcontroller::getDutyCycle() {
+inline uint16_t PWMcontroller::getDutyCycle() {
     return dutyCycle;
 }
