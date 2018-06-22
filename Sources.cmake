@@ -14,4 +14,5 @@ set (sources
     src/controller.cpp
     src/dc_interface.cpp
     src/stepper_interface.cpp
+    src/servo_interface.cpp
 )

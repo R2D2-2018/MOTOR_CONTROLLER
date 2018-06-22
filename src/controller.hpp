@@ -1,16 +1,17 @@
 /**
  * @file
  * @brief     This file contains a class for the motor controller
- * @author    Nick Bout
+ * @author    Nick Bout & Olivier Verwoerd
  * @license   MIT License
  */
 
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-#include "dc_Interface.hpp"
-#include "motor_Interface.hpp"
-#include "stepper_Interface.hpp"
+#include "dc_interface.hpp"
+#include "motor_interface.hpp"
+#include "servo_interface.hpp"
+#include "stepper_interface.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -23,7 +24,7 @@ namespace MotorController {
 class Controller {
   public:
     ///< Enum class with all available motor Interfaces
-    enum class Interface { DC, Stepper, None };
+    enum class Interface { DC, Stepper, Servo, None };
 
   private:
     ///< The Interface that is currently selected
@@ -35,6 +36,9 @@ class Controller {
     ///< The Interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
     ///< that way for selected Interface
     StepperInterface stepperInterface;
+    ///< The Interface for servo motor, we initialize this in the contructor because we have no heap and can't do polymorphism
+    ///< that way for selected Interface
+    ServoInterface servoInterface;
 
   public:
     /**
@@ -51,14 +55,6 @@ class Controller {
      */
     bool setSelectedInterface(const Interface interface);
     /**
-     * @brief getter for Enable
-     */
-    bool getEnable() const;
-    /**
-     * @brief setter for Enable
-     */
-    void setEnable(const bool state);
-    /**
      * @brief getter for speed
      */
     int16_t getSpeed() const;
@@ -67,13 +63,33 @@ class Controller {
      */
     void setSpeed(const int16_t speed);
     /**
-     * @brief getter for speed
+     * @brief getter for angle
      */
     uint16_t getAngle() const;
     /**
-     * @brief setter for speed
+     * @brief setter for angle
      */
     void setAngle(const uint16_t newAngle);
+    /**
+     * @brief getter for stepperwires
+     */
+    uint8_t getStepperWires() const;
+    /**
+     * @brief setter for stepperwires
+     */
+    void setStepperWires(const uint8_t newAmount);
+    /**
+     * @brief getter for steps
+     */
+    uint16_t getSteps() const;
+    /**
+     * @brief setter for Steps direct
+     */
+    void setSteps(const uint16_t newSteps);
+    /**
+     * @brief setter for Steps indirect
+     */
+    void setSteps(const double stride, const double gearRatio);
 };
 } // namespace MotorController
 
