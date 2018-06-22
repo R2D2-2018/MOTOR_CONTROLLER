@@ -3,8 +3,8 @@
 PWMcontroller::PWMcontroller(const PWMpin &pin) : pin(pin) {
     Pio *pointerPIO;
     switch (pin) {
-    case H0_PA8:
-        pointerPIO = PIOA;
+    case H0_RX0:
+        pointerPIO = PIOB;
         channel_id = 0;
         break;
     }
@@ -19,7 +19,7 @@ PWMcontroller::PWMcontroller(const PWMpin &pin) : pin(pin) {
     PWM->PWM_ENA = PWM->PWM_SR | mask; // enable channel with mask based off channel id
 };
 
-void PWMcontroller::setPwmFreq(const uint8_t &setFreq) {
+void PWMcontroller::setFreq(const uint8_t &setFreq) {
     freq = setFreq;
     PWM->PWM_CLK;
 }
@@ -29,7 +29,7 @@ void PWMcontroller::setDutyCycle(const uint16_t &setDutyCycle) {
     PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle;
 }
 
-inline uint8_t PWMcontroller::getPwmFreq() {
+inline uint8_t PWMcontroller::getFreq() {
     return freq;
 }
 
