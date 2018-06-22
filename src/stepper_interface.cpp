@@ -35,11 +35,7 @@ uint8_t MotorController::StepperInterface::getStepperWires() const {
 }
 
 void MotorController::StepperInterface::setStepperWires(const uint8_t newAmount) {
-    if (newAmount == 2) {
-        stepperWires = newAmount;
-    } else if (newAmount == 4) {
-        stepperWires = newAmount;
-    } else if (newAmount == 5) {
+    if (newAmount == 2 || newAmount == 4 || newAmount == 5) {
         stepperWires = newAmount;
     }
 }
