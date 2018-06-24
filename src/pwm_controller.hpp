@@ -67,8 +67,8 @@ class PWMcontroller {
 
     void setFreq(const uint32_t &setFreq);
     void setDutyCycle(const double &setDutyCycle);
-    uint8_t getFreq();
-    uint16_t getDutyCycle();
+    uint32_t getFreq();
+    double getDutyCycle();
 };
 
 #endif // PWM_controller_HPP
