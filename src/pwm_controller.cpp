@@ -20,22 +20,31 @@ PWMcontroller::PWMcontroller(const PWMpin &pin) : pin(pin) {
     pointerPIO->PIO_ABSR |= pin;
     pointerPIO->PIO_OER = pin;
 
-    PWM->PWM_CH_NUM[channel_id].PWM_CMR |= PWM_CMR_CPRE_MCK;
+    PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(42);
+    PWM->PWM_CH_NUM[channel_id].PWM_CMR |= PWM_CMR_CALG | PWM_CMR_CPRE_CLKA;
     PWM->PWM_ENA = PWM->PWM_SR | mask; // enable channel with mask based off channel id
 }
 
 void PWMcontroller::setFreq(const uint8_t &setFreq) {
     freq = setFreq;
-    PWM->PWM_CLK;
+    uint8_t i = 1;
+    while (84 / i > setFreq) {
+        ++i;
+    }
+    PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i - 1);  // setting up right clk divider
+    PWM->PWM_CH_NUM[channel_id].PWM_CPRD = freq * 1000000; // setting pwm freq
 }
 
-void PWMcontroller::setDutyCycle(const uint16_t &setDutyCycle) {
-    dutyCycle = setDutyCycle;
-    // if for some reason the channel is disabled write to CDTY instead of CDTYUPD
-    if (PWM->PWM_SR & (1 << channel_id)) {
-        PWM->PWM_CH_NUM[channel_id].PWM_CDTYUPD = dutyCycle;
-    } else {
-        PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle;
+void PWMcontroller::setDutyCycle(const double &setDutyCycle) {
+    if (setDutyCycle > 0 && setDutyCycle < 100) {
+        dutyCycle = 100 / setDutyCycle;
+
+        // if for some reason the channel is disabled write to CDTY instead of CDTYUPD
+        if (PWM->PWM_SR & (1 << channel_id)) {
+            PWM->PWM_CH_NUM[channel_id].PWM_CDTYUPD = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / dutyCycle;
+        } else {
+            PWM->PWM_CH_NUM[channel_id].PWM_CDTY = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / dutyCycle;
+        }
     }
 }
 
