@@ -1,5 +1,6 @@
 #include "controller.hpp"
 #include "motor_interface.hpp"
+#include "pwm_controller.hpp"
 #include "wrap-hwlib.hpp"
 
 /**
@@ -13,10 +14,10 @@
  * @param[in]     max           The maximum number that can be entered
  *
  */
-char askNumber(const char *question, char min = '0', char max = '1');
+char askNumber(const char *question, char min = '0', char max = '2');
 char askNumber(const char *question, char min, char max) {
     while (true) {
-        hwlib::cout << "Select your Interface (0: DC, 1: Stepper)" << hwlib::endl;
+        hwlib::cout << "Select your Interface (0: DC, 1: Stepper, 2:Servo)" << hwlib::endl;
         char number;
         hwlib::cin >> number;
 
@@ -45,6 +46,9 @@ void printInterface(MotorController::Controller &motorController) {
         break;
     case MotorController::Controller::Interface::Stepper:
         hwlib::cout << "Stepper motor" << hwlib::endl;
+        break;
+    case MotorController::Controller::Interface::Servo:
+        hwlib::cout << "Servo motor" << hwlib::endl;
         break;
     default:
         break;
@@ -103,9 +107,15 @@ int main() {
     // TODO: We should see if we can make rtos work, then we can make this function a task
     mainLogic(motorController);
     */
+    PWMcontroller testje(PWMpin::L0_D34);
+    // hwlib::wait_ms(4000);
+    testje.setDutyCycle(50);
+    // hwlib::wait_ms(4000);
+    testje.setDutyCycle(2);
+    testje.setFreq(20);
 
     MotorController::Controller motorController;
-    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
+    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
     while (1) {
         motorController.setSpeed(10);

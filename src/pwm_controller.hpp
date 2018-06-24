@@ -1,6 +1,8 @@
 #ifndef PWM_controller_HPP
 #define PWM_controller_HPP
 
+#include "wrap-hwlib.hpp"
+
 /**
  * @file
  * @brief     This file contains the PWMpins and PWMcontroller, this code is responsable for hardware pwm.
@@ -9,9 +11,7 @@
  * @license   See LICENSE
  */
 
-#include "wrap-hwlib.hpp"
 // enum for all the avaible pwm pins on the arduino due.
-
 enum PWMpin : uint32_t {
     // PWM_CH0
     H0_RX0 = PIO_PA8,
@@ -71,7 +71,11 @@ class PWMcontroller {
 
   public:
     PWMcontroller(const PWMpin &_pin);
-
+    /**
+     * @brief setDutyCycle
+     *
+     * paramin [] in hz. needs to be 4 or more
+     */
     void setFreq(const uint32_t &setFreq);
     void setDutyCycle(const double &setDutyCycle);
     uint32_t getFreq();
