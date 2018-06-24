@@ -3,6 +3,7 @@
 PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
     Pio *pointerPIO = NULL;
     switch (pin) {
+        // channel 1
     case H0_RX0:
         pointerPIO = PIOA;
         channel_id = 0;
@@ -26,6 +27,113 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
     case L0_D34:
         pointerPIO = PIOC;
         channel_id = 0;
+        break;
+        // channel 1
+    case H1_D42:
+        pointerPIO = PIOA;
+        channel_id = 1;
+        break;
+    case H1_SCL:
+        pointerPIO = PIOB;
+        channel_id = 1;
+        break;
+    case H1_D37:
+        pointerPIO = PIOC;
+        channel_id = 1;
+        break;
+    case L1_RX2:
+        pointerPIO = PIOA;
+        channel_id = 1;
+        break;
+    case L1_A8:
+        pointerPIO = PIOB;
+        channel_id = 1;
+        break;
+    case L1_D36:
+        pointerPIO = PIOC;
+        channel_id = 1;
+        break;
+        // channel 2
+    case H2_TX2:
+        pointerPIO = PIOA;
+        channel_id = 2;
+        break;
+    case H2_D53:
+        pointerPIO = PIOB;
+        channel_id = 2;
+        break;
+    case H2_D39:
+        pointerPIO = PIOC;
+        channel_id = 2;
+        break;
+    case L2_D43:
+        pointerPIO = PIOA;
+        channel_id = 2;
+        break;
+    case L2_A9:
+        pointerPIO = PIOB;
+        channel_id = 2;
+        break;
+    case L2_D38:
+        pointerPIO = PIOC;
+        channel_id = 2;
+        break;
+        // channel 3
+    case H3_TX0:
+        pointerPIO = PIOA;
+        channel_id = 3;
+        break;
+    case H3_DAC0:
+        pointerPIO = PIOB;
+        channel_id = 3;
+        break;
+    case H3_D41:
+        pointerPIO = PIOC;
+        channel_id = 3;
+        break;
+    case L3_CANTX0:
+        pointerPIO = PIOA;
+        channel_id = 3;
+        break;
+    case L3_PB19:
+        pointerPIO = PIOB;
+        channel_id = 3;
+        break;
+    case L3_D40:
+        pointerPIO = PIOC;
+        channel_id = 3;
+        break;
+        // channel 4
+    case H4_PC20:
+        pointerPIO = PIOC;
+        channel_id = 4;
+        break;
+    case L4_D9:
+        pointerPIO = PIOC;
+        channel_id = 4;
+        break;
+        // channel 5
+    case H5_D44:
+        pointerPIO = PIOC;
+        channel_id = 5;
+        break;
+    case L5_D9:
+        pointerPIO = PIOC;
+        channel_id = 5;
+        break;
+        // channel 6
+    case H6_D45:
+        pointerPIO = PIOC;
+        channel_id = 6;
+        break;
+    case L6_D7:
+        pointerPIO = PIOC;
+        channel_id = 6;
+        break;
+        // channel 7
+    case L7_D6:
+        pointerPIO = PIOC;
+        channel_id = 7;
         break;
     default:
         hwlib::cout << "Pin not implemented for pwm\n";
