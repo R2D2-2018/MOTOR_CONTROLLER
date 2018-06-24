@@ -38,7 +38,7 @@ enum PWMpin : uint32_t {
     L3_D40 = PIO_PC8,
 
     // PWM_CH4
-    H4_PC20 = PIO_PC20, // No phisical pinout
+    H4_PC20 = PIO_PC20, // No Physical pinout
     L4_D9 = PIO_PC21,
 
     // PWM_CH5

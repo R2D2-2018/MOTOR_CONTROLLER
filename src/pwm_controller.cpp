@@ -44,6 +44,8 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         PWM->PWM_CH_NUM[channel_id].PWM_CPRD = 20000;                           // default 50hz
         PWM->PWM_CH_NUM[channel_id].PWM_CDTY = 1500;                            // default 20% dutycycle
         PWM->PWM_ENA = (PWM->PWM_SR | mask);                                    // enable channel x
+    } else {
+        hwlib::cout << "This channel is already in use by another controller" << hwlib::endl;
     }
 }
 
@@ -60,13 +62,13 @@ void PWMcontroller::setFreq(const uint32_t &setFreq) {
             }
         }
         if (i != 0) {
-            hwlib::cout << +i << hwlib::endl;
-
             PWM->PWM_WPSR;                                    // enable permissions to change clock
             PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); // setting up right clk divider
             PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   // setting pwm freq
             setDutyCycle(dutyCycle);                          // update dutycycle
             freq = setFreq;
+        } else {
+            hwlib::cout << "This freq can't be used" << hwlib::endl;
         }
     }
 }
