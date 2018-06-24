@@ -49,17 +49,22 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
 void PWMcontroller::setFreq(const uint8_t &setFreq) {
     freq = setFreq;
     uint8_t i = 1;
-    while (84 / i > setFreq) {
+    while (84 / i > setFreq && i != 0) {
         ++i;
     }
-    PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i - 1);  // setting up right clk divider
-    PWM->PWM_CH_NUM[channel_id].PWM_CPRD = freq * 1000000; // setting pwm freq
+    // check for overflow
+    if (i != 0) {
+        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i - 1);  // setting up right clk divider
+        PWM->PWM_CH_NUM[channel_id].PWM_CPRD = freq * 1000000; // setting pwm freq
+    }
 }
 
 void PWMcontroller::setDutyCycle(const double &setDutyCycle) {
     if (setDutyCycle > 0 && setDutyCycle < 100) {
-        dutyCycle = 100 / setDutyCycle;
-        PWM->PWM_CH_NUM[channel_id].PWM_CDTY = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / dutyCycle;
+        dutyCycle = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / (100 / setDutyCycle);
+        if (dutyCycle < 65535) {
+            PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle;
+        }
     }
 }
 
