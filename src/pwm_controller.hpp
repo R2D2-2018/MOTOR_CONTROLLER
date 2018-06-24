@@ -4,6 +4,14 @@
 #include "wrap-hwlib.hpp"
 // enum for all the avaible pwm pins on the arduino due.
 
+/**
+ * @file
+ * @brief     This file contains the PWMcontroller and PWMpin, it is the class used for hardware pwm.
+ *
+ * @author    Stein Bout & Olivier Verwoerd
+ * @license   See LICENSE
+ */
+
 enum PWMpin : uint8_t {
     // PWM_CH0
     H0_RX0,
@@ -61,15 +69,40 @@ class PWMcontroller {
     uint32_t pin;
 
   public:
+    /**
+     * @brief contructor used for the PWM controller class.
+     *
+     * @param[in] setFreq : the new frequency, needs to be at least 4hz and can not be any higher than the master clock (84Mhz)
+     */
     PWMcontroller(const PWMpin &_pin);
     /**
-     * @brief setDutyCycle
+     * @brief sets the new frequency used for the pwm signal
      *
-     * paramin [] in hz. needs to be 4 or more
+     * This function sets the registers needed to change the frequency of the hardware pwm.
+     * It will change the frequency for all the pwm controllers!
+     * The duty cycle of this channel used will automaticly be corrected, however the other dutyCycle from other channels/pins will
+     * remain untouched and need to be updated. Giving invalid data will send a warning to the console.
+     * @param[in] setFreq : the new frequency, needs to be at least 4hz and can not be any higher than the master clock (84Mhz)
      */
     void setFreq(const uint32_t &setFreq);
+    /**
+     * @brief sets the new duty cycle used for the pwm signal
+     *
+     * This function sets the registers needed to change the dutycyle of the hardware pwm.
+     * It will change only change the duty cycle of this channel/pin.
+     * @param[in] setDutyCycle : the new duty cycle, needs to be between 0 and 100. Using double is allowed.
+     */
     void setDutyCycle(const double &setDutyCycle);
+
+    /**
+     * @brief returns the current freq stored.
+     * @return
+     */
     uint32_t getFreq();
+    /**
+     * @brief returns the current duty cycle used.
+     * @return
+     */
     double getDutyCycle();
 };
 

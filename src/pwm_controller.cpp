@@ -3,8 +3,8 @@
 PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
     Pio *pointerPIO = NULL;
     switch (pin) {
-        // channel 1
-    case H0_RX0: // <- was not declared in this scope
+        // channel 0
+    case H0_RX0:
         pin = PIO_PA8;
         pointerPIO = PIOA;
         channel_id = 0;
