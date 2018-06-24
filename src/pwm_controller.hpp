@@ -58,8 +58,8 @@ enum PWMpin : uint32_t {
 class PWMcontroller {
   private:
     uint8_t channel_id;
-    double dutyCycle;
-    uint32_t freq;
+    double dutyCycle = 0;
+    uint32_t freq = 0;
     uint32_t pin;
 
   public:

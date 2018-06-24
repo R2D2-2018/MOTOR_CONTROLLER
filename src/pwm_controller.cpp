@@ -48,24 +48,26 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
 }
 
 void PWMcontroller::setFreq(const uint32_t &setFreq) {
-    uint8_t i = 1;
-    uint32_t maxCPRD = 65535;
-    uint32_t newCPRD = (84000000 / (2 * setFreq));
-    while (newCPRD > maxCPRD) {
-        newCPRD = static_cast<uint32_t>((84000000 / i) / (2 * setFreq)); // calculate new CRPD value
-        ++i;
-        if (i == 0) {
-            break; // break, no clock can be used for this freq.
+    if (setFreq > 0) {
+        uint8_t i = 1;
+        uint32_t maxCPRD = 65535;
+        uint32_t newCPRD = (84000000 / (2 * setFreq));
+        while (newCPRD > maxCPRD) {
+            newCPRD = static_cast<uint32_t>((84000000 / i) / (2 * setFreq)); // calculate new CRPD value
+            ++i;
+            if (i == 0) {
+                break; // break, no clock can be used for this freq.
+            }
         }
-    }
-    if (i != 0) {
-        hwlib::cout << +i << hwlib::endl;
+        if (i != 0) {
+            hwlib::cout << +i << hwlib::endl;
 
-        PWM->PWM_WPSR;                                    // enable permissions to change clock
-        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); // setting up right clk divider
-        PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   // setting pwm freq
-        setDutyCycle(dutyCycle);                          // update dutycycle
-        freq = setFreq;
+            PWM->PWM_WPSR;                                    // enable permissions to change clock
+            PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); // setting up right clk divider
+            PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   // setting pwm freq
+            setDutyCycle(dutyCycle);                          // update dutycycle
+            freq = setFreq;
+        }
     }
 }
 
