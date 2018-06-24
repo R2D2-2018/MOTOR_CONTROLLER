@@ -7,23 +7,23 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOA;
         channel_id = 0;
         break;
-    case H0_PB12:
+    case H0_SDA:
         pointerPIO = PIOB;
         channel_id = 0;
         break;
-    case H0_PC3:
+    case H0_D35:
         pointerPIO = PIOC;
         channel_id = 0;
         break;
-    case L0_PA21:
+    case L0_LEDTX:
         pointerPIO = PIOA;
         channel_id = 0;
         break;
-    case L0_PB16:
+    case L0_DAC1:
         pointerPIO = PIOB;
         channel_id = 0;
         break;
-    case L0_PC2:
+    case L0_D34:
         pointerPIO = PIOC;
         channel_id = 0;
         break;
