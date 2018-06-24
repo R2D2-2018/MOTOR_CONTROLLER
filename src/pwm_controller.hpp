@@ -60,10 +60,10 @@ class PWMcontroller {
     uint8_t channel_id;
     double dutyCycle;
     uint8_t freq;
-    PWMpin pin;
+    uint32_t pin;
 
   public:
-    PWMcontroller(const PWMpin &pin);
+    PWMcontroller(const PWMpin &_pin);
 
     void setFreq(const uint8_t &setFreq);
     void setDutyCycle(const double &setDutyCycle);
