@@ -50,7 +50,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
 }
 
 void PWMcontroller::setFreq(const uint32_t &setFreq) {
-    if (setFreq > 0) {
+    if (setFreq > 0 && setFreq < 84000000) {
         uint8_t i = 1;
         uint32_t maxCPRD = 65535;
         uint32_t newCPRD = (84000000 / (2 * setFreq));
@@ -65,21 +65,23 @@ void PWMcontroller::setFreq(const uint32_t &setFreq) {
             PWM->PWM_WPSR;                                    // enable permissions to change clock
             PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); // setting up right clk divider
             PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   // setting pwm freq
-            setDutyCycle(dutyCycle);                          // update dutycycle
+            setDutyCycle(dutyCycle);                          // update duty cycle
             freq = setFreq;
-        } else {
-            hwlib::cout << "This freq can't be used" << hwlib::endl;
+            return;
         }
     }
+    hwlib::cout << "This freq can't be used" << hwlib::endl;
 }
 
 void PWMcontroller::setDutyCycle(const double &setDutyCycle) {
     if (setDutyCycle > 0 && setDutyCycle < 100) {
-        dutyCycle = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / (100 / setDutyCycle);
+        dutyCycle = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / (100 / setDutyCycle); // get current freq and calculate the new dutycylce
         if (dutyCycle < 65535) {
-            PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle;
-            dutyCycle = setDutyCycle;
+            PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle; // set new duty cycle
+            dutyCycle = setDutyCycle;                         // store current duty cycle.
         }
+    } else {
+        hwlib::cout << "This duty cyle can't be used" << hwlib::endl;
     }
 }
 
