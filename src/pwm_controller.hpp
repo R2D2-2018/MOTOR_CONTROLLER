@@ -2,7 +2,15 @@
 #define PWM_controller_HPP
 
 #include "wrap-hwlib.hpp"
-#include <assert.h>
+
+/**
+ * @file
+ * @brief     This file contains the PWMpins and PWMcontroller, this code is responsable for hardware pwm.
+ *
+ * @author    Stein Bout & Olivier Verwoerd
+ * @license   See LICENSE
+ */
+
 // enum for all the avaible pwm pins on the arduino due.
 enum PWMpin : uint32_t {
     // PWM_CH0
