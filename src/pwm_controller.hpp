@@ -59,13 +59,13 @@ class PWMcontroller {
   private:
     uint8_t channel_id;
     double dutyCycle;
-    uint8_t freq;
+    uint32_t freq;
     uint32_t pin;
 
   public:
     PWMcontroller(const PWMpin &_pin);
 
-    void setFreq(const uint8_t &setFreq);
+    void setFreq(const uint32_t &setFreq);
     void setDutyCycle(const double &setDutyCycle);
     uint8_t getFreq();
     uint16_t getDutyCycle();

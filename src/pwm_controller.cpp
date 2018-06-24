@@ -46,17 +46,21 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
     PWM->PWM_ENA = (PWM->PWM_SR | mask); // enable channel with mask based off channel id
 }
 
-void PWMcontroller::setFreq(const uint16_t &setFreq) {
+void PWMcontroller::setFreq(const uint32_t &setFreq) {
     freq = setFreq;
     uint8_t i = 1;
-    uint32_t maxCPRD = 16777215;
-    while ((84 / i) / (2 * setFreq) > maxCPRD && i != 0) {
+    uint32_t maxCPRD = 16777214;
+    uint32_t newCPRD = (84000000 / (2 * setFreq));
+    while (newCPRD > maxCPRD && i != 0) {
+        newCPRD = ((84000000 / i) / (2 * setFreq));
         ++i;
     }
     // check for overflow
     if (i != 0) {
-        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i - 1);            // setting up right clk divider
-        PWM->PWM_CH_NUM[channel_id].PWM_CPRD = (84 / i) / (2 * setFreq); // setting pwm freq
+        hwlib::cout << +i << hwlib::endl;
+        PWM->PWM_WPSR;
+        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); // setting up right clk divider
+        PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   // setting pwm freq
     }
 }
 
