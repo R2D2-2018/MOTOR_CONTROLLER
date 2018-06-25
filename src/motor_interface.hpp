@@ -85,22 +85,22 @@ class MotorInterface {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
     };
     /**
-     * @brief getter for stride
+     * @brief getter for maxSteps
      */
-    virtual uint16_t getSteps() const {
+    virtual uint16_t getMaxSteps() const {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for steps direct
+     * @brief setter for Maxsteps direct
      */
-    virtual void setSteps(const double newStride) {
+    virtual void setMaxSteps(const double newMaxSteps) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
     /**
-     * @brief setter for steps indirect
+     * @brief setter for Maxsteps indirect
      */
-    virtual void setSteps(const double stride, const double gearRatio) {
+    virtual void setMaxSteps(const double stride, const double gearRatio) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
 };

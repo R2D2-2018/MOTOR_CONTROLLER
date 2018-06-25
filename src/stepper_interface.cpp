@@ -28,28 +28,28 @@ void MotorController::StepperInterface::setAngle(const int16_t newAngle) {
     }
 }
 
-uint8_t MotorController::StepperInterface::getStepperWires() const {
-    return stepperWires;
+uint8_t MotorController::StepperInterface::getStepperMethod() const {
+    return stepperMethod;
 }
 
-void MotorController::StepperInterface::setStepperWires(const uint8_t newAmount) {
-    if (newAmount == 2 || newAmount == 4) {
-        stepperWires = newAmount;
+void MotorController::StepperInterface::setStepperMethod(const uint8_t newMethod) {
+    if (newMethod <= 2) {
+        stepperMethod = newMethod;
     }
 }
 
-uint16_t MotorController::StepperInterface::getSteps() const {
-    return steps;
+uint16_t MotorController::StepperInterface::getMaxSteps() const {
+    return maxSteps;
 }
 
-void MotorController::StepperInterface::setSteps(const uint16_t newSteps) {
-    if (newSteps > 4) {
-        steps = newSteps;
+void MotorController::StepperInterface::setMaxSteps(const uint16_t newMaxSteps) {
+    if (newMaxSteps > 4) {
+        maxSteps = newMaxSteps;
     }
 }
 
-void MotorController::StepperInterface::setSteps(const double stride, const double gearRatio) {
+void MotorController::StepperInterface::setMaxSteps(const double stride, const double gearRatio) {
     if (stride > 0) {
-        steps = (360 / stride) * gearRatio;
+        maxSteps = (360 / stride) * gearRatio;
     }
 }

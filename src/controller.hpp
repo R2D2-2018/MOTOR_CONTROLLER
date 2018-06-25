@@ -79,17 +79,17 @@ class Controller {
      */
     void setStepperMethod(const uint8_t newMethod);
     /**
-     * @brief getter for steps
+     * @brief getter for maxsteps
      */
-    uint16_t getSteps() const;
+    uint16_t getMaxSteps() const;
     /**
-     * @brief setter for Steps direct
+     * @brief setter for maxSteps direct
      */
-    void setSteps(const uint16_t newSteps);
+    void setMaxSteps(const uint16_t newMaxSteps);
     /**
-     * @brief setter for Steps indirect
+     * @brief setter for maxSteps indirect
      */
-    void setSteps(const double stride, const double gearRatio);
+    void setMaxSteps(const double stride, const double gearRatio);
 };
 } // namespace MotorController
 

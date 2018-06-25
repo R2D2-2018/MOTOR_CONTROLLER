@@ -11,6 +11,6 @@ cd src
 ren pwm_controller.cpp pwm_controller_mock.cpp
 ren pwm_controller_back.cpp pwm_controller.cpp
 cd ..
-cd Testing/Temporary
+cd build_test/Testing/Temporary
 start LastTest.log
 pause;

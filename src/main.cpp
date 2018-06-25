@@ -119,6 +119,8 @@ int main() {
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
     printInterface(motorController);
+    // while for dc and servo
+    /*
     while (1) {
         motorController.setSpeed(50);
         motorController.setAngle(0);
@@ -129,6 +131,17 @@ int main() {
         motorController.setSpeed(-50);
         motorController.setAngle(180);
         hwlib::wait_ms(5000);
+    }
+    */
+    // while for stepper
+    motorController.setStepperMethod(0);
+    while (1) {
+        motorController.setSpeed(1);
+        motorController.setAngle(30);
+        hwlib::wait_ms(1000);
+        motorController.setSpeed(20);
+        motorController.setAngle(-30);
+        hwlib::wait_ms(1000);
     }
     return 0;
 }

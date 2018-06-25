@@ -127,13 +127,13 @@ TEST_CASE("Stepper Interface: set method") {
 
 TEST_CASE("Stepper Interface: set steps") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getSteps() == 4);
-    motorInterface.setSteps(0);
-    REQUIRE(motorInterface.getSteps() == 4);
-    motorInterface.setSteps(8);
-    REQUIRE(motorInterface.getSteps() == 8);
-    motorInterface.setSteps(5.625, 64);
-    REQUIRE(motorInterface.getSteps() == 4096);
+    REQUIRE(motorInterface.getMaxSteps() == 4);
+    motorInterface.setMaxSteps(0);
+    REQUIRE(motorInterface.getMaxSteps() == 4);
+    motorInterface.setMaxSteps(8);
+    REQUIRE(motorInterface.getMaxSteps() == 8);
+    motorInterface.setMaxSteps(5.625, 64);
+    REQUIRE(motorInterface.getMaxSteps() == 4096);
 }
 
 //----------------SERVO----------------

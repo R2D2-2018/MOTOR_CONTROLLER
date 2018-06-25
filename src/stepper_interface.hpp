@@ -41,25 +41,25 @@ class StepperInterface : public MotorInterface {
      */
     void setAngle(const int16_t newAngle);
     /**
-     * @brief getter for stepperwires. Needed for correct stepper sequence.
+     * @brief getter for steppermethod, 0: whole step, 1: Halve step, 2 Microstepping.
      */
-    uint8_t getStepperWires() const;
+    uint8_t getStepperMethod() const;
     /**
-     * @brief setter for stepperwires. Needed for correct stepper sequence. Only 2 and 4 are options
+     * @brief setter for steppermethod, 0: whole step, 1: Halve step, 2 Microstepping.
      */
-    void setStepperWires(const uint8_t newAmount);
+    void setStepperMethod(const uint8_t newMethod);
     /**
-     * @brief getter for steps
+     * @brief getter for maxsteps
      */
-    uint16_t getSteps() const;
+    uint16_t getMaxSteps() const;
     /**
      * @brief setter for steps direct
      */
-    void setSteps(const uint16_t newSteps);
+    void setMaxSteps(const uint16_t newMaxSteps);
     /**
      * @brief setter for indirect
      */
-    void setSteps(const double stride, const double gearRatio);
+    void setMaxSteps(const double stride, const double gearRatio);
 
 }; // namespace MotorController
 } // namespace MotorController

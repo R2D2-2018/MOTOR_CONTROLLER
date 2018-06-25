@@ -66,14 +66,14 @@ void MotorController::Controller::setStepperMethod(const uint8_t newMethod) {
     return selectedInterface->setStepperMethod(newMethod);
 }
 
-uint16_t MotorController::Controller::getSteps() const {
-    return selectedInterface->getSteps();
+uint16_t MotorController::Controller::getMaxSteps() const {
+    return selectedInterface->getMaxSteps();
 }
 
-void MotorController::Controller::setSteps(const uint16_t newSteps) {
-    return selectedInterface->setSteps(newSteps);
+void MotorController::Controller::setMaxSteps(const uint16_t newMaxSteps) {
+    return selectedInterface->setMaxSteps(newMaxSteps);
 }
 
-void MotorController::Controller::setSteps(const double stride, const double gearRatio) {
-    return selectedInterface->setSteps(stride, gearRatio);
+void MotorController::Controller::setMaxSteps(const double stride, const double gearRatio) {
+    return selectedInterface->setMaxSteps(stride, gearRatio);
 }
