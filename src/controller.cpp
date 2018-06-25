@@ -58,12 +58,12 @@ void MotorController::Controller::setAngle(const int16_t newAngle) {
     return selectedInterface->setAngle(newAngle);
 }
 
-uint8_t MotorController::Controller::getStepperWires() const {
-    return selectedInterface->getStepperWires();
+uint8_t MotorController::Controller::getStepperMethod() const {
+    return selectedInterface->getStepperMethod();
 }
 
-void MotorController::Controller::setStepperWires(const uint8_t newAmount) {
-    return selectedInterface->setStepperWires(newAmount);
+void MotorController::Controller::setStepperMethod(const uint8_t newMethod) {
+    return selectedInterface->setStepperMethod(newMethod);
 }
 
 uint16_t MotorController::Controller::getSteps() const {

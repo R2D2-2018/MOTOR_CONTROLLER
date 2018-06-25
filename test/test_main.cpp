@@ -116,15 +116,13 @@ TEST_CASE("Stepper Interface: setSpeed") {
     REQUIRE(motorInterface.getSpeed() == 60);
 }
 
-TEST_CASE("Stepper Interface: set wires") {
+TEST_CASE("Stepper Interface: set method") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getStepperWires() == 4);
-    motorInterface.setStepperWires(0);
-    REQUIRE(motorInterface.getStepperWires() == 4);
-    motorInterface.setStepperWires(2);
-    REQUIRE(motorInterface.getStepperWires() == 2);
-    motorInterface.setStepperWires(6);
-    REQUIRE(motorInterface.getStepperWires() == 2);
+    REQUIRE(motorInterface.getStepperMethod() == 0);
+    motorInterface.setStepperMethod(7);
+    REQUIRE(motorInterface.getStepperMethod() == 0);
+    motorInterface.setStepperMethod(2);
+    REQUIRE(motorInterface.getStepperMethod() == 2);
 }
 
 TEST_CASE("Stepper Interface: set steps") {

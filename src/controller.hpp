@@ -71,13 +71,13 @@ class Controller {
      */
     void setAngle(const int16_t newAngle);
     /**
-     * @brief getter for stepperwires
+     * @brief getter for stepperMethod
      */
-    uint8_t getStepperWires() const;
+    uint8_t getStepperMethod() const;
     /**
-     * @brief setter for stepperwires
+     * @brief setter for stepperMethod
      */
-    void setStepperWires(const uint8_t newAmount);
+    void setStepperMethod(const uint8_t newMethod);
     /**
      * @brief getter for steps
      */

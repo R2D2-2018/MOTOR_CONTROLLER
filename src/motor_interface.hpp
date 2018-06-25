@@ -28,8 +28,8 @@ class MotorInterface {
     uint16_t steps = 0;
     ///< Almount of staps that the setepper has
     uint16_t maxSteps = 4;
-    ///< Almount of stepper wires to define what sequence should be used
-    uint8_t stepperWires = 4;
+    ///< stepper Method, 0: whole step, 1: Halve step, 2 Microstepping.
+    uint8_t stepperMethod = 0;
     ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1
     PWMcontroller pwm1 = PWMcontroller(PWMpin::L7_D6);
     ///< Pin 7. used as DC motor 1 backward, Stepper wire 2, Servo 2
@@ -72,16 +72,16 @@ class MotorInterface {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
     };
     /**
-     * @brief getter for stepperwires
+     * @brief getter for stepperMethod
      */
-    virtual uint8_t getStepperWires() const {
+    virtual uint8_t getStepperMethod() const {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for stepperwires
+     * @brief setter for stepperMethod
      */
-    virtual void setStepperWires(const uint8_t newAmount) {
+    virtual void setStepperMethod(const uint8_t newMethod) {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
     };
     /**
