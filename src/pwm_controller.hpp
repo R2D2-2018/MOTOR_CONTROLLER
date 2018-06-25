@@ -72,7 +72,9 @@ class PWMcontroller {
     /**
      * @brief contructor used for the PWM controller class.
      *
-     * @param[in] setFreq : the new frequency, needs to be at least 4hz and can not be any higher than the master clock (84Mhz)
+     * @param[in] PWMpin : The pin used to output the hardware pwm. Each pin will start with an H or L. All H-type pins are
+     * inverted. The H/L is followed with the channel number. Only one pin can be used for each channel.
+     *
      */
     PWMcontroller(const PWMpin &_pin);
     /**
@@ -82,7 +84,8 @@ class PWMcontroller {
      * It will change the frequency for all the pwm controllers!
      * The duty cycle of this channel used will automaticly be corrected, however the other dutyCycle from other channels/pins will
      * remain untouched and need to be updated. Giving invalid data will send a warning to the console.
-     * @param[in] setFreq : the new frequency, needs to be at least 4hz and can not be any higher than the master clock (84Mhz)
+     * @param[in] setFreq : the new frequency, needs to be at least 4hz and can not be any higher than the master clock (84Mhz).
+     * Input in hz.
      */
     void setFreq(const uint32_t &setFreq);
     /**
@@ -90,18 +93,19 @@ class PWMcontroller {
      *
      * This function sets the registers needed to change the dutycyle of the hardware pwm.
      * It will change only change the duty cycle of this channel/pin.
-     * @param[in] setDutyCycle : the new duty cycle, needs to be between 0 and 100. Using double is allowed.
+     * @param[in] setDutyCycle : the new duty cycle, needs to be between 0 and 100. Double is used so for example: "34.7" is
+     * allowed.
      */
     void setDutyCycle(const double &setDutyCycle);
 
     /**
-     * @brief returns the current freq stored.
-     * @return
+     * @brief returns the current frequency stored.
+     * @return returns an integer holding the current frequency in hz
      */
     uint32_t getFreq();
     /**
      * @brief returns the current duty cycle used.
-     * @return
+     * @return returns a double holding the current duty cycle, returned value is between 0 - 100%
      */
     double getDutyCycle();
 };

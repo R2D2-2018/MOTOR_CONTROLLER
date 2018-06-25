@@ -1,7 +1,7 @@
 #include "pwm_controller.hpp"
 
 PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
-    Pio *pointerPIO = NULL;
+    Pio *pointerPIO;
     switch (pin) {
         // channel 0
     case H0_RX0:
@@ -167,7 +167,8 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         channel_id = 7;
         break;
     default:
-        hwlib::cout << "this pwm pin is not implemented" << hwlib::endl;
+        hwlib::cout << "This pwm pin is not implemented" << hwlib::endl;
+        return;
         break;
     }
     uint8_t mask = 1 << channel_id; // make mask based off channel_id, example channel_id = 2, mask is 0000 0100. enabling CHID2
@@ -178,13 +179,13 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO->PIO_ABSR |= pin; // PWM is always on b
         pointerPIO->PIO_PDR |= pin;  // enable pin for pwm
 
-        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(42);                      // default 2mhz
+        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(42);                      // default 2mhz 84 / 42 = 2Mhz
         PWM->PWM_CH_NUM[channel_id].PWM_CMR = PWM_CMR_CALG | PWM_CMR_CPRE_CLKA; // enable clock a for channel x
         PWM->PWM_CH_NUM[channel_id].PWM_CPRD = 20000;                           // default 50hz
         PWM->PWM_CH_NUM[channel_id].PWM_CDTY = 1500;                            // default 20% dutycycle
         PWM->PWM_ENA = (PWM->PWM_SR | mask);                                    // enable channel x
     } else {
-        hwlib::cout << "This channel is already in use by another controller" << hwlib::endl;
+        hwlib::cout << "This channel can not be used" << hwlib::endl;
     }
 }
 
