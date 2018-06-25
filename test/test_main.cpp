@@ -114,8 +114,6 @@ TEST_CASE("Stepper Interface: setSpeed") {
     MotorController::StepperInterface motorInterface;
     motorInterface.setSpeed(60);
     REQUIRE(motorInterface.getSpeed() == 60);
-    motorInterface.setSpeed(120);
-    REQUIRE(motorInterface.getSpeed() == 120);
 }
 
 TEST_CASE("Stepper Interface: set wires") {
