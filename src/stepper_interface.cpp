@@ -22,7 +22,7 @@ uint16_t MotorController::StepperInterface::getAngle() const {
     return angle;
 }
 
-void MotorController::StepperInterface::setAngle(const uint16_t newAngle) {
+void MotorController::StepperInterface::setAngle(const int16_t newAngle) {
     if (newAngle < 360) {
         angle = newAngle;
     }

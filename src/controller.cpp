@@ -54,7 +54,7 @@ uint16_t MotorController::Controller::getAngle() const {
     return selectedInterface->getAngle();
 }
 
-void MotorController::Controller::setAngle(const uint16_t newAngle) {
+void MotorController::Controller::setAngle(const int16_t newAngle) {
     return selectedInterface->setAngle(newAngle);
 }
 

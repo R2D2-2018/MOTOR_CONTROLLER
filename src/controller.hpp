@@ -69,7 +69,7 @@ class Controller {
     /**
      * @brief setter for angle
      */
-    void setAngle(const uint16_t newAngle);
+    void setAngle(const int16_t newAngle);
     /**
      * @brief getter for stepperwires
      */

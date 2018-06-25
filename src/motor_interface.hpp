@@ -23,7 +23,7 @@ class MotorInterface {
     ///< Motor rotation speed, 0 - 100
     int8_t speed = 0;
     ///< Motor angle, 0 - 180
-    int16_t angle = 0;
+    uint16_t angle = 0;
     ///< almount of steps currently
     uint16_t steps = 0;
     ///< Almount of staps that the setepper has
@@ -68,7 +68,7 @@ class MotorInterface {
     /**
      * @brief setter for angle
      */
-    virtual void setAngle(const uint16_t newAngle) {
+    virtual void setAngle(const int16_t newAngle) {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
     };
     /**
