@@ -114,12 +114,12 @@ int main() {
     }
     */
     // while for stepper
-    motorController.setStepperMethod(0);
+    motorController.setStepperMethod(1);
     motorController.setMaxSteps(4096);
     motorController.setSpeed(100);
     while (1) {
-        motorController.setAngle(90);
-        motorController.setAngle(-90);
+        motorController.setAngle(360);
+        motorController.setAngle(-360);
     }
     return 0;
 }
