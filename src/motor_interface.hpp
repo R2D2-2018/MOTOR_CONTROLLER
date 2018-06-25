@@ -24,8 +24,10 @@ class MotorInterface {
     int8_t speed = 0;
     ///< Motor angle, 0 - 180
     int16_t angle = 0;
-    ///< almount of steps for the stepper motor
-    uint16_t steps = 4;
+    ///< almount of steps currently
+    uint16_t steps = 0;
+    ///< Almount of staps that the setepper has
+    uint16_t maxSteps = 4;
     ///< Almount of stepper wires to define what sequence should be used
     uint8_t stepperWires = 4;
     ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1

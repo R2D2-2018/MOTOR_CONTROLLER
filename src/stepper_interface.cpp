@@ -33,9 +33,7 @@ uint8_t MotorController::StepperInterface::getStepperWires() const {
 }
 
 void MotorController::StepperInterface::setStepperWires(const uint8_t newAmount) {
-    if (newAmount == 2) {
-        stepperWires = newAmount;
-    } else if (newAmount == 4) {
+    if (newAmount == 2 || newAmount == 4) {
         stepperWires = newAmount;
     }
 }
@@ -54,5 +52,4 @@ void MotorController::StepperInterface::setSteps(const double stride, const doub
     if (stride > 0) {
         steps = (360 / stride) * gearRatio;
     }
-    hwlib::cout << "NOT Inplementedd yet";
 }
