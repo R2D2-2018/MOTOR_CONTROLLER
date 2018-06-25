@@ -20,22 +20,22 @@ namespace MotorController {
  */
 class MotorInterface {
   protected:
-    ///< Motor rotation speed, 0 - 255
-    int16_t speed = 0;
-    ///< Motor angle, 0 - 360
+    ///< Motor rotation speed, 0 - 100
+    int8_t speed = 0;
+    ///< Motor angle, 0 - 180
     int16_t angle = 0;
     ///< almount of steps for the stepper motor
     uint16_t steps = 4;
     ///< Almount of stepper wires to define what sequence should be used
     uint8_t stepperWires = 4;
     ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1
-    PWMcontroller pwm1(PWMpin::L7_D6);
+    PWMcontroller pwm1 = PWMcontroller(PWMpin::L7_D6);
     ///< Pin 7. used as DC motor 1 backward, Stepper wire 2, Servo 2
-    PWMcontroller pwm2(PWMpin::L6_D7);
+    PWMcontroller pwm2 = PWMcontroller(PWMpin::L6_D7);
     ///< Pin 8. used as DC motor 2 forward, Stepper wire 3, Servo 3
-    PWMcontroller pwm3(PWMpin::L5_D8);
+    PWMcontroller pwm3 = PWMcontroller(PWMpin::L5_D8);
     ///< Pin 9. used as DC motor 2 backward, Stepper wire 4, Servo 4
-    PWMcontroller pwm4(PWMpin::L4_D9);
+    PWMcontroller pwm4 = PWMcontroller(PWMpin::L4_D9);
 
   public:
     /**
@@ -46,14 +46,14 @@ class MotorInterface {
     /**
      * @brief getter for speed
      */
-    virtual int16_t getSpeed() const {
+    virtual int8_t getSpeed() const {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
         return 0;
     };
     /**
      * @brief setter for speed
      */
-    virtual void setSpeed(const int16_t speed) {
+    virtual void setSpeed(const int8_t speed) {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
     };
     /**

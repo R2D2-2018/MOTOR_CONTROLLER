@@ -214,7 +214,7 @@ void PWMcontroller::setFreq(const uint32_t &setFreq) {
 }
 
 void PWMcontroller::setDutyCycle(const double &setDutyCycle) {
-    if (setDutyCycle > 0 && setDutyCycle < 100) {
+    if (setDutyCycle >= 0 && setDutyCycle < 100) {
         dutyCycle = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / (100 / setDutyCycle); // get current freq and calculate the new dutycylce
         if (dutyCycle < 65535) {
             PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle; // set new duty cycle

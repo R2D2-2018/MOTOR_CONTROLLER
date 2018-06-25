@@ -57,11 +57,11 @@ class Controller {
     /**
      * @brief getter for speed
      */
-    int16_t getSpeed() const;
+    int8_t getSpeed() const;
     /**
      * @brief setter for speed
      */
-    void setSpeed(const int16_t speed);
+    void setSpeed(const int8_t speed);
     /**
      * @brief getter for angle
      */

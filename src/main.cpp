@@ -106,8 +106,7 @@ int main() {
 
     // TODO: We should see if we can make rtos work, then we can make this function a task
     mainLogic(motorController);
-    */
-    PWMcontroller testje(PWMpin::L0_D34);
+    PWMcontroller testje(PWMpin::L7_D6);
     // hwlib::wait_ms(4000);
     testje.setDutyCycle(50);
     hwlib::wait_ms(4000);
@@ -115,17 +114,17 @@ int main() {
     testje.setFreq(20);
     hwlib::wait_ms(4000);
     testje.setDutyCycle(0.00001);
+    */
     MotorController::Controller motorController;
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
+    printInterface(motorController);
     while (1) {
-        motorController.setSpeed(10);
-        hwlib::wait_ms(5000);
-        motorController.setSpeed(0);
-
+        motorController.setSpeed(50);
         motorController.setAngle(0);
-        hwlib::wait_ms(2000);
-        motorController.setSpeed(-10);
+        hwlib::wait_ms(5000);
+        motorController.setSpeed(-50);
+        motorController.setAngle(180);
         hwlib::wait_ms(5000);
     }
     return 0;

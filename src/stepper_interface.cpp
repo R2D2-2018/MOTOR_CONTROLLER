@@ -3,18 +3,18 @@
 MotorController::StepperInterface::StepperInterface() {
 }
 
-int16_t MotorController::StepperInterface::getSpeed() const {
+int8_t MotorController::StepperInterface::getSpeed() const {
     return speed;
 }
 
-void MotorController::StepperInterface::setSpeed(const int16_t newSpeed) {
+void MotorController::StepperInterface::setSpeed(const int8_t newSpeed) {
     // Speed can only be -255 / 255
     if (newSpeed == 0) {
         speed = newSpeed;
-    } else if (newSpeed > 0 && newSpeed <= 255) {
+    } else if (newSpeed > 0 && newSpeed <= 100) {
         speed = newSpeed;
         hwlib::cout << "F";
-    } else if (newSpeed < 0 && newSpeed >= -255) {
+    } else if (newSpeed < 0 && newSpeed >= -100) {
         speed = newSpeed;
         hwlib::cout << "B";
     }
@@ -38,8 +38,6 @@ void MotorController::StepperInterface::setStepperWires(const uint8_t newAmount)
     if (newAmount == 2) {
         stepperWires = newAmount;
     } else if (newAmount == 4) {
-        stepperWires = newAmount;
-    } else if (newAmount == 5) {
         stepperWires = newAmount;
     }
 }

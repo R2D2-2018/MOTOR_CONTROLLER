@@ -42,11 +42,11 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
     }
 }
 
-int16_t MotorController::Controller::getSpeed() const {
+int8_t MotorController::Controller::getSpeed() const {
     return selectedInterface->getSpeed();
 }
 
-void MotorController::Controller::setSpeed(const int16_t newSpeed) {
+void MotorController::Controller::setSpeed(const int8_t newSpeed) {
     selectedInterface->setSpeed(newSpeed);
 }
 

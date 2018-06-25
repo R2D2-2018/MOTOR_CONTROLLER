@@ -27,11 +27,11 @@ class StepperInterface : public MotorInterface {
     /**
      * @brief getter for speed
      */
-    int16_t getSpeed() const override;
+    int8_t getSpeed() const override;
     /**
      * @brief setter for speed
      */
-    void setSpeed(const int16_t speed) override;
+    void setSpeed(const int8_t speed) override;
     /**
      * @brief getter for angle
      */
@@ -45,7 +45,7 @@ class StepperInterface : public MotorInterface {
      */
     uint8_t getStepperWires() const;
     /**
-     * @brief setter for stepperwires. Needed for correct stepper sequence. Only 2, 4, and 5 are options
+     * @brief setter for stepperwires. Needed for correct stepper sequence. Only 2 and 4 are options
      */
     void setStepperWires(const uint8_t newAmount);
     /**

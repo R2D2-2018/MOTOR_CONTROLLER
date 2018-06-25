@@ -27,11 +27,11 @@ class DcInterface : public MotorInterface {
     /**
      * @brief getter for speed
      */
-    int16_t getSpeed() const override;
+    int8_t getSpeed() const override;
     /**
      * @brief setter for speed
      */
-    void setSpeed(const int16_t speed) override;
+    void setSpeed(const int8_t speed) override;
 };
 } // namespace MotorController
 
