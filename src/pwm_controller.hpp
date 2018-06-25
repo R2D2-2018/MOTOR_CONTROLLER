@@ -63,11 +63,15 @@ enum PWMpin : uint8_t {
 
 class PWMcontroller {
   private:
-    uint8_t channel_id;   ///< channel_id used to determine which channel is currently used by this class
-    double dutyCycle = 0; ///< dutCycle value between 0-100. Determines the duty cycle of the pwm signal.
-    uint32_t freq = 0;    ///< freq used to store the current frequency used by this class. NOTE: other classes may change this and
-                          ///< will not be updated automaticly.
-    uint32_t pin;         ///< pin used to send the pwm signal to.
+    ///< channel_id used to determine which channel is currently used by this class
+    uint8_t channel_id;
+    ///< dutCycle value between 0-100. Determines the duty cycle of the pwm signal.
+    double dutyCycle = 0;
+    ///< freq used to store the current frequency used by this class. NOTE: other pwm classes may change this value and it will not
+    ///< be updated automaticly.
+    uint32_t freq = 0;
+    ///< pin used to send the pwm signal to.
+    uint32_t pin;
 
   public:
     /**
