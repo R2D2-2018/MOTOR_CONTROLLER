@@ -144,7 +144,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 5;
         break;
-    case L5_D9:
+    case L5_D8:
         pin = PIO_PC22;
         pointerPIO = PIOC;
         channel_id = 5;
