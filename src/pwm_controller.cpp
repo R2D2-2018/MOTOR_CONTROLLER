@@ -225,10 +225,10 @@ void PWMcontroller::setDutyCycle(const double &setDutyCycle) {
     }
 }
 
-inline uint32_t PWMcontroller::getFreq() {
+uint32_t PWMcontroller::getFreq() {
     return freq;
 }
 
-inline double PWMcontroller::getDutyCycle() {
+double PWMcontroller::getDutyCycle() {
     return dutyCycle;
 }

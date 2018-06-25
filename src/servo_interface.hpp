@@ -30,6 +30,8 @@ class ServoInterface : public MotorInterface {
     uint16_t getAngle() const override;
     /**
      * @brief setter for angle
+     *
+     * @param[in] new angle in a range 0-180. if the servo is capable of 360 degees fill in 180.
      */
     void setAngle(const uint16_t newAngle);
 };
