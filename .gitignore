@@ -3,3 +3,4 @@ build_test/*
 .vscode/*
 notes/*
 .vs/*
+src/main.cpp

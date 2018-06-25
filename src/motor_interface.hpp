@@ -8,6 +8,7 @@
 #ifndef MOTOR_INTERFACE_HPP
 #define MOTOR_INTERFACE_HPP
 
+#include "pwm_controller.hpp"
 #include "wrap-hwlib.hpp"
 
 namespace MotorController {
@@ -27,7 +28,14 @@ class MotorInterface {
     uint16_t steps = 4;
     ///< Almount of stepper wires to define what sequence should be used
     uint8_t stepperWires = 4;
-    ///< Stride angle is the angle
+    ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1
+    PWMcontroller pwm1(PWMpin::L7_D6);
+    ///< Pin 7. used as DC motor 1 backward, Stepper wire 2, Servo 2
+    PWMcontroller pwm2(PWMpin::L6_D7);
+    ///< Pin 8. used as DC motor 2 forward, Stepper wire 3, Servo 3
+    PWMcontroller pwm3(PWMpin::L5_D8);
+    ///< Pin 9. used as DC motor 2 backward, Stepper wire 4, Servo 4
+    PWMcontroller pwm4(PWMpin::L4_D9);
 
   public:
     /**

@@ -51,7 +51,7 @@ enum PWMpin : uint8_t {
 
     // PWM_CH5
     H5_D44,
-    L5_D9,
+    L5_D8,
 
     // PWM_CH6
     H6_D45,

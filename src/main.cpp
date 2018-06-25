@@ -110,10 +110,11 @@ int main() {
     PWMcontroller testje(PWMpin::L0_D34);
     // hwlib::wait_ms(4000);
     testje.setDutyCycle(50);
-    // hwlib::wait_ms(4000);
-    testje.setDutyCycle(2);
+    hwlib::wait_ms(4000);
+    testje.setDutyCycle(50);
     testje.setFreq(20);
-
+    hwlib::wait_ms(4000);
+    testje.setDutyCycle(0.00001);
     MotorController::Controller motorController;
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
