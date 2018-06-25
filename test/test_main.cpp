@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief     This file contains the tests for the motor controller
+ * @author    Nick Bout & Olivier Verwoerd
+ * @license   MIT License
+ */
+
 #define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "controller.hpp"
@@ -118,20 +125,20 @@ TEST_CASE("Stepper Interface: setSpeed") {
 
 TEST_CASE("Stepper Interface: set method") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getStepperMethod() == 0);
+    REQUIRE(motorInterface.getStepperMethod() == 1);
     motorInterface.setStepperMethod(7);
+    REQUIRE(motorInterface.getStepperMethod() == 1);
+    motorInterface.setStepperMethod(0);
     REQUIRE(motorInterface.getStepperMethod() == 0);
-    motorInterface.setStepperMethod(2);
-    REQUIRE(motorInterface.getStepperMethod() == 2);
 }
 
 TEST_CASE("Stepper Interface: set steps") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getMaxSteps() == 4);
+    REQUIRE(motorInterface.getMaxSteps() == 10);
     motorInterface.setMaxSteps(0);
-    REQUIRE(motorInterface.getMaxSteps() == 4);
-    motorInterface.setMaxSteps(8);
-    REQUIRE(motorInterface.getMaxSteps() == 8);
+    REQUIRE(motorInterface.getMaxSteps() == 10);
+    motorInterface.setMaxSteps(100);
+    REQUIRE(motorInterface.getMaxSteps() == 100);
     motorInterface.setMaxSteps(5.625, 64);
     REQUIRE(motorInterface.getMaxSteps() == 4096);
 }

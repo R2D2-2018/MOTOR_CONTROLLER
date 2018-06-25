@@ -26,10 +26,12 @@ class MotorInterface {
     uint16_t angle = 0;
     ///< almount of steps currently
     uint16_t steps = 0;
+    ///< counter to track where we are in the sequence
+    int8_t stepSequenceTracker = 0;
     ///< Almount of staps that the setepper has
-    uint16_t maxSteps = 4;
-    ///< stepper Method, 0: whole step, 1: Halve step, 2 Microstepping.
-    uint8_t stepperMethod = 0;
+    uint16_t maxSteps = 10;
+    ///< stepper Method, 0: whole step, 1: Halve step
+    uint8_t stepperMethod = 1;
     ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1
     PWMcontroller pwm1 = PWMcontroller(PWMpin::L7_D6);
     ///< Pin 7. used as DC motor 1 backward, Stepper wire 2, Servo 2
@@ -94,7 +96,7 @@ class MotorInterface {
     /**
      * @brief setter for Maxsteps direct
      */
-    virtual void setMaxSteps(const double newMaxSteps) {
+    virtual void setMaxSteps(const uint16_t newMaxSteps) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
     /**

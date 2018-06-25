@@ -25,11 +25,11 @@ class StepperInterface : public MotorInterface {
      */
     StepperInterface();
     /**
-     * @brief getter for speed
+     * @brief getter for speed.Speed is set in the speed to change angle. This function does NOT MOVE THE STEPPER!
      */
     int8_t getSpeed() const override;
     /**
-     * @brief setter for speed
+     * @brief setter for speed. Speed is set in the speed to change angle. This function does NOT MOVE THE STEPPER!
      */
     void setSpeed(const int8_t speed) override;
     /**
@@ -41,11 +41,11 @@ class StepperInterface : public MotorInterface {
      */
     void setAngle(const int16_t newAngle);
     /**
-     * @brief getter for steppermethod, 0: whole step, 1: Halve step, 2 Microstepping.
+     * @brief getter for steppermethod, 0: whole step, 1: Halve step
      */
     uint8_t getStepperMethod() const;
     /**
-     * @brief setter for steppermethod, 0: whole step, 1: Halve step, 2 Microstepping.
+     * @brief setter for steppermethod, 0: whole step, 1: Halve step
      */
     void setStepperMethod(const uint8_t newMethod);
     /**
@@ -60,6 +60,18 @@ class StepperInterface : public MotorInterface {
      * @brief setter for indirect
      */
     void setMaxSteps(const double stride, const double gearRatio);
+    /**
+     * @brief pinout setter to define the sequence in a swich case
+     */
+    void gotoStep(uint8_t step);
+    /**
+     * @brief The fullstepper logic
+     */
+    void doFullStep(int stepsToDo);
+    /**
+     * @brief The halfstep logic
+     */
+    void doHalfStep(int stepsToDo);
 
 }; // namespace MotorController
 } // namespace MotorController

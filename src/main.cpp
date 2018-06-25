@@ -95,26 +95,6 @@ int main() {
     WDT->WDT_MR = WDT_MR_WDDIS;
     hwlib::wait_ms(1000);
 
-    /**
-    MotorController::Controller motorController;
-    // Ask user which Interface should be used
-    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
-    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
-
-    // Print selected Interface
-    printInterface(motorController);
-
-    // TODO: We should see if we can make rtos work, then we can make this function a task
-    mainLogic(motorController);
-    PWMcontroller testje(PWMpin::L7_D6);
-    // hwlib::wait_ms(4000);
-    testje.setDutyCycle(50);
-    hwlib::wait_ms(4000);
-    testje.setDutyCycle(50);
-    testje.setFreq(20);
-    hwlib::wait_ms(4000);
-    testje.setDutyCycle(0.00001);
-    */
     MotorController::Controller motorController;
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
@@ -135,13 +115,11 @@ int main() {
     */
     // while for stepper
     motorController.setStepperMethod(0);
+    motorController.setMaxSteps(4096);
+    motorController.setSpeed(100);
     while (1) {
-        motorController.setSpeed(1);
-        motorController.setAngle(30);
-        hwlib::wait_ms(1000);
-        motorController.setSpeed(20);
-        motorController.setAngle(-30);
-        hwlib::wait_ms(1000);
+        motorController.setAngle(90);
+        motorController.setAngle(-90);
     }
     return 0;
 }
