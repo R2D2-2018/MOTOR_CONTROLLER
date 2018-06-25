@@ -13,10 +13,8 @@ void MotorController::StepperInterface::setSpeed(const int8_t newSpeed) {
         speed = newSpeed;
     } else if (newSpeed > 0 && newSpeed <= 100) {
         speed = newSpeed;
-        hwlib::cout << "F";
     } else if (newSpeed < 0 && newSpeed >= -100) {
         speed = newSpeed;
-        hwlib::cout << "B";
     }
 }
 
