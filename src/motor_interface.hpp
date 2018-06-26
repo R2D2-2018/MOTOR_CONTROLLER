@@ -16,7 +16,6 @@ namespace MotorController {
  * @brief Abstract Interface class used by other Interfaces
  *
  * This class is a super class for Interfaces for all supported motor types
- *
  */
 class MotorInterface {
   protected:
@@ -41,6 +40,7 @@ class MotorInterface {
      * @brief getter for speed set the dc speed in % where negative value means backwards.
      * for the stepper speed controls the speed off the interval when changeing to the next step.
      * for the stepper to go backwards fill in setAngle with a negative value. speed is always positive.
+     * @param[out] speed -100 / 100
      */
     virtual int8_t getSpeed() const {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
@@ -50,12 +50,15 @@ class MotorInterface {
      * @brief setter for speed set the dc speed in % where negative value means backwards.
      * for the stepper speed controls the speed off the interval when changeing to the next step.
      * for the stepper to go backwards fill in setAngle with a negative value. speed is always positive.
+     * @param[in] speed -100 / 100
      */
     virtual void setSpeed(const int8_t speed) {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
     };
     /**
-     * @brief getter for angle. returns the current angle. Keep in mind that angle resets by reboot of the stepper
+     * @brief getter for angle. returns the current angle.
+     * Keep in mind that angle resets by reboot of the stepper.
+     * @param[out] angle in degrees 0 / 360
      */
     virtual uint16_t getAngle() const {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
@@ -65,12 +68,14 @@ class MotorInterface {
      * @brief setter for angle in range 0 - 180 for servo and stepper how much it should turn
      * for example setAngle(90) will center a servo and will turn the stepper 90 degrees clockwise
      * setAngle(-720) will make the stepper turn 2 turns counter clockwise
+     * @param[in] angle in degrees
      */
     virtual void setAngle(const int16_t newAngle) {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
     };
     /**
      * @brief getter for stepperMethod. 0: full step, 1: halfstep (default)
+     * @param[out] 0 or 1
      */
     virtual uint8_t getStepperMethod() const {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
@@ -78,12 +83,14 @@ class MotorInterface {
     };
     /**
      * @brief setter for stepperMethod. 0: full step, 1: halfstep (default)
+     * @param[in] 0 or 1
      */
     virtual void setStepperMethod(const uint8_t newMethod) {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
     };
     /**
      * @brief getter for maxSteps expressed in the amount of steps for 1 full rotation
+     * @param[out] amount of steps.
      */
     virtual uint16_t getMaxSteps() const {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
@@ -91,12 +98,14 @@ class MotorInterface {
     };
     /**
      * @brief setter for Maxsteps direct by entering the steps
+     * @param[in] amount of steps.
      */
     virtual void setMaxSteps(const uint16_t newMaxSteps) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
     /**
      * @brief setter for Maxsteps indirect by entering the stride and the gear ratio of the stepper.
+     * @param[in] stepper moter stride and gear ratio
      */
     virtual void setMaxSteps(const double stride, const double gearRatio) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;

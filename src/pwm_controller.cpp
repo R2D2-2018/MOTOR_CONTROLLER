@@ -184,9 +184,8 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         PWM->PWM_CH_NUM[channel_id].PWM_CPRD = 20000;                           // default 50hz
         PWM->PWM_CH_NUM[channel_id].PWM_CDTY = 1500;                            // default 20% dutycycle
         PWM->PWM_ENA = (PWM->PWM_SR | mask);                                    // enable channel x
-    } else {
-        hwlib::cout << "This channel can not be used" << hwlib::endl;
-    }
+    }                                                                           // else
+      // hwlib::cout << "This channel can not be used" << hwlib::endl;
 }
 
 void PWMcontroller::setFreq(const uint32_t &setFreq) {

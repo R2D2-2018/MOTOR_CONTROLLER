@@ -48,46 +48,58 @@ class Controller {
 
     /**
      *  @brief getter for selectedInterface
+     * @param[out] selected interface
      */
     Interface getSelectedInterface() const;
     /**
      * @brief setter for selectedInterface
+     * @param[in] interface enum
+     * @param[out] bool if set was succes
      */
     bool setSelectedInterface(const Interface interface);
     /**
      * @brief getter for speed
+     * @param[out] speed -100 / 100
      */
     int8_t getSpeed() const;
     /**
      * @brief setter for speed
+     * @param[in] speed -100 / 100
      */
     void setSpeed(const int8_t speed);
     /**
      * @brief getter for angle
+     * @param[out] angle in degree 0 / 360
      */
     uint16_t getAngle() const;
     /**
      * @brief setter for angle
+     * @param[in] angle in degree 0 / 360
      */
     void setAngle(const int16_t newAngle);
     /**
      * @brief getter for stepperMethod
+     * @param[out] stepperMethod 0: fullstep, 1: halfstep (default)
      */
     uint8_t getStepperMethod() const;
     /**
      * @brief setter for stepperMethod
+     * @param[in] stepperMethod 0: fullstep, 1: halfstep (default)
      */
     void setStepperMethod(const uint8_t newMethod);
     /**
      * @brief getter for maxsteps
+     * @param[out] amount of steps that the stepper can make
      */
     uint16_t getMaxSteps() const;
     /**
      * @brief setter for maxSteps direct
+     * @param[in] amount of steps that the stepper can make
      */
     void setMaxSteps(const uint16_t newMaxSteps);
     /**
      * @brief setter for maxSteps indirect
+     * @param[in] amount of steps that the stepper can make
      */
     void setMaxSteps(const double stride, const double gearRatio);
 };
