@@ -17,6 +17,7 @@ namespace MotorController {
  *
  * This class contains functionalirt to control a DC motor and is used in the motor controller to do so
  *
+ * More explaination of fucntios in the motor_interface class
  */
 class DcInterface : public MotorInterface {
   public:

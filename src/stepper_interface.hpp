@@ -16,7 +16,9 @@ namespace MotorController {
  * @brief Interface for stepper motor
  *
  * This class contains functionalirt to control a stepper motor and is used in the motor controller to do so
+ * The stepper interface uses PWM for future Microstepping (Not implemented yet)
  *
+ * More explaination of fucntios in the motor_interface class
  */
 class StepperInterface : public MotorInterface {
   public:
@@ -46,6 +48,8 @@ class StepperInterface : public MotorInterface {
     uint8_t getStepperMethod() const;
     /**
      * @brief setter for steppermethod, 0: whole step, 1: Halve step
+     * The set stepper method also sets the frequency to 25khz
+     * This is so you wont hear the stepper motor when microstepping is implemented.
      */
     void setStepperMethod(const uint8_t newMethod);
     /**
@@ -61,15 +65,18 @@ class StepperInterface : public MotorInterface {
      */
     void setMaxSteps(const double stride, const double gearRatio);
     /**
-     * @brief pinout setter to define the sequence in a swich case
+     * @brief pinout setter to define the sequence in a swich case used internally.
+     * Can NOT be accesed with the use of the motor interface.
      */
     void gotoStep(uint8_t step);
     /**
-     * @brief The fullstepper logic
+     * @brief The fullstepper logic used internally.
+     * Can NOT be accesed with the use of the motor interface.
      */
     void doFullStep(int stepsToDo);
     /**
-     * @brief The halfstep logic
+     * @brief The halfstep logic used internally.
+     * Can NOT be accesed with the use of the motor interface.
      */
     void doHalfStep(int stepsToDo);
 

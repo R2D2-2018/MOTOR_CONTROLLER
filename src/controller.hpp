@@ -18,27 +18,27 @@ namespace MotorController {
 /**
  * @brief Controller for motor logic
  * This class is used to control a motor using the motor_Interface superclass.
- * The Interface can be set to DC or Stepper and uses the selected Interface to set speed, direction or angle of a motor
+ * The Interface can be set to DC, Stepper and servo. by the selected Interface to set speed, direction or angle of a motor
  *
+ * This controller controls where the input needs to go. for more explaination what each function does
+ * Please read the motor_interface class
  */
 class Controller {
   public:
-    ///< Enum class with all available motor Interfaces
-    enum class Interface { DC, Stepper, Servo, None };
+    enum class Interface { DC, Stepper, Servo, None }; ///< Enum class with all available motor Interfaces
 
   private:
-    ///< The Interface that is currently selected
     MotorInterface *selectedInterface = nullptr;
-
+    ///< The Interface that is currently selected
+    DcInterface dcInterface;
     ///< The Interface for dc motor, we initialize this in the contructor because we have no heap and can't do polymorphism that way
     ///< for selected Interface
-    DcInterface dcInterface;
+    StepperInterface stepperInterface;
     ///< The Interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
     ///< that way for selected Interface
-    StepperInterface stepperInterface;
+    ServoInterface servoInterface;
     ///< The Interface for servo motor, we initialize this in the contructor because we have no heap and can't do polymorphism
     ///< that way for selected Interface
-    ServoInterface servoInterface;
 
   public:
     /**

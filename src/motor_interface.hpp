@@ -20,26 +20,16 @@ namespace MotorController {
  */
 class MotorInterface {
   protected:
-    ///< Motor rotation speed, 0 - 100
-    int8_t speed = 0;
-    ///< Motor angle, 0 - 180
-    uint16_t angle = 0;
-    ///< almount of steps currently
-    uint16_t steps = 0;
-    ///< counter to track where we are in the sequence
-    int8_t stepSequenceTracker = 0;
-    ///< Almount of staps that the setepper has
-    uint16_t maxSteps = 10;
-    ///< stepper Method, 0: whole step, 1: Halve step
-    uint8_t stepperMethod = 1;
-    ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1
-    PWMcontroller pwm1 = PWMcontroller(PWMpin::L7_D6);
-    ///< Pin 7. used as DC motor 1 backward, Stepper wire 2, Servo 2
-    PWMcontroller pwm2 = PWMcontroller(PWMpin::L6_D7);
-    ///< Pin 8. used as DC motor 2 forward, Stepper wire 3, Servo 3
-    PWMcontroller pwm3 = PWMcontroller(PWMpin::L5_D8);
-    ///< Pin 9. used as DC motor 2 backward, Stepper wire 4, Servo 4
-    PWMcontroller pwm4 = PWMcontroller(PWMpin::L4_D9);
+    int8_t speed = 0;                                  ///< Motor rotation speed, 0 - 100
+    uint16_t angle = 0;                                ///< Motor angle, 0 - 180 or 360 in stepper
+    uint16_t steps = 0;                                ///< almount of steps currently
+    int8_t stepSequenceTracker = 0;                    ///< counter to track where we are in the sequence
+    uint16_t maxSteps = 10;                            ///< Almount of staps that the setepper has
+    uint8_t stepperMethod = 1;                         ///< stepper Method, 0: whole step, 1: Halve step
+    PWMcontroller pwm1 = PWMcontroller(PWMpin::L7_D6); ///< Pin 6. used as DC motor 1 forward, Stepper wire 1, Servo 1
+    PWMcontroller pwm2 = PWMcontroller(PWMpin::L6_D7); ///< Pin 7. used as DC motor 1 backward, Stepper wire 2, Servo 2
+    PWMcontroller pwm3 = PWMcontroller(PWMpin::L5_D8); ///< Pin 8. used as DC motor 2 forward, Stepper wire 3, Servo 3
+    PWMcontroller pwm4 = PWMcontroller(PWMpin::L4_D9); ///< Pin 9. used as DC motor 2 backward, Stepper wire 4, Servo 4
 
   public:
     /**
@@ -48,59 +38,65 @@ class MotorInterface {
     MotorInterface(){};
 
     /**
-     * @brief getter for speed
+     * @brief getter for speed set the dc speed in % where negative value means backwards.
+     * for the stepper speed controls the speed off the interval when changeing to the next step.
+     * for the stepper to go backwards fill in setAngle with a negative value. speed is always positive.
      */
     virtual int8_t getSpeed() const {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for speed
+     * @brief setter for speed set the dc speed in % where negative value means backwards.
+     * for the stepper speed controls the speed off the interval when changeing to the next step.
+     * for the stepper to go backwards fill in setAngle with a negative value. speed is always positive.
      */
     virtual void setSpeed(const int8_t speed) {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
     };
     /**
-     * @brief getter for angle
+     * @brief getter for angle. returns the current angle. Keep in mind that angle resets by reboot of the stepper
      */
     virtual uint16_t getAngle() const {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for angle
+     * @brief setter for angle in range 0 - 180 for servo and stepper how much it should turn
+     * for example setAngle(90) will center a servo and will turn the stepper 90 degrees clockwise
+     * setAngle(-720) will make the stepper turn 2 turns counter clockwise
      */
     virtual void setAngle(const int16_t newAngle) {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
     };
     /**
-     * @brief getter for stepperMethod
+     * @brief getter for stepperMethod. 0: full step, 1: halfstep (default)
      */
     virtual uint8_t getStepperMethod() const {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for stepperMethod
+     * @brief setter for stepperMethod. 0: full step, 1: halfstep (default)
      */
     virtual void setStepperMethod(const uint8_t newMethod) {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
     };
     /**
-     * @brief getter for maxSteps
+     * @brief getter for maxSteps expressed in the amount of steps for 1 full rotation
      */
     virtual uint16_t getMaxSteps() const {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
         return 0;
     };
     /**
-     * @brief setter for Maxsteps direct
+     * @brief setter for Maxsteps direct by entering the steps
      */
     virtual void setMaxSteps(const uint16_t newMaxSteps) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
     /**
-     * @brief setter for Maxsteps indirect
+     * @brief setter for Maxsteps indirect by entering the stride and the gear ratio of the stepper.
      */
     virtual void setMaxSteps(const double stride, const double gearRatio) {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
