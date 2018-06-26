@@ -18,27 +18,27 @@ namespace MotorController {
 /**
  * @brief Controller for motor logic
  * This class is used to control a motor using the motor_Interface superclass.
- * The Interface can be set to DC or Stepper and uses the selected Interface to set speed, direction or angle of a motor
+ * The Interface can be set to DC, Stepper and servo. by the selected Interface to set speed, direction or angle of a motor
  *
+ * This controller controls where the input needs to go. for more explaination what each function does
+ * Please read the motor_interface class
  */
 class Controller {
   public:
-    ///< Enum class with all available motor Interfaces
-    enum class Interface { DC, Stepper, Servo, None };
+    enum class Interface { DC, Stepper, Servo, None }; ///< Enum class with all available motor Interfaces
 
   private:
-    ///< The Interface that is currently selected
     MotorInterface *selectedInterface = nullptr;
-
+    ///< The Interface that is currently selected
+    DcInterface dcInterface;
     ///< The Interface for dc motor, we initialize this in the contructor because we have no heap and can't do polymorphism that way
     ///< for selected Interface
-    DcInterface dcInterface;
+    StepperInterface stepperInterface;
     ///< The Interface for stepper motor, we initialize this in the contructor because we have no heap and can't do polymorphism
     ///< that way for selected Interface
-    StepperInterface stepperInterface;
+    ServoInterface servoInterface;
     ///< The Interface for servo motor, we initialize this in the contructor because we have no heap and can't do polymorphism
     ///< that way for selected Interface
-    ServoInterface servoInterface;
 
   public:
     /**
@@ -48,48 +48,60 @@ class Controller {
 
     /**
      *  @brief getter for selectedInterface
+     * @param[out] selected interface
      */
     Interface getSelectedInterface() const;
     /**
      * @brief setter for selectedInterface
+     * @param[in] interface enum
+     * @param[out] bool if set was succes
      */
     bool setSelectedInterface(const Interface interface);
     /**
      * @brief getter for speed
+     * @param[out] speed -100 / 100
      */
-    int16_t getSpeed() const;
+    int8_t getSpeed() const;
     /**
      * @brief setter for speed
+     * @param[in] speed -100 / 100
      */
-    void setSpeed(const int16_t speed);
+    void setSpeed(const int8_t speed);
     /**
      * @brief getter for angle
+     * @param[out] angle in degree 0 / 360
      */
     uint16_t getAngle() const;
     /**
      * @brief setter for angle
+     * @param[in] angle in degree 0 / 360
      */
-    void setAngle(const uint16_t newAngle);
+    void setAngle(const int16_t newAngle);
     /**
-     * @brief getter for stepperwires
+     * @brief getter for stepperMethod
+     * @param[out] stepperMethod 0: fullstep, 1: halfstep (default)
      */
-    uint8_t getStepperWires() const;
+    uint8_t getStepperMethod() const;
     /**
-     * @brief setter for stepperwires
+     * @brief setter for stepperMethod
+     * @param[in] stepperMethod 0: fullstep, 1: halfstep (default)
      */
-    void setStepperWires(const uint8_t newAmount);
+    void setStepperMethod(const uint8_t newMethod);
     /**
-     * @brief getter for steps
+     * @brief getter for maxsteps
+     * @param[out] amount of steps that the stepper can make
      */
-    uint16_t getSteps() const;
+    uint16_t getMaxSteps() const;
     /**
-     * @brief setter for Steps direct
+     * @brief setter for maxSteps direct
+     * @param[in] amount of steps that the stepper can make
      */
-    void setSteps(const uint16_t newSteps);
+    void setMaxSteps(const uint16_t newMaxSteps);
     /**
-     * @brief setter for Steps indirect
+     * @brief setter for maxSteps indirect
+     * @param[in] amount of steps that the stepper can make
      */
-    void setSteps(const double stride, const double gearRatio);
+    void setMaxSteps(const double stride, const double gearRatio);
 };
 } // namespace MotorController
 

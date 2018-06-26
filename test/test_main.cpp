@@ -1,3 +1,10 @@
+/**
+ * @file
+ * @brief     This file contains the tests for the motor controller
+ * @author    Nick Bout & Olivier Verwoerd
+ * @license   MIT License
+ */
+
 #define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "controller.hpp"
@@ -52,8 +59,6 @@ TEST_CASE("Controller dcInterface selected: setSpeed") {
 
     motorController.setSpeed(60);
     REQUIRE(motorController.getSpeed() == 60);
-    motorController.setSpeed(255);
-    REQUIRE(motorController.getSpeed() == 255);
 }
 
 TEST_CASE("Controller dcInterface selected: setSpeed negative") {
@@ -63,15 +68,13 @@ TEST_CASE("Controller dcInterface selected: setSpeed negative") {
 
     motorController.setSpeed(-60);
     REQUIRE(motorController.getSpeed() == -60);
-    motorController.setSpeed(-255);
-    REQUIRE(motorController.getSpeed() == -255);
 }
 
 TEST_CASE("Controller dcInterface selected: setSpeed, no overflow") {
     MotorController::Controller motorController;
 
     motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
-    motorController.setSpeed(400);
+    motorController.setSpeed(120);
 
     REQUIRE(motorController.getSpeed() == 0);
 }
@@ -80,23 +83,8 @@ TEST_CASE("Controller dcInterface selected: setSpeed, no underflow") {
     MotorController::Controller motorController;
 
     motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
-    motorController.setSpeed(-300);
+    motorController.setSpeed(-120);
     REQUIRE(motorController.getSpeed() == 0);
-}
-
-TEST_CASE("Controller dcInterface selected: setAngle") {
-    MotorController::Controller motorController;
-
-    motorController.setSelectedInterface(MotorController::Controller::Interface::DC);
-
-    motorController.setAngle(360);
-    REQUIRE(motorController.getAngle() == 0);
-
-    motorController.setAngle(0);
-    REQUIRE(motorController.getAngle() == 0);
-
-    motorController.setAngle(244);
-    REQUIRE(motorController.getAngle() == 0);
 }
 
 TEST_CASE("DCInterface: Default speed") {
@@ -116,61 +104,43 @@ TEST_CASE("DCInterface: setSpeed") {
 TEST_CASE("DCInterface: setSpeed, no overflow") {
     MotorController::DcInterface motorInterface;
 
-    motorInterface.setSpeed(300);
+    motorInterface.setSpeed(120);
     REQUIRE(motorInterface.getSpeed() == 0);
 }
 
 TEST_CASE("DCInterface: setSpeed, no underflow") {
     MotorController::DcInterface motorInterface;
 
-    motorInterface.setSpeed(-265);
+    motorInterface.setSpeed(-120);
 
     REQUIRE(motorInterface.getSpeed() == 0);
 }
 
-TEST_CASE("DCInterface: setAngle") {
-    MotorController::DcInterface motorInterface;
-
-    motorInterface.setAngle(360);
-    REQUIRE(motorInterface.getAngle() == 0);
-
-    motorInterface.setAngle(0);
-    REQUIRE(motorInterface.getAngle() == 0);
-
-    motorInterface.setAngle(244);
-    REQUIRE(motorInterface.getAngle() == 0);
-}
 //----------------STEPPER----------------
 TEST_CASE("Stepper Interface: setSpeed") {
     MotorController::StepperInterface motorInterface;
     motorInterface.setSpeed(60);
     REQUIRE(motorInterface.getSpeed() == 60);
-    motorInterface.setSpeed(255);
-    REQUIRE(motorInterface.getSpeed() == 255);
 }
 
-TEST_CASE("Stepper Interface: set wires") {
+TEST_CASE("Stepper Interface: set method") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getStepperWires() == 4);
-    motorInterface.setStepperWires(0);
-    REQUIRE(motorInterface.getStepperWires() == 4);
-    motorInterface.setStepperWires(2);
-    REQUIRE(motorInterface.getStepperWires() == 2);
-    motorInterface.setStepperWires(6);
-    REQUIRE(motorInterface.getStepperWires() == 2);
-    motorInterface.setStepperWires(5);
-    REQUIRE(motorInterface.getStepperWires() == 5);
+    REQUIRE(motorInterface.getStepperMethod() == 1);
+    motorInterface.setStepperMethod(7);
+    REQUIRE(motorInterface.getStepperMethod() == 1);
+    motorInterface.setStepperMethod(0);
+    REQUIRE(motorInterface.getStepperMethod() == 0);
 }
 
 TEST_CASE("Stepper Interface: set steps") {
     MotorController::StepperInterface motorInterface;
-    REQUIRE(motorInterface.getSteps() == 4);
-    motorInterface.setSteps(0);
-    REQUIRE(motorInterface.getSteps() == 4);
-    motorInterface.setSteps(8);
-    REQUIRE(motorInterface.getSteps() == 8);
-    motorInterface.setSteps(5.625, 64);
-    REQUIRE(motorInterface.getSteps() == 4096);
+    REQUIRE(motorInterface.getMaxSteps() == 10);
+    motorInterface.setMaxSteps(0);
+    REQUIRE(motorInterface.getMaxSteps() == 10);
+    motorInterface.setMaxSteps(100);
+    REQUIRE(motorInterface.getMaxSteps() == 100);
+    motorInterface.setMaxSteps(5.625, 64);
+    REQUIRE(motorInterface.getMaxSteps() == 4096);
 }
 
 //----------------SERVO----------------
@@ -187,6 +157,6 @@ TEST_CASE("Servo Interface: setAngle") {
     motorInterface.setAngle(-5);
     REQUIRE(motorInterface.getAngle() == 0);
 
-    motorInterface.setAngle(244);
-    REQUIRE(motorInterface.getAngle() == 244);
+    motorInterface.setAngle(120);
+    REQUIRE(motorInterface.getAngle() == 120);
 }

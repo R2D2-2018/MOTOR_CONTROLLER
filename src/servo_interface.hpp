@@ -17,6 +17,7 @@ namespace MotorController {
  *
  * This class contains functions to control a servo motor and is used in the motor controller to do so
  *
+ * More explaination of fucntios in the motor_interface class
  */
 class ServoInterface : public MotorInterface {
   public:
@@ -26,12 +27,14 @@ class ServoInterface : public MotorInterface {
     ServoInterface();
     /**
      * @brief getter for angle
+     * @param[out] current angle 0 / 180
      */
     uint16_t getAngle() const override;
     /**
      * @brief setter for angle
+     * @param[in] new angle in a range 0-180. if the servo is capable of 360 degees fill in 180.
      */
-    void setAngle(const uint16_t newAngle);
+    void setAngle(const int16_t newAngle);
 };
 } // namespace MotorController
 

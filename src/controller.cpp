@@ -42,11 +42,11 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
     }
 }
 
-int16_t MotorController::Controller::getSpeed() const {
+int8_t MotorController::Controller::getSpeed() const {
     return selectedInterface->getSpeed();
 }
 
-void MotorController::Controller::setSpeed(const int16_t newSpeed) {
+void MotorController::Controller::setSpeed(const int8_t newSpeed) {
     selectedInterface->setSpeed(newSpeed);
 }
 
@@ -54,26 +54,26 @@ uint16_t MotorController::Controller::getAngle() const {
     return selectedInterface->getAngle();
 }
 
-void MotorController::Controller::setAngle(const uint16_t newAngle) {
+void MotorController::Controller::setAngle(const int16_t newAngle) {
     return selectedInterface->setAngle(newAngle);
 }
 
-uint8_t MotorController::Controller::getStepperWires() const {
-    return selectedInterface->getStepperWires();
+uint8_t MotorController::Controller::getStepperMethod() const {
+    return selectedInterface->getStepperMethod();
 }
 
-void MotorController::Controller::setStepperWires(const uint8_t newAmount) {
-    return selectedInterface->setStepperWires(newAmount);
+void MotorController::Controller::setStepperMethod(const uint8_t newMethod) {
+    return selectedInterface->setStepperMethod(newMethod);
 }
 
-uint16_t MotorController::Controller::getSteps() const {
-    return selectedInterface->getSteps();
+uint16_t MotorController::Controller::getMaxSteps() const {
+    return selectedInterface->getMaxSteps();
 }
 
-void MotorController::Controller::setSteps(const uint16_t newSteps) {
-    return selectedInterface->setSteps(newSteps);
+void MotorController::Controller::setMaxSteps(const uint16_t newMaxSteps) {
+    return selectedInterface->setMaxSteps(newMaxSteps);
 }
 
-void MotorController::Controller::setSteps(const double stride, const double gearRatio) {
-    return selectedInterface->setSteps(stride, gearRatio);
+void MotorController::Controller::setMaxSteps(const double stride, const double gearRatio) {
+    return selectedInterface->setMaxSteps(stride, gearRatio);
 }

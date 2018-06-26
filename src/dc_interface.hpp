@@ -17,6 +17,7 @@ namespace MotorController {
  *
  * This class contains functionalirt to control a DC motor and is used in the motor controller to do so
  *
+ * More explaination of fucntios in the motor_interface class
  */
 class DcInterface : public MotorInterface {
   public:
@@ -26,12 +27,14 @@ class DcInterface : public MotorInterface {
     DcInterface();
     /**
      * @brief getter for speed
+     * @param[out] speed -100 / 100
      */
-    int16_t getSpeed() const override;
+    int8_t getSpeed() const override;
     /**
      * @brief setter for speed
+     * @param[in] speed -100 / 100
      */
-    void setSpeed(const int16_t speed) override;
+    void setSpeed(const int8_t speed) override;
 };
 } // namespace MotorController
 

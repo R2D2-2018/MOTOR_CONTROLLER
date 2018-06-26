@@ -1,5 +1,6 @@
 #include "controller.hpp"
 #include "motor_interface.hpp"
+#include "pwm_controller.hpp"
 #include "wrap-hwlib.hpp"
 
 /**
@@ -13,10 +14,10 @@
  * @param[in]     max           The maximum number that can be entered
  *
  */
-char askNumber(const char *question, char min = '0', char max = '1');
+char askNumber(const char *question, char min = '0', char max = '2');
 char askNumber(const char *question, char min, char max) {
     while (true) {
-        hwlib::cout << "Select your Interface (0: DC, 1: Stepper)" << hwlib::endl;
+        hwlib::cout << "Select your Interface (0: DC, 1: Stepper, 2:Servo)" << hwlib::endl;
         char number;
         hwlib::cin >> number;
 
@@ -45,6 +46,9 @@ void printInterface(MotorController::Controller &motorController) {
         break;
     case MotorController::Controller::Interface::Stepper:
         hwlib::cout << "Stepper motor" << hwlib::endl;
+        break;
+    case MotorController::Controller::Interface::Servo:
+        hwlib::cout << "Servo motor" << hwlib::endl;
         break;
     default:
         break;
@@ -91,31 +95,31 @@ int main() {
     WDT->WDT_MR = WDT_MR_WDDIS;
     hwlib::wait_ms(1000);
 
-    /**
     MotorController::Controller motorController;
-    // Ask user which Interface should be used
-    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
+    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
-
-    // Print selected Interface
     printInterface(motorController);
-
-    // TODO: We should see if we can make rtos work, then we can make this function a task
-    mainLogic(motorController);
-    */
-
-    MotorController::Controller motorController;
-    constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper)";
-    motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
+    // while for dc and servo
+    /*
     while (1) {
-        motorController.setSpeed(10);
+        motorController.setSpeed(50);
+        motorController.setAngle(0);
         hwlib::wait_ms(5000);
         motorController.setSpeed(0);
-
-        motorController.setAngle(0);
-        hwlib::wait_ms(2000);
-        motorController.setSpeed(-10);
+        motorController.setAngle(90);
         hwlib::wait_ms(5000);
+        motorController.setSpeed(-50);
+        motorController.setAngle(180);
+        hwlib::wait_ms(5000);
+    }
+    */
+    // while for stepper
+    motorController.setStepperMethod(1);
+    motorController.setMaxSteps(4096);
+    motorController.setSpeed(100);
+    while (1) {
+        motorController.setAngle(360);
+        motorController.setAngle(-360);
     }
     return 0;
 }
