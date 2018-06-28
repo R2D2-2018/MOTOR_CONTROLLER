@@ -2,7 +2,6 @@
 #define PWM_controller_HPP
 
 #include "wrap-hwlib.hpp"
-///< enum for all the avaible pwm pins on the arduino due.
 
 /**
  * @file
@@ -12,7 +11,7 @@
  * @license   See LICENSE
  */
 
-enum PWMpin : uint8_t {
+enum PWMpin : uint8_t { ///< enum for all the avaible pwm pins on the arduino due.
     ///< PWM_CH0
     H0_RX0,
     H0_SDA,

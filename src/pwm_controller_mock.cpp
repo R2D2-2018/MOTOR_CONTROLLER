@@ -9,7 +9,6 @@
 #include "pwm_controller.hpp"
 
 PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
-    pin = 0;
 }
 
 void PWMcontroller::setFreq(const uint32_t &setFreq) {

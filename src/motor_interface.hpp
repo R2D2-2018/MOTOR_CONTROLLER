@@ -40,7 +40,7 @@ class MotorInterface {
      * @brief getter for speed set the dc speed in % where negative value means backwards.
      * for the stepper speed controls the speed off the interval when changeing to the next step.
      * for the stepper to go backwards fill in setAngle with a negative value. speed is always positive.
-     * @param[out] speed -100 / 100
+     * @return speed (-100 - 100)
      */
     virtual int8_t getSpeed() const {
         hwlib::cout << "ERROR: This motor interface does NOT support speed control" << hwlib::endl;
@@ -58,7 +58,7 @@ class MotorInterface {
     /**
      * @brief getter for angle. returns the current angle.
      * Keep in mind that angle resets by reboot of the stepper.
-     * @param[out] angle in degrees 0 / 360
+     * @return current angle in degrees (0 - 360)
      */
     virtual uint16_t getAngle() const {
         hwlib::cout << "ERROR: This motor interface does NOT support angles" << hwlib::endl;
@@ -75,7 +75,7 @@ class MotorInterface {
     };
     /**
      * @brief getter for stepperMethod. 0: full step, 1: halfstep (default)
-     * @param[out] 0 or 1
+     * @return selected stepper method (0 or 1)
      */
     virtual uint8_t getStepperMethod() const {
         hwlib::cout << "ERROR: This motor interface does NOT support stepperwires" << hwlib::endl;
@@ -90,7 +90,7 @@ class MotorInterface {
     };
     /**
      * @brief getter for maxSteps expressed in the amount of steps for 1 full rotation
-     * @param[out] amount of steps.
+     * @return amount of steps
      */
     virtual uint16_t getMaxSteps() const {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
@@ -111,6 +111,6 @@ class MotorInterface {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
 };
-} ///< namespace MotorController
+} // namespace MotorController
 
 #endif ///< MOTOR_Interface_HPP
