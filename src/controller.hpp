@@ -105,4 +105,4 @@ class Controller {
 };
 } // namespace MotorController
 
-#endif // CONTROLLER_HPP
+#endif ///< CONTROLLER_HPP

@@ -36,6 +36,6 @@ class DcInterface : public MotorInterface {
      */
     void setSpeed(const int8_t speed) override;
 };
-} // namespace MotorController
+} ///< namespace MotorController
 
-#endif // DC_Interface_HPP
+#endif ///< DC_Interface_HPP

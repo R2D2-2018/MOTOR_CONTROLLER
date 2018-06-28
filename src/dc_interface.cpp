@@ -8,7 +8,7 @@ int8_t MotorController::DcInterface::getSpeed() const {
 }
 
 void MotorController::DcInterface::setSpeed(const int8_t newSpeed) {
-    // Speed can only be -255 / 255
+    ///< Speed can only be -255 / 255
     if (pwm1.getFreq() != 1000 || pwm2.getFreq() != 1000 || pwm3.getFreq() != 1000 || pwm4.getFreq() != 1000) {
         pwm1.setFreq(1000);
         pwm2.setFreq(1000);

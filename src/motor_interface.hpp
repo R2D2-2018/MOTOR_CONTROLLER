@@ -111,6 +111,6 @@ class MotorInterface {
         hwlib::cout << "ERROR: This motor interface does NOT support steps" << hwlib::endl;
     };
 };
-} // namespace MotorController
+} ///< namespace MotorController
 
-#endif // MOTOR_Interface_HPP
+#endif ///< MOTOR_Interface_HPP

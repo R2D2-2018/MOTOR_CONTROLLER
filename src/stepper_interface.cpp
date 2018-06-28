@@ -77,7 +77,7 @@ void MotorController::StepperInterface::doFullStep(int stepsToDo) {
         gotoStep(stepSequenceTracker);
         hwlib::wait_us(100000 / (speed / 5 + 1));
     }
-    hwlib::wait_ms(50); // prevent motor not working with direct change
+    hwlib::wait_ms(50); ///< prevent motor not working with direct change
 }
 
 void MotorController::StepperInterface::doHalfStep(int stepsToDo) {
@@ -98,11 +98,11 @@ void MotorController::StepperInterface::doHalfStep(int stepsToDo) {
         gotoStep(stepSequenceTracker);
         hwlib::wait_us(100000 / (speed * 9 / 10 + 1));
     }
-    hwlib::wait_ms(50); // prevent motor not working with direct change
+    hwlib::wait_ms(50); ///< prevent motor not working with direct change
 }
 
 void MotorController::StepperInterface::setSpeed(const int8_t newSpeed) {
-    // Speed can only be -100 / 100
+    ///< Speed can only be -100 / 100
     if (newSpeed == 0) {
         speed = newSpeed;
     } else if (newSpeed > 0 && newSpeed <= 100) {
@@ -132,7 +132,7 @@ uint8_t MotorController::StepperInterface::getStepperMethod() const {
 void MotorController::StepperInterface::setStepperMethod(const uint8_t newMethod) {
     if (newMethod <= 1) {
         stepperMethod = newMethod;
-        stepSequenceTracker = 0; // prevent missing step when swiching from half to full
+        stepSequenceTracker = 0; ///< prevent missing step when swiching from half to full
         pwm1.setFreq(2500);
         pwm2.setFreq(2500);
         pwm3.setFreq(2500);
