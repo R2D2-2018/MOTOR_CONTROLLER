@@ -22,7 +22,7 @@ char askNumber(const char *question, char min, char max) {
         hwlib::cin >> number;
 
         if (number >= min && number <= max) {
-            // char to int and then cast that to a MotorInterface::Interface
+            ///< char to int and then cast that to a MotorInterface::Interface
             return number - '0';
         }
     }
@@ -69,21 +69,21 @@ void mainLogic(MotorController::Controller &motorController);
 void mainLogic(MotorController::Controller &motorController) {
     while (true) {
         char answer;
-        // Output current state
+        ///< Output current state
         hwlib::cout << ", speed: " << static_cast<int>(motorController.getSpeed())
                     << "%, angle: " << static_cast<int>(motorController.getAngle()) << hwlib::endl;
 
-        // Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
+        ///< Ask new motor speed (hwlib cin does not support int so we use char and multiply by 10 for now)
         hwlib::cout << "Give a new motor speed (0 - 9): " << hwlib::endl;
         hwlib::cin >> answer;
-        if (answer >= '0' && answer <= '9') { // Set direction if valid answer
+        if (answer >= '0' && answer <= '9') { ///< Set direction if valid answer
             motorController.setSpeed((answer - '0') * 50 - 250);
         }
 
-        // Ask new motor angle (hwlib cin does not support int so we use char and multiply by 36 for now)
+        ///< Ask new motor angle (hwlib cin does not support int so we use char and multiply by 36 for now)
         hwlib::cout << "Give a new motor angle (0 - 9): " << hwlib::endl;
         hwlib::cin >> answer;
-        if (answer >= '0' && answer <= '9') { // Set direction if valid answer
+        if (answer >= '0' && answer <= '9') { ///< Set direction if valid answer
             motorController.setAngle((answer - '0') * 36);
         }
 
@@ -99,7 +99,7 @@ int main() {
     constexpr const char question[] = "Select your Interface (0: DC, 1: Stepper, 2:Servo)";
     motorController.setSelectedInterface(static_cast<MotorController::Controller::Interface>(askNumber(question)));
     printInterface(motorController);
-    // while for dc and servo
+    ///< while for dc and servo
     /*
     while (1) {
         motorController.setSpeed(50);
@@ -113,7 +113,7 @@ int main() {
         hwlib::wait_ms(5000);
     }
     */
-    // while for stepper
+    ///< while for stepper
     motorController.setStepperMethod(1);
     motorController.setMaxSteps(4096);
     motorController.setSpeed(100);

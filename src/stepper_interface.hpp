@@ -96,7 +96,7 @@ class StepperInterface : public MotorInterface {
      */
     void doHalfStep(int stepsToDo);
 
-}; // namespace MotorController
-} // namespace MotorController
+}; ///< namespace MotorController
+} ///< namespace MotorController
 
-#endif // Stepper_Interface_HPP
+#endif ///< Stepper_Interface_HPP

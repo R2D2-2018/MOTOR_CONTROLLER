@@ -38,4 +38,4 @@ class ServoInterface : public MotorInterface {
 };
 } // namespace MotorController
 
-#endif // Servo_Interface_HPP
+#endif ///< Servo_Interface_HPP

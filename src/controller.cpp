@@ -4,13 +4,13 @@ MotorController::Controller::Controller() : dcInterface(), stepperInterface(), s
 }
 
 MotorController::Controller::Interface MotorController::Controller::getSelectedInterface() const {
-    // Getting while interface is nullptr
+    ///< Getting while interface is nullptr
     if (selectedInterface == nullptr) {
         hwlib::cout << "Error:: Trying to get an nullptr interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
         return MotorController::Controller::Interface::None;
     }
 
-    // Convert the Interface to enum
+    ///< Convert the Interface to enum
     if (selectedInterface == &servoInterface) {
         return MotorController::Controller::Interface::Servo;
     } else if (selectedInterface == &stepperInterface) {
@@ -20,7 +20,7 @@ MotorController::Controller::Interface MotorController::Controller::getSelectedI
 }
 
 bool MotorController::Controller::setSelectedInterface(const MotorController::Controller::Interface newInterface) {
-    // Prevent setting the Interface a second time
+    ///< Prevent setting the Interface a second time
     if (selectedInterface != nullptr) {
         return false;
     }
@@ -36,7 +36,7 @@ bool MotorController::Controller::setSelectedInterface(const MotorController::Co
         selectedInterface = &servoInterface;
         return true;
     default:
-        // Interface not supported
+        ///< Interface not supported
         hwlib::cout << "Error: Trying to set and not supported Interface (controller.cpp, line: " << __LINE__ << ")" << hwlib::endl;
         return false;
     }

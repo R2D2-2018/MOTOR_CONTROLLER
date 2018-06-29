@@ -3,7 +3,7 @@
 PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
     Pio *pointerPIO;
     switch (pin) {
-        // channel 0
+        ///< channel 0
     case H0_RX0:
         pin = PIO_PA8;
         pointerPIO = PIOA;
@@ -34,7 +34,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 0;
         break;
-        // channel 1
+        ///< channel 1
     case H1_D42:
         pin = PIO_PA19;
         pointerPIO = PIOA;
@@ -65,7 +65,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 1;
         break;
-        // channel 2
+        ///< channel 2
     case H2_TX2:
         pin = PIO_PA13;
         pointerPIO = PIOA;
@@ -96,7 +96,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 2;
         break;
-        // channel 3
+        ///< channel 3
     case H3_TX0:
         pin = PIO_PA9;
         pointerPIO = PIOA;
@@ -127,7 +127,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 3;
         break;
-        // channel 4
+        ///< channel 4
     case H4_PC20:
         pin = PIO_PC20;
         pointerPIO = PIOC;
@@ -138,7 +138,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 4;
         break;
-        // channel 5
+        ///< channel 5
     case H5_D44:
         pin = PIO_PC19;
         pointerPIO = PIOC;
@@ -149,7 +149,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 5;
         break;
-        // channel 6
+        ///< channel 6
     case H6_D45:
         pin = PIO_PC18;
         pointerPIO = PIOC;
@@ -160,7 +160,7 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         pointerPIO = PIOC;
         channel_id = 6;
         break;
-        // channel 7
+        ///< channel 7
     case L7_D6:
         pin = PIO_PC24;
         pointerPIO = PIOC;
@@ -171,21 +171,21 @@ PWMcontroller::PWMcontroller(const PWMpin &_pin) : pin(_pin) {
         return;
         break;
     }
-    uint8_t mask = 1 << channel_id; // make mask based off channel_id, example channel_id = 2, mask is 0000 0100. enabling CHID2
-                                    // in PWM_ENA register.
+    uint8_t mask = 1 << channel_id; ///< make mask based off channel_id, example channel_id = 2, mask is 0000 0100. enabling CHID2
+                                    ///< in PWM_ENA register.
     if (!(PWM->PWM_SR & mask)) {
-        REG_PMC_PCER1 |= PMC_PCER1_PID36; // Enable PWM
+        REG_PMC_PCER1 |= PMC_PCER1_PID36; ///< Enable PWM
 
-        pointerPIO->PIO_ABSR |= pin; // PWM is always on b
-        pointerPIO->PIO_PDR |= pin;  // enable pin for pwm
+        pointerPIO->PIO_ABSR |= pin; ///< PWM is always on b
+        pointerPIO->PIO_PDR |= pin;  ///< enable pin for pwm
 
-        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(42);                      // default 2mhz 84 / 42 = 2Mhz
-        PWM->PWM_CH_NUM[channel_id].PWM_CMR = PWM_CMR_CALG | PWM_CMR_CPRE_CLKA; // enable clock a for channel x
-        PWM->PWM_CH_NUM[channel_id].PWM_CPRD = 20000;                           // default 50hz
-        PWM->PWM_CH_NUM[channel_id].PWM_CDTY = 1500;                            // default 20% dutycycle
-        PWM->PWM_ENA = (PWM->PWM_SR | mask);                                    // enable channel x
-    }                                                                           // else
-      // hwlib::cout << "This channel can not be used" << hwlib::endl;
+        PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(42);                      ///< default 2mhz 84 / 42 = 2Mhz
+        PWM->PWM_CH_NUM[channel_id].PWM_CMR = PWM_CMR_CALG | PWM_CMR_CPRE_CLKA; ///< enable clock a for channel x
+        PWM->PWM_CH_NUM[channel_id].PWM_CPRD = 20000;                           ///< default 50hz
+        PWM->PWM_CH_NUM[channel_id].PWM_CDTY = 1500;                            ///< default 20% dutycycle
+        PWM->PWM_ENA = (PWM->PWM_SR | mask);                                    ///< enable channel x
+    }                                                                           ///< else
+      ///< hwlib::cout << "This channel can not be used" << hwlib::endl;
 }
 
 void PWMcontroller::setFreq(const uint32_t &setFreq) {
@@ -194,17 +194,17 @@ void PWMcontroller::setFreq(const uint32_t &setFreq) {
         uint32_t maxCPRD = 65535;
         uint32_t newCPRD = (84000000 / (2 * setFreq));
         while (newCPRD > maxCPRD) {
-            newCPRD = static_cast<uint32_t>((84000000 / i) / (2 * setFreq)); // calculate new CRPD value
+            newCPRD = static_cast<uint32_t>((84000000 / i) / (2 * setFreq)); ///< calculate new CRPD value
             ++i;
             if (i == 0) {
-                break; // break, no clock can be used for this freq.
+                break; ///< break, no clock can be used for this freq.
             }
         }
         if (i != 0) {
-            PWM->PWM_WPSR;                                    // enable permissions to change clock
-            PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); // setting up right clk divider
-            PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   // setting pwm freq
-            setDutyCycle(dutyCycle);                          // update duty cycle
+            PWM->PWM_WPSR;                                    ///< enable permissions to change clock
+            PWM->PWM_CLK = PWM_CLK_PREA(0) | PWM_CLK_DIVA(i); ///< setting up right clk divider
+            PWM->PWM_CH_NUM[channel_id].PWM_CPRD = newCPRD;   ///< setting pwm freq
+            setDutyCycle(dutyCycle);                          ///< update duty cycle
             freq = setFreq;
             return;
         }
@@ -214,10 +214,11 @@ void PWMcontroller::setFreq(const uint32_t &setFreq) {
 
 void PWMcontroller::setDutyCycle(const double &setDutyCycle) {
     if (setDutyCycle >= 0 && setDutyCycle <= 100) {
-        dutyCycle = PWM->PWM_CH_NUM[channel_id].PWM_CPRD / (100 / setDutyCycle); // get current freq and calculate the new dutycylce
+        dutyCycle =
+            PWM->PWM_CH_NUM[channel_id].PWM_CPRD / (100 / setDutyCycle); ///< get current freq and calculate the new dutycylce
         if (dutyCycle < 65535) {
-            PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle; // set new duty cycle
-            dutyCycle = setDutyCycle;                         // store current duty cycle.
+            PWM->PWM_CH_NUM[channel_id].PWM_CDTY = dutyCycle; ///< set new duty cycle
+            dutyCycle = setDutyCycle;                         ///< store current duty cycle.
         }
     } else {
         hwlib::cout << "This duty cyle can't be used" << hwlib::endl;
